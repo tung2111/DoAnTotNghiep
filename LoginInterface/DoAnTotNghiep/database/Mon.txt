@@ -1,0 +1,3 @@
+border-image: url(:/Image/ta-don1.jpg);
+border-image : url(:/Image/tay-sau-voi-ghe.jpg);
+border-image : url(:/Image/swat.jpg);
