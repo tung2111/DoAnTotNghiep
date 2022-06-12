@@ -126,24 +126,44 @@ File_Sat.close()
 
 
 checkbox = open(r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Checkbox.txt","r")
-ListMealWidget = open(r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\ListMeal.txt","r")
+checkboxLunch = open(r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Checkbox_Lunch.txt","r")
+checkboxDinner = open(r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Checkbox_Dinner.txt","r")
+ListMealWidgetBreakfast = open(r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\ListMeal.txt","r")
+ListMealWidgetLunch = open(r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\ListMeal_Lunch.txt","r")
+ListMealWidgetDinner = open(r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\ListMeal_Dinner.txt","r")
 for indexCheckbox in range(69):
+    #breakfasst
     if checkbox.readline() == 'True\n':
-        CheckboxMeal[indexCheckbox] =    True
+        CheckboxMeal[indexCheckbox] =True
     else:
-        CheckboxMeal[indexCheckbox] =    False
+        CheckboxMeal[indexCheckbox] =False
+    #Lunch
+    if checkboxLunch.readline() == 'True\n':
+        CheckboxMealLunch[indexCheckbox] =True
+    else:
+        CheckboxMealLunch[indexCheckbox] =False
+        #dinner
+    if checkboxDinner.readline() == 'True\n':
+        CheckboxMealDinner[indexCheckbox] =True
+    else:
+        CheckboxMealDinner[indexCheckbox] =False
 
-        #
-number = 0
 for indexmeal in range(10):
-    LoadMealFromFile = ListMealWidget.readline().strip('\n')
+    LoadMealFromFile = ListMealWidgetBreakfast.readline().strip('\n')
+    LoadMealFromFileLunch = ListMealWidgetLunch.readline().strip('\n')
+    LoadMealFromFileDinner = ListMealWidgetDinner.readline().strip('\n')
     if LoadMealFromFile != '':
         ListMeal.append(LoadMealFromFile)
-
+    if LoadMealFromFileLunch != '':
+        ListMealLunch.append(LoadMealFromFileLunch)
+    if LoadMealFromFileDinner != '':
+        ListMealDinner.append(LoadMealFromFileDinner)
 print (ListMeal)
+print (ListMealLunch)
+print (ListMealDinner)
 #close file
 checkbox.close()
-ListMealWidget.close()
+ListMealWidgetBreakfast.close()
 # ref = db.reference('/')
 # ref.set({
 #     '1':{
@@ -276,12 +296,12 @@ def getdatafrominput():
                 'Age'    : Age,
                 'CaloNeed' :CaloNeed
         }})
-
-
-
-
-def ChangePassWord():
-    print("ChangePass")
+#
+#
+#
+#
+# def ChangePassWord():
+#     print("ChangePass")
 
 
 def TimeTableFunction():
@@ -524,8 +544,6 @@ def GymFunction():
     volume = 0
     ui = Gym.Ui_MainWindow()
     ui.setupUi(MainWindow)
-    # t = threading.Thread(target=main)
-    # t.start()
     ui.Start.clicked.connect(lambda: count_task(z))
     ui.back.clicked.connect(LoadmainScreen)
     ui.mute_2.clicked.connect(mute)
@@ -750,6 +768,9 @@ def MealFunction():
     ui.pushButton.clicked.connect(MealSelectForBreakFast)
     ui.pushButton_2.clicked.connect(MealSelectWindowForLunch)
     ui.pushButton_3.clicked.connect(MealSelectWindowForDinner)
+    ui.label_7.setText(str(int(CaloNeed * 0.15)))
+    ui.label_11.setText(str(int(CaloNeed * 0.5)))
+    ui.label_15.setText(str(int(CaloNeed * 0.2)))
     ui.Back_Calo.clicked.connect(LoadmainScreen)
     # Display Calo to table
     ui.label_14.setText(str(CaloDinner))
@@ -767,153 +788,153 @@ class MealSelectForBreakFast:
         ui_1.label_12.setText(str(TocalCalo))
 
         # display meal to listview
-        ui_1.listWidget_2.clear()
-        ui_1.listWidget_2.addItems(ListMeal)
+        ui_1.listWidget_4.clear()
+        ui_1.listWidget_4.addItems(ListMeal)
 
         # Display checkbox
-        ui_1.gaxaot.setChecked(CheckboxMeal[0])
-        ui_1.gakho.setChecked(CheckboxMeal[1])
-        ui_1.mucxao.setChecked(CheckboxMeal[2])
-        ui_1.suongnuong.setChecked(CheckboxMeal[3])
-        ui_1.suongram.setChecked(CheckboxMeal[4])
-        ui_1.thitheoquay.setChecked(CheckboxMeal[5])
-        ui_1.thitboxao.setChecked(CheckboxMeal[6])
-        ui_1.thitkhotieu.setChecked(CheckboxMeal[7])
-        ui_1.camoikho.setChecked(CheckboxMeal[8])
-        ui_1.cari.setChecked(CheckboxMeal[9])
-        ui_1.bobia.setChecked(CheckboxMeal[10])
-        ui_1.cabacmachien.setChecked(CheckboxMeal[11])
-        ui_1.cabacmakho.setChecked(CheckboxMeal[12])
-        ui_1.cangukho.setChecked(CheckboxMeal[13])
-        ui_1.chalua.setChecked(CheckboxMeal[14])
-        ui_1.ganheoxao.setChecked(CheckboxMeal[15])
-        ui_1.goikhobo.setChecked(CheckboxMeal[16])
-        ui_1.goitom.setChecked(CheckboxMeal[17])
-        ui_1.khoquaxaotrung.setChecked(CheckboxMeal[18])
-        ui_1.lapxuongchien.setChecked(CheckboxMeal[19])
-        ui_1.mucxaothapcam.setChecked(CheckboxMeal[20])
-        ui_1.boxaomang.setChecked(CheckboxMeal[21])
-        ui_1.boxaonam.setChecked(CheckboxMeal[22])
-        ui_1.thitkhotrung.setChecked(CheckboxMeal[23])
-        ui_1.bunrieu.setChecked(CheckboxMeal[24])
-        ui_1.bunbohue.setChecked(CheckboxMeal[25])
-        ui_1.bunthitnuong.setChecked(CheckboxMeal[26])
-        ui_1.bunxao.setChecked(CheckboxMeal[27])
-        ui_1.canhkhoqua.setChecked(CheckboxMeal[28])
-        ui_1.chaolong.setChecked(CheckboxMeal[29])
-        ui_1.bo.setChecked(CheckboxMeal[31])
-        ui_1.chuoi.setChecked(CheckboxMeal[32])
-        ui_1.thom.setChecked(CheckboxMeal[33])
-        ui_1.xoai.setChecked(CheckboxMeal[34])
-        ui_1.saurieng.setChecked(CheckboxMeal[35])
-        ui_1.mangcut.setChecked(CheckboxMeal[36])
-        ui_1.coc.setChecked(CheckboxMeal[37])
-        ui_1.nho.setChecked(CheckboxMeal[38])
-        ui_1.duahau.setChecked(CheckboxMeal[39])
-        ui_1.buoi.setChecked(CheckboxMeal[40])
-        ui_1.khoailang.setChecked(CheckboxMeal[41])
-        ui_1.le.setChecked(CheckboxMeal[42])
-        ui_1.bapluoc.setChecked(CheckboxMeal[43])
-        ui_1.khoaitay.setChecked(CheckboxMeal[44])
-        ui_1.dauphong.setChecked(CheckboxMeal[45])
-        ui_1.dudu.setChecked(CheckboxMeal[46])
-        ui_1.sori.setChecked(CheckboxMeal[47])
-        ui_1.cam.setChecked(CheckboxMeal[48])
-        ui_1.oi.setChecked(CheckboxMeal[49])
-        ui_1.thanhlong.setChecked(CheckboxMeal[50])
-        ui_1.chebap.setChecked(CheckboxMeal[51])
-        ui_1.chechuoi.setChecked(CheckboxMeal[52])
-        ui_1.chedauden.setChecked(CheckboxMeal[53])
-        ui_1.chedauxanh.setChecked(CheckboxMeal[54])
-        ui_1.chenep.setChecked(CheckboxMeal[55])
-        ui_1.chetroinuoc.setChecked(CheckboxMeal[56])
-        ui_1.xoibap.setChecked(CheckboxMeal[57])
-        ui_1.xoidauden.setChecked(CheckboxMeal[58])
-        ui_1.xoidauphong.setChecked(CheckboxMeal[59])
-        ui_1.xoigac.setChecked(CheckboxMeal[60])
-        ui_1.cafe.setChecked(CheckboxMeal[61])
-        ui_1.nuocam.setChecked(CheckboxMeal[62])
-        ui_1.nuocchanh.setChecked(CheckboxMeal[63])
-        ui_1.nuocmia.setChecked(CheckboxMeal[64])
-        ui_1.nuocrauma.setChecked(CheckboxMeal[65])
-        ui_1.suachua.setChecked(CheckboxMeal[66])
-        ui_1.trungcut.setChecked(CheckboxMeal[67])
-        ui_1.trungga.setChecked(CheckboxMeal[68])
-        ui_1.trungvit.setChecked(CheckboxMeal[69])
+        ui_1.gaxaot_2.setChecked(CheckboxMeal[0])
+        ui_1.gakho_2.setChecked(CheckboxMeal[1])
+        ui_1.mucxao_2.setChecked(CheckboxMeal[2])
+        ui_1.suongnuong_2.setChecked(CheckboxMeal[3])
+        ui_1.suongram_2.setChecked(CheckboxMeal[4])
+        ui_1.thitheoquay_2.setChecked(CheckboxMeal[5])
+        ui_1.thitboxao_2.setChecked(CheckboxMeal[6])
+        ui_1.thitkhotieu_2.setChecked(CheckboxMeal[7])
+        ui_1.camoikho_2.setChecked(CheckboxMeal[8])
+        ui_1.cari_2.setChecked(CheckboxMeal[9])
+        ui_1.bobia_2.setChecked(CheckboxMeal[10])
+        ui_1.cabacmachien_2.setChecked(CheckboxMeal[11])
+        ui_1.cabacmakho_2.setChecked(CheckboxMeal[12])
+        ui_1.cangukho_2.setChecked(CheckboxMeal[13])
+        ui_1.chalua_2.setChecked(CheckboxMeal[14])
+        ui_1.ganheoxao_2.setChecked(CheckboxMeal[15])
+        ui_1.goikhobo_2.setChecked(CheckboxMeal[16])
+        ui_1.goitom_2.setChecked(CheckboxMeal[17])
+        ui_1.khoquaxaotrung_2.setChecked(CheckboxMeal[18])
+        ui_1.lapxuongchien_2.setChecked(CheckboxMeal[19])
+        ui_1.mucxaothapcam_2.setChecked(CheckboxMeal[20])
+        ui_1.boxaomang_2.setChecked(CheckboxMeal[21])
+        ui_1.boxaonam_2.setChecked(CheckboxMeal[22])
+        ui_1.thitkhotrung_2.setChecked(CheckboxMeal[23])
+        ui_1.bunrieu_2.setChecked(CheckboxMeal[24])
+        ui_1.bunbohue_2.setChecked(CheckboxMeal[25])
+        ui_1.bunthitnuong_2.setChecked(CheckboxMeal[26])
+        ui_1.bunxao_2.setChecked(CheckboxMeal[27])
+        ui_1.canhkhoqua_2.setChecked(CheckboxMeal[28])
+        ui_1.chaolong_2.setChecked(CheckboxMeal[29])
+        ui_1.bo_2.setChecked(CheckboxMeal[31])
+        ui_1.chuoi_2.setChecked(CheckboxMeal[32])
+        ui_1.thom_2.setChecked(CheckboxMeal[33])
+        ui_1.xoai_2.setChecked(CheckboxMeal[34])
+        ui_1.saurieng_2.setChecked(CheckboxMeal[35])
+        ui_1.mangcut_2.setChecked(CheckboxMeal[36])
+        ui_1.coc_2.setChecked(CheckboxMeal[37])
+        ui_1.nho_2.setChecked(CheckboxMeal[38])
+        ui_1.duahau_2.setChecked(CheckboxMeal[39])
+        ui_1.buoi_2.setChecked(CheckboxMeal[40])
+        ui_1.khoailang_2.setChecked(CheckboxMeal[41])
+        ui_1.le_2.setChecked(CheckboxMeal[42])
+        ui_1.bapluoc_2.setChecked(CheckboxMeal[43])
+        ui_1.khoaitay_2.setChecked(CheckboxMeal[44])
+        ui_1.dauphong_2.setChecked(CheckboxMeal[45])
+        ui_1.dudu_2.setChecked(CheckboxMeal[46])
+        ui_1.sori_2.setChecked(CheckboxMeal[47])
+        ui_1.cam_2.setChecked(CheckboxMeal[48])
+        ui_1.oi_2.setChecked(CheckboxMeal[49])
+        ui_1.thanhlong_2.setChecked(CheckboxMeal[50])
+        ui_1.chebap_2.setChecked(CheckboxMeal[51])
+        ui_1.chechuoi_2.setChecked(CheckboxMeal[52])
+        ui_1.chedauden_2.setChecked(CheckboxMeal[53])
+        ui_1.chedauxanh_2.setChecked(CheckboxMeal[54])
+        ui_1.chenep_2.setChecked(CheckboxMeal[55])
+        ui_1.chetroinuoc_2.setChecked(CheckboxMeal[56])
+        ui_1.xoibap_2.setChecked(CheckboxMeal[57])
+        ui_1.xoidauden_2.setChecked(CheckboxMeal[58])
+        ui_1.xoidauphong_2.setChecked(CheckboxMeal[59])
+        ui_1.xoigac_2.setChecked(CheckboxMeal[60])
+        ui_1.cafe_2.setChecked(CheckboxMeal[61])
+        ui_1.nuocam_2.setChecked(CheckboxMeal[62])
+        ui_1.nuocchanh_2.setChecked(CheckboxMeal[63])
+        ui_1.nuocmia_2.setChecked(CheckboxMeal[64])
+        ui_1.nuocrauma_2.setChecked(CheckboxMeal[65])
+        ui_1.suachua_2.setChecked(CheckboxMeal[66])
+        ui_1.trungcut_2.setChecked(CheckboxMeal[67])
+        ui_1.trungga_2.setChecked(CheckboxMeal[68])
+        ui_1.trungvit_2.setChecked(CheckboxMeal[69])
 
         ui_1.Save.clicked.connect(SaveMealBreakFast)
         # ui_1.Save.setEnabled(False)
 
         # if checkbox change state will call function
-        ui_1.gaxaot.stateChanged.connect(gaxaot)
-        ui_1.gakho.stateChanged.connect(gakho)
-        ui_1.mucxao.stateChanged.connect(mucxao)
-        ui_1.suongnuong.stateChanged.connect(suongnuong)
-        ui_1.suongram.stateChanged.connect(suongram)
-        ui_1.thitheoquay.stateChanged.connect(thitheoquay)
-        ui_1.thitboxao.stateChanged.connect(thitboxao)
-        ui_1.thitkhotieu.stateChanged.connect(thitkhotieu)
-        ui_1.camoikho.stateChanged.connect(camoikho)
-        ui_1.cari.stateChanged.connect(cari)
-        ui_1.bobia.stateChanged.connect(bobia)
-        ui_1.cabacmachien.stateChanged.connect(cabacmachien)
-        ui_1.cabacmakho.stateChanged.connect(cabacmakho)
-        ui_1.cangukho.stateChanged.connect(cangukho)
-        ui_1.chalua.stateChanged.connect(chalua)
-        ui_1.ganheoxao.stateChanged.connect(ganheoxao)
-        ui_1.goikhobo.stateChanged.connect(goikhobo)
-        ui_1.goitom.stateChanged.connect(goitom)
-        ui_1.khoquaxaotrung.stateChanged.connect(khoquaxaotrung)
-        ui_1.lapxuongchien.stateChanged.connect(lapxuongchien)
-        ui_1.mucxaothapcam.stateChanged.connect(mucxaothapcam)
-        ui_1.boxaomang.stateChanged.connect(boxaomang)
-        ui_1.boxaonam.stateChanged.connect(boxaonam)
-        ui_1.thitkhotrung.stateChanged.connect(thitkhotrung)
-        ui_1.bunrieu.stateChanged.connect(bunrieu)
-        ui_1.bunbohue.stateChanged.connect(bunbohue)
-        ui_1.bunthitnuong.stateChanged.connect(bunthitnuong)
-        ui_1.bunxao.stateChanged.connect(bunxao)
-        ui_1.canhkhoqua.stateChanged.connect(canhkhoqua)
-        ui_1.chaolong.stateChanged.connect(chaolong)
-        ui_1.bo.stateChanged.connect(bo)
-        ui_1.chuoi.stateChanged.connect(chuoi)
-        ui_1.thom.stateChanged.connect(thom)
-        ui_1.xoai.stateChanged.connect(xoai)
-        ui_1.saurieng.stateChanged.connect(saurieng)
-        ui_1.mangcut.stateChanged.connect(mangcut)
-        ui_1.coc.stateChanged.connect(coc)
-        ui_1.nho.stateChanged.connect(nho)
-        ui_1.duahau.stateChanged.connect(duahau)
-        ui_1.buoi.stateChanged.connect(buoi)
-        ui_1.khoailang.stateChanged.connect(khoailang)
-        ui_1.le.stateChanged.connect(le)
-        ui_1.bapluoc.stateChanged.connect(bapluoc)
-        ui_1.khoaitay.stateChanged.connect(khoaitay)
-        ui_1.dauphong.stateChanged.connect(dauphong)
-        ui_1.dudu.stateChanged.connect(dudu)
-        ui_1.sori.stateChanged.connect(sori)
-        ui_1.cam.stateChanged.connect(cam)
-        ui_1.oi.stateChanged.connect(oi)
-        ui_1.thanhlong.stateChanged.connect(thanhlong)
-        ui_1.chebap.stateChanged.connect(chebap)
-        ui_1.chechuoi.stateChanged.connect(chechuoi)
-        ui_1.chedauden.stateChanged.connect(chedauden)
-        ui_1.chedauxanh.stateChanged.connect(chedauxanh)
-        ui_1.chenep.stateChanged.connect(chenep)
-        ui_1.chetroinuoc.stateChanged.connect(chetroinuoc)
-        ui_1.xoibap.stateChanged.connect(xoibap)
-        ui_1.xoidauden.stateChanged.connect(xoidauden)
-        ui_1.xoidauphong.stateChanged.connect(xoidauphong)
-        ui_1.xoigac.stateChanged.connect(xoigac)
-        ui_1.cafe.stateChanged.connect(cafe)
-        ui_1.nuocam.stateChanged.connect(nuocam)
-        ui_1.nuocchanh.stateChanged.connect(nuocchanh)
-        ui_1.nuocmia.stateChanged.connect(nuocmia)
-        ui_1.nuocrauma.stateChanged.connect(nuocrauma)
-        ui_1.suachua.stateChanged.connect(suachua)
-        ui_1.trungcut.stateChanged.connect(trungcut)
-        ui_1.trungga.stateChanged.connect(trungga)
-        ui_1.trungvit.stateChanged.connect(trungvit)
+        ui_1.gaxaot_2.stateChanged.connect(lambda: gaxaot(ListMeal,CheckboxMeal))
+        ui_1.gakho_2.stateChanged.connect(lambda: gakho(ListMeal,CheckboxMeal))
+        ui_1.mucxao_2.stateChanged.connect(lambda:mucxao(ListMeal,CheckboxMeal))
+        ui_1.suongnuong_2.stateChanged.connect(lambda:suongnuong(ListMeal,CheckboxMeal))
+        ui_1.suongram_2.stateChanged.connect(lambda:suongram(ListMeal,CheckboxMeal))
+        ui_1.thitheoquay_2.stateChanged.connect(lambda:thitheoquay(ListMeal,CheckboxMeal))
+        ui_1.thitboxao_2.stateChanged.connect(lambda:thitboxao(ListMeal,CheckboxMeal))
+        ui_1.thitkhotieu_2.stateChanged.connect(lambda:thitkhotieu(ListMeal,CheckboxMeal))
+        ui_1.camoikho_2.stateChanged.connect(lambda:camoikho(ListMeal,CheckboxMeal))
+        ui_1.cari_2.stateChanged.connect(lambda:cari(ListMeal,CheckboxMeal))
+        ui_1.bobia_2.stateChanged.connect(lambda:bobia(ListMeal,CheckboxMeal))
+        ui_1.cabacmachien_2.stateChanged.connect(lambda:cabacmachien(ListMeal,CheckboxMeal))
+        ui_1.cabacmakho_2.stateChanged.connect(lambda:cabacmakho(ListMeal,CheckboxMeal))
+        ui_1.cangukho_2.stateChanged.connect(lambda:cangukho(ListMeal,CheckboxMeal))
+        ui_1.chalua_2.stateChanged.connect(lambda:chalua(ListMeal,CheckboxMeal))
+        ui_1.ganheoxao_2.stateChanged.connect(lambda:ganheoxao(ListMeal,CheckboxMeal))
+        ui_1.goikhobo_2.stateChanged.connect(lambda:goikhobo(ListMeal,CheckboxMeal))
+        ui_1.goitom_2.stateChanged.connect(lambda:goitom(ListMeal,CheckboxMeal))
+        ui_1.khoquaxaotrung_2.stateChanged.connect(lambda:khoquaxaotrung(ListMeal,CheckboxMeal))
+        ui_1.lapxuongchien_2.stateChanged.connect(lambda:lapxuongchien(ListMeal,CheckboxMeal))
+        ui_1.mucxaothapcam_2.stateChanged.connect(lambda:mucxaothapcam(ListMeal,CheckboxMeal))
+        ui_1.boxaomang_2.stateChanged.connect(lambda:boxaomang(ListMeal,CheckboxMeal))
+        ui_1.boxaonam_2.stateChanged.connect(lambda:boxaonam(ListMeal,CheckboxMeal))
+        ui_1.thitkhotrung_2.stateChanged.connect(lambda:thitkhotrung(ListMeal,CheckboxMeal))
+        ui_1.bunrieu_2.stateChanged.connect(lambda:bunrieu(ListMeal,CheckboxMeal))
+        ui_1.bunbohue_2.stateChanged.connect(lambda:bunbohue(ListMeal,CheckboxMeal))
+        ui_1.bunthitnuong_2.stateChanged.connect(lambda:bunthitnuong(ListMeal,CheckboxMeal))
+        ui_1.bunxao_2.stateChanged.connect(lambda:bunxao(ListMeal,CheckboxMeal))
+        ui_1.canhkhoqua_2.stateChanged.connect(lambda:canhkhoqua(ListMeal,CheckboxMeal))
+        ui_1.chaolong_2.stateChanged.connect(lambda:chaolong(ListMeal,CheckboxMeal))
+        ui_1.bo_2.stateChanged.connect(lambda:bo(ListMeal,CheckboxMeal))
+        ui_1.chuoi_2.stateChanged.connect(lambda:chuoi(ListMeal,CheckboxMeal))
+        ui_1.thom_2.stateChanged.connect(lambda:thom(ListMeal,CheckboxMeal))
+        ui_1.xoai_2.stateChanged.connect(lambda:xoai(ListMeal,CheckboxMeal))
+        ui_1.saurieng_2.stateChanged.connect(lambda:saurieng(ListMeal,CheckboxMeal))
+        ui_1.mangcut_2.stateChanged.connect(lambda:mangcut(ListMeal,CheckboxMeal))
+        ui_1.coc_2.stateChanged.connect(lambda:coc(ListMeal,CheckboxMeal))
+        ui_1.nho_2.stateChanged.connect(lambda:nho(ListMeal,CheckboxMeal))
+        ui_1.duahau_2.stateChanged.connect(lambda:duahau(ListMeal,CheckboxMeal))
+        ui_1.buoi_2.stateChanged.connect(lambda:buoi(ListMeal,CheckboxMeal))
+        ui_1.khoailang_2.stateChanged.connect(lambda:khoailang(ListMeal,CheckboxMeal))
+        ui_1.le_2.stateChanged.connect(lambda:le(ListMeal,CheckboxMeal))
+        ui_1.bapluoc_2.stateChanged.connect(lambda:bapluoc(ListMeal,CheckboxMeal))
+        ui_1.khoaitay_2.stateChanged.connect(lambda:khoaitay(ListMeal,CheckboxMeal))
+        ui_1.dauphong_2.stateChanged.connect(lambda:dauphong(ListMeal,CheckboxMeal))
+        ui_1.dudu_2.stateChanged.connect(lambda:dudu(ListMeal,CheckboxMeal))
+        ui_1.sori_2.stateChanged.connect(lambda:sori(ListMeal,CheckboxMeal))
+        ui_1.cam_2.stateChanged.connect(lambda:cam(ListMeal,CheckboxMeal))
+        ui_1.oi_2.stateChanged.connect(lambda:oi(ListMeal,CheckboxMeal))
+        ui_1.thanhlong_2.stateChanged.connect(lambda:thanhlong(ListMeal,CheckboxMeal))
+        ui_1.chebap_2.stateChanged.connect(lambda:chebap(ListMeal,CheckboxMeal))
+        ui_1.chechuoi_2.stateChanged.connect(lambda:chechuoi(ListMeal,CheckboxMeal))
+        ui_1.chedauden_2.stateChanged.connect(lambda:chedauden(ListMeal,CheckboxMeal))
+        ui_1.chedauxanh_2.stateChanged.connect(lambda:chedauxanh(ListMeal,CheckboxMeal))
+        ui_1.chenep_2.stateChanged.connect(lambda:chenep(ListMeal,CheckboxMeal))
+        ui_1.chetroinuoc_2.stateChanged.connect(lambda:chetroinuoc(ListMeal,CheckboxMeal))
+        ui_1.xoibap_2.stateChanged.connect(lambda:xoibap(ListMeal,CheckboxMeal))
+        ui_1.xoidauden_2.stateChanged.connect(lambda:xoidauden(ListMeal,CheckboxMeal))
+        ui_1.xoidauphong_2.stateChanged.connect(lambda:xoidauphong(ListMeal,CheckboxMeal))
+        ui_1.xoigac_2.stateChanged.connect(lambda:xoigac(ListMeal,CheckboxMeal))
+        ui_1.cafe_2.stateChanged.connect(lambda:cafe(ListMeal,CheckboxMeal))
+        ui_1.nuocam_2.stateChanged.connect(lambda:nuocam(ListMeal,CheckboxMeal))
+        ui_1.nuocchanh_2.stateChanged.connect(lambda:nuocchanh(ListMeal,CheckboxMeal))
+        ui_1.nuocmia_2.stateChanged.connect(lambda:nuocmia(ListMeal,CheckboxMeal))
+        ui_1.nuocrauma_2.stateChanged.connect(lambda:nuocrauma(ListMeal,CheckboxMeal))
+        ui_1.suachua_2.stateChanged.connect(lambda:suachua(ListMeal,CheckboxMeal))
+        ui_1.trungcut_2.stateChanged.connect(lambda:trungcut(ListMeal,CheckboxMeal))
+        ui_1.trungga_2.stateChanged.connect(lambda:trungga(ListMeal,CheckboxMeal))
+        ui_1.trungvit_2.stateChanged.connect(lambda:trungvit(ListMeal,CheckboxMeal))
 
 def SaveMealBreakFast():
     global FOOD, ListMeal, CheckboxMeal,CaloBreakFast
@@ -923,7 +944,7 @@ def SaveMealBreakFast():
     CheckboxDB = open(
         r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Checkbox.txt",
         "w")
-    CaloBreakFast = str(ui_1.label_4.text())
+    CaloBreakFast = str(ui_1.label_12.text())
         # ListMeal
     for d in range(len(ListMeal)):
         ListMealDB.writelines(ListMeal[d] + '\n')
@@ -934,7 +955,7 @@ def SaveMealBreakFast():
 
 class MealSelectWindowForLunch:
     def __init__(self):
-        global window,ui_1, CheckboxMeal, ListMeal,CaloLunch
+        global window,ui_1, CheckboxMealLunch, ListMeal,CaloLunch
         window = QtWidgets.QMainWindow()
         ui_1 = MealSelectLunch.Ui_MainWindow()
         ui_1.setupUi(window)
@@ -944,151 +965,152 @@ class MealSelectWindowForLunch:
 
         # display meal to listview
         ui_1.listWidget_4.clear()
-        ui_1.listWidget_4.addItems(ListMeal)
+        ui_1.listWidget_4.addItems(ListMealLunch)
 
         # Display checkbox
-        ui_1.gaxaot.setChecked(CheckboxMeal[0])
-        ui_1.gakho.setChecked(CheckboxMeal[1])
-        ui_1.mucxao.setChecked(CheckboxMeal[2])
-        ui_1.suongnuong.setChecked(CheckboxMeal[3])
-        ui_1.suongram.setChecked(CheckboxMeal[4])
-        ui_1.thitheoquay.setChecked(CheckboxMeal[5])
-        ui_1.thitboxao.setChecked(CheckboxMeal[6])
-        ui_1.thitkhotieu.setChecked(CheckboxMeal[7])
-        ui_1.camoikho.setChecked(CheckboxMeal[8])
-        ui_1.cari.setChecked(CheckboxMeal[9])
-        ui_1.bobia.setChecked(CheckboxMeal[10])
-        ui_1.cabacmachien.setChecked(CheckboxMeal[11])
-        ui_1.cabacmakho.setChecked(CheckboxMeal[12])
-        ui_1.cangukho.setChecked(CheckboxMeal[13])
-        ui_1.chalua.setChecked(CheckboxMeal[14])
-        ui_1.ganheoxao.setChecked(CheckboxMeal[15])
-        ui_1.goikhobo.setChecked(CheckboxMeal[16])
-        ui_1.goitom.setChecked(CheckboxMeal[17])
-        ui_1.khoquaxaotrung.setChecked(CheckboxMeal[18])
-        ui_1.lapxuongchien.setChecked(CheckboxMeal[19])
-        ui_1.mucxaothapcam.setChecked(CheckboxMeal[20])
-        ui_1.boxaomang.setChecked(CheckboxMeal[21])
-        ui_1.boxaonam.setChecked(CheckboxMeal[22])
-        ui_1.thitkhotrung.setChecked(CheckboxMeal[23])
-        ui_1.bunrieu.setChecked(CheckboxMeal[24])
-        ui_1.bunbohue.setChecked(CheckboxMeal[25])
-        ui_1.bunthitnuong.setChecked(CheckboxMeal[26])
-        ui_1.bunxao.setChecked(CheckboxMeal[27])
-        ui_1.canhkhoqua.setChecked(CheckboxMeal[28])
-        ui_1.chaolong.setChecked(CheckboxMeal[29])
-        ui_1.bo.setChecked(CheckboxMeal[31])
-        ui_1.chuoi.setChecked(CheckboxMeal[32])
-        ui_1.thom.setChecked(CheckboxMeal[33])
-        ui_1.xoai.setChecked(CheckboxMeal[34])
-        ui_1.saurieng.setChecked(CheckboxMeal[35])
-        ui_1.mangcut.setChecked(CheckboxMeal[36])
-        ui_1.coc.setChecked(CheckboxMeal[37])
-        ui_1.nho.setChecked(CheckboxMeal[38])
-        ui_1.duahau.setChecked(CheckboxMeal[39])
-        ui_1.buoi.setChecked(CheckboxMeal[40])
-        ui_1.khoailang.setChecked(CheckboxMeal[41])
-        ui_1.le.setChecked(CheckboxMeal[42])
-        ui_1.bapluoc.setChecked(CheckboxMeal[43])
-        ui_1.khoaitay.setChecked(CheckboxMeal[44])
-        ui_1.dauphong.setChecked(CheckboxMeal[45])
-        ui_1.dudu.setChecked(CheckboxMeal[46])
-        ui_1.sori.setChecked(CheckboxMeal[47])
-        ui_1.cam.setChecked(CheckboxMeal[48])
-        ui_1.oi.setChecked(CheckboxMeal[49])
-        ui_1.thanhlong.setChecked(CheckboxMeal[50])
-        ui_1.chebap.setChecked(CheckboxMeal[51])
-        ui_1.chechuoi.setChecked(CheckboxMeal[52])
-        ui_1.chedauden.setChecked(CheckboxMeal[53])
-        ui_1.chedauxanh.setChecked(CheckboxMeal[54])
-        ui_1.chenep.setChecked(CheckboxMeal[55])
-        ui_1.chetroinuoc.setChecked(CheckboxMeal[56])
-        ui_1.xoibap.setChecked(CheckboxMeal[57])
-        ui_1.xoidauden.setChecked(CheckboxMeal[58])
-        ui_1.xoidauphong.setChecked(CheckboxMeal[59])
-        ui_1.xoigac.setChecked(CheckboxMeal[60])
-        ui_1.cafe.setChecked(CheckboxMeal[61])
-        ui_1.nuocam.setChecked(CheckboxMeal[62])
-        ui_1.nuocchanh.setChecked(CheckboxMeal[63])
-        ui_1.nuocmia.setChecked(CheckboxMeal[64])
-        ui_1.nuocrauma.setChecked(CheckboxMeal[65])
-        ui_1.suachua.setChecked(CheckboxMeal[66])
-        ui_1.trungcut.setChecked(CheckboxMeal[67])
-        ui_1.trungga.setChecked(CheckboxMeal[68])
-        ui_1.trungvit.setChecked(CheckboxMeal[69])
+        ui_1.gaxaot_2.setChecked(CheckboxMealLunch[0])
+        ui_1.gakho_2.setChecked(CheckboxMealLunch[1])
+        ui_1.mucxao_2.setChecked(CheckboxMealLunch[2])
+        ui_1.suongnuong_2.setChecked(CheckboxMealLunch[3])
+        ui_1.suongram_2.setChecked(CheckboxMealLunch[4])
+        ui_1.thitheoquay_2.setChecked(CheckboxMealLunch[5])
+        ui_1.thitboxao_2.setChecked(CheckboxMealLunch[6])
+        ui_1.thitkhotieu_2.setChecked(CheckboxMealLunch[7])
+        ui_1.camoikho_2.setChecked(CheckboxMealLunch[8])
+        ui_1.cari_2.setChecked(CheckboxMealLunch[9])
+        ui_1.bobia_2.setChecked(CheckboxMealLunch[10])
+        ui_1.cabacmachien_2.setChecked(CheckboxMealLunch[11])
+        ui_1.cabacmakho_2.setChecked(CheckboxMealLunch[12])
+        ui_1.cangukho_2.setChecked(CheckboxMealLunch[13])
+        ui_1.chalua_2.setChecked(CheckboxMealLunch[14])
+        ui_1.ganheoxao_2.setChecked(CheckboxMealLunch[15])
+        ui_1.goikhobo_2.setChecked(CheckboxMealLunch[16])
+        ui_1.goitom_2.setChecked(CheckboxMealLunch[17])
+        ui_1.khoquaxaotrung_2.setChecked(CheckboxMealLunch[18])
+        ui_1.lapxuongchien_2.setChecked(CheckboxMealLunch[19])
+        ui_1.mucxaothapcam_2.setChecked(CheckboxMealLunch[20])
+        ui_1.boxaomang_2.setChecked(CheckboxMealLunch[21])
+        ui_1.boxaonam_2.setChecked(CheckboxMealLunch[22])
+        ui_1.thitkhotrung_2.setChecked(CheckboxMealLunch[23])
+        ui_1.bunrieu_2.setChecked(CheckboxMealLunch[24])
+        ui_1.bunbohue_2.setChecked(CheckboxMealLunch[25])
+        ui_1.bunthitnuong_2.setChecked(CheckboxMealLunch[26])
+        ui_1.bunxao_2.setChecked(CheckboxMealLunch[27])
+        ui_1.canhkhoqua_2.setChecked(CheckboxMealLunch[28])
+        ui_1.chaolong_2.setChecked(CheckboxMealLunch[29])
+        ui_1.bo_2.setChecked(CheckboxMealLunch[31])
+        ui_1.chuoi_2.setChecked(CheckboxMealLunch[32])
+        ui_1.thom_2.setChecked(CheckboxMealLunch[33])
+        ui_1.xoai_2.setChecked(CheckboxMealLunch[34])
+        ui_1.saurieng_2.setChecked(CheckboxMealLunch[35])
+        ui_1.mangcut_2.setChecked(CheckboxMealLunch[36])
+        ui_1.coc_2.setChecked(CheckboxMealLunch[37])
+        ui_1.nho_2.setChecked(CheckboxMealLunch[38])
+        ui_1.duahau_2.setChecked(CheckboxMealLunch[39])
+        ui_1.buoi_2.setChecked(CheckboxMealLunch[40])
+        ui_1.khoailang_2.setChecked(CheckboxMealLunch[41])
+        ui_1.le_2.setChecked(CheckboxMealLunch[42])
+        ui_1.bapluoc_2.setChecked(CheckboxMealLunch[43])
+        ui_1.khoaitay_2.setChecked(CheckboxMealLunch[44])
+        ui_1.dauphong_2.setChecked(CheckboxMealLunch[45])
+        ui_1.dudu_2.setChecked(CheckboxMealLunch[46])
+        ui_1.sori_2.setChecked(CheckboxMealLunch[47])
+        ui_1.cam_2.setChecked(CheckboxMealLunch[48])
+        ui_1.oi_2.setChecked(CheckboxMealLunch[49])
+        ui_1.thanhlong_2.setChecked(CheckboxMealLunch[50])
+        ui_1.chebap_2.setChecked(CheckboxMealLunch[51])
+        ui_1.chechuoi_2.setChecked(CheckboxMealLunch[52])
+        ui_1.chedauden_2.setChecked(CheckboxMealLunch[53])
+        ui_1.chedauxanh_2.setChecked(CheckboxMealLunch[54])
+        ui_1.chenep_2.setChecked(CheckboxMealLunch[55])
+        ui_1.chetroinuoc_2.setChecked(CheckboxMealLunch[56])
+        ui_1.xoibap_2.setChecked(CheckboxMealLunch[57])
+        ui_1.xoidauden_2.setChecked(CheckboxMealLunch[58])
+        ui_1.xoidauphong_2.setChecked(CheckboxMealLunch[59])
+        ui_1.xoigac_2.setChecked(CheckboxMealLunch[60])
+        ui_1.cafe_2.setChecked(CheckboxMealLunch[61])
+        ui_1.nuocam_2.setChecked(CheckboxMealLunch[62])
+        ui_1.nuocchanh_2.setChecked(CheckboxMealLunch[63])
+        ui_1.nuocmia_2.setChecked(CheckboxMealLunch[64])
+        ui_1.nuocrauma_2.setChecked(CheckboxMealLunch[65])
+        ui_1.suachua_2.setChecked(CheckboxMealLunch[66])
+        ui_1.trungcut_2.setChecked(CheckboxMealLunch[67])
+        ui_1.trungga_2.setChecked(CheckboxMealLunch[68])
+        ui_1.trungvit_2.setChecked(CheckboxMealLunch[69])
+
+        ui_1.Save.clicked.connect(SaveMealLunch)
         # ui_1.Save.setEnabled(False)
 
         # if checkbox change state will call function
-        ui_1.gaxaot.stateChanged.connect(gaxaot)
-        ui_1.gakho.stateChanged.connect(gakho)
-        ui_1.mucxao.stateChanged.connect(mucxao)
-        ui_1.suongnuong.stateChanged.connect(suongnuong)
-        ui_1.suongram.stateChanged.connect(suongram)
-        ui_1.thitheoquay.stateChanged.connect(thitheoquay)
-        ui_1.thitboxao.stateChanged.connect(thitboxao)
-        ui_1.thitkhotieu.stateChanged.connect(thitkhotieu)
-        ui_1.camoikho.stateChanged.connect(camoikho)
-        ui_1.cari.stateChanged.connect(cari)
-        ui_1.bobia.stateChanged.connect(bobia)
-        ui_1.cabacmachien.stateChanged.connect(cabacmachien)
-        ui_1.cabacmakho.stateChanged.connect(cabacmakho)
-        ui_1.cangukho.stateChanged.connect(cangukho)
-        ui_1.chalua.stateChanged.connect(chalua)
-        ui_1.ganheoxao.stateChanged.connect(ganheoxao)
-        ui_1.goikhobo.stateChanged.connect(goikhobo)
-        ui_1.goitom.stateChanged.connect(goitom)
-        ui_1.khoquaxaotrung.stateChanged.connect(khoquaxaotrung)
-        ui_1.lapxuongchien.stateChanged.connect(lapxuongchien)
-        ui_1.mucxaothapcam.stateChanged.connect(mucxaothapcam)
-        ui_1.boxaomang.stateChanged.connect(boxaomang)
-        ui_1.boxaonam.stateChanged.connect(boxaonam)
-        ui_1.thitkhotrung.stateChanged.connect(thitkhotrung)
-        ui_1.bunrieu.stateChanged.connect(bunrieu)
-        ui_1.bunbohue.stateChanged.connect(bunbohue)
-        ui_1.bunthitnuong.stateChanged.connect(bunthitnuong)
-        ui_1.bunxao.stateChanged.connect(bunxao)
-        ui_1.canhkhoqua.stateChanged.connect(canhkhoqua)
-        ui_1.chaolong.stateChanged.connect(chaolong)
-        ui_1.bo.stateChanged.connect(bo)
-        ui_1.chuoi.stateChanged.connect(chuoi)
-        ui_1.thom.stateChanged.connect(thom)
-        ui_1.xoai.stateChanged.connect(xoai)
-        ui_1.saurieng.stateChanged.connect(saurieng)
-        ui_1.mangcut.stateChanged.connect(mangcut)
-        ui_1.coc.stateChanged.connect(coc)
-        ui_1.nho.stateChanged.connect(nho)
-        ui_1.duahau.stateChanged.connect(duahau)
-        ui_1.buoi.stateChanged.connect(buoi)
-        ui_1.khoailang.stateChanged.connect(khoailang)
-        ui_1.le.stateChanged.connect(le)
-        ui_1.bapluoc.stateChanged.connect(bapluoc)
-        ui_1.khoaitay.stateChanged.connect(khoaitay)
-        ui_1.dauphong.stateChanged.connect(dauphong)
-        ui_1.dudu.stateChanged.connect(dudu)
-        ui_1.sori.stateChanged.connect(sori)
-        ui_1.cam.stateChanged.connect(cam)
-        ui_1.oi.stateChanged.connect(oi)
-        ui_1.thanhlong.stateChanged.connect(thanhlong)
-        ui_1.chebap.stateChanged.connect(chebap)
-        ui_1.chechuoi.stateChanged.connect(chechuoi)
-        ui_1.chedauden.stateChanged.connect(chedauden)
-        ui_1.chedauxanh.stateChanged.connect(chedauxanh)
-        ui_1.chenep.stateChanged.connect(chenep)
-        ui_1.chetroinuoc.stateChanged.connect(chetroinuoc)
-        ui_1.xoibap.stateChanged.connect(xoibap)
-        ui_1.xoidauden.stateChanged.connect(xoidauden)
-        ui_1.xoidauphong.stateChanged.connect(xoidauphong)
-        ui_1.xoigac.stateChanged.connect(xoigac)
-        ui_1.cafe.stateChanged.connect(cafe)
-        ui_1.nuocam.stateChanged.connect(nuocam)
-        ui_1.nuocchanh.stateChanged.connect(nuocchanh)
-        ui_1.nuocmia.stateChanged.connect(nuocmia)
-        ui_1.nuocrauma.stateChanged.connect(nuocrauma)
-        ui_1.suachua.stateChanged.connect(suachua)
-        ui_1.trungcut.stateChanged.connect(trungcut)
-        ui_1.trungga.stateChanged.connect(trungga)
-        ui_1.trungvit.stateChanged.connect(trungvit)
-        ui_1.Save.clicked.connect(SaveMealLunch)
+        ui_1.gaxaot_2.stateChanged.connect(lambda:gaxaot(ListMealLunch,CheckboxMealLunch))
+        ui_1.gakho_2.stateChanged.connect(lambda:gakho(ListMealLunch,CheckboxMealLunch))
+        ui_1.mucxao_2.stateChanged.connect(lambda:mucxao(ListMealLunch,CheckboxMealLunch))
+        ui_1.suongnuong_2.stateChanged.connect(lambda:suongnuong(ListMealLunch,CheckboxMealLunch))
+        ui_1.suongram_2.stateChanged.connect(lambda:suongram(ListMealLunch,CheckboxMealLunch))
+        ui_1.thitheoquay_2.stateChanged.connect(lambda:thitheoquay(ListMealLunch,CheckboxMealLunch))
+        ui_1.thitboxao_2.stateChanged.connect(lambda:thitboxao(ListMealLunch,CheckboxMealLunch))
+        ui_1.thitkhotieu_2.stateChanged.connect(lambda:thitkhotieu(ListMealLunch,CheckboxMealLunch))
+        ui_1.camoikho_2.stateChanged.connect(lambda:camoikho(ListMealLunch,CheckboxMealLunch))
+        ui_1.cari_2.stateChanged.connect(lambda:cari(ListMealLunch,CheckboxMealLunch))
+        ui_1.bobia_2.stateChanged.connect(lambda:bobia(ListMealLunch,CheckboxMealLunch))
+        ui_1.cabacmachien_2.stateChanged.connect(lambda:cabacmachien(ListMealLunch,CheckboxMealLunch))
+        ui_1.cabacmakho_2.stateChanged.connect(lambda:cabacmakho(ListMealLunch,CheckboxMealLunch))
+        ui_1.cangukho_2.stateChanged.connect(lambda:cangukho(ListMealLunch,CheckboxMealLunch))
+        ui_1.chalua_2.stateChanged.connect(lambda:chalua(ListMealLunch,CheckboxMealLunch))
+        ui_1.ganheoxao_2.stateChanged.connect(lambda:ganheoxao(ListMealLunch,CheckboxMealLunch))
+        ui_1.goikhobo_2.stateChanged.connect(lambda:goikhobo(ListMealLunch,CheckboxMealLunch))
+        ui_1.goitom_2.stateChanged.connect(lambda:goitom(ListMealLunch,CheckboxMealLunch))
+        ui_1.khoquaxaotrung_2.stateChanged.connect(lambda:khoquaxaotrung(ListMealLunch,CheckboxMealLunch))
+        ui_1.lapxuongchien_2.stateChanged.connect(lambda:lapxuongchien(ListMealLunch,CheckboxMealLunch))
+        ui_1.mucxaothapcam_2.stateChanged.connect(lambda:mucxaothapcam(ListMealLunch,CheckboxMealLunch))
+        ui_1.boxaomang_2.stateChanged.connect(lambda:boxaomang(ListMealLunch,CheckboxMealLunch))
+        ui_1.boxaonam_2.stateChanged.connect(lambda:boxaonam(ListMealLunch,CheckboxMealLunch))
+        ui_1.thitkhotrung_2.stateChanged.connect(lambda:thitkhotrung(ListMealLunch,CheckboxMealLunch))
+        ui_1.bunrieu_2.stateChanged.connect(lambda:bunrieu(ListMealLunch,CheckboxMealLunch))
+        ui_1.bunbohue_2.stateChanged.connect(lambda:bunbohue(ListMealLunch,CheckboxMealLunch))
+        ui_1.bunthitnuong_2.stateChanged.connect(lambda:bunthitnuong(ListMealLunch,CheckboxMealLunch))
+        ui_1.bunxao_2.stateChanged.connect(lambda:bunxao(ListMealLunch,CheckboxMealLunch))
+        ui_1.canhkhoqua_2.stateChanged.connect(lambda:canhkhoqua(ListMealLunch,CheckboxMealLunch))
+        ui_1.chaolong_2.stateChanged.connect(lambda:chaolong(ListMealLunch,CheckboxMealLunch))
+        ui_1.bo_2.stateChanged.connect(lambda:bo(ListMealLunch,CheckboxMealLunch))
+        ui_1.chuoi_2.stateChanged.connect(lambda:chuoi(ListMealLunch,CheckboxMealLunch))
+        ui_1.thom_2.stateChanged.connect(lambda:thom(ListMealLunch,CheckboxMealLunch))
+        ui_1.xoai_2.stateChanged.connect(lambda:xoai(ListMealLunch,CheckboxMealLunch))
+        ui_1.saurieng_2.stateChanged.connect(lambda:saurieng(ListMealLunch,CheckboxMealLunch))
+        ui_1.mangcut_2.stateChanged.connect(lambda:mangcut(ListMealLunch,CheckboxMealLunch))
+        ui_1.coc_2.stateChanged.connect(lambda:coc(ListMealLunch,CheckboxMealLunch))
+        ui_1.nho_2.stateChanged.connect(lambda:nho(ListMealLunch,CheckboxMealLunch))
+        ui_1.duahau_2.stateChanged.connect(lambda:duahau(ListMealLunch,CheckboxMealLunch))
+        ui_1.buoi_2.stateChanged.connect(lambda:buoi(ListMealLunch,CheckboxMealLunch))
+        ui_1.khoailang_2.stateChanged.connect(lambda:khoailang(ListMealLunch,CheckboxMealLunch))
+        ui_1.le_2.stateChanged.connect(lambda:le(ListMealLunch,CheckboxMealLunch))
+        ui_1.bapluoc_2.stateChanged.connect(lambda:bapluoc(ListMealLunch,CheckboxMealLunch))
+        ui_1.khoaitay_2.stateChanged.connect(lambda:khoaitay(ListMealLunch,CheckboxMealLunch))
+        ui_1.dauphong_2.stateChanged.connect(lambda:dauphong(ListMealLunch,CheckboxMealLunch))
+        ui_1.dudu_2.stateChanged.connect(lambda:dudu(ListMealLunch,CheckboxMealLunch))
+        ui_1.sori_2.stateChanged.connect(lambda:sori(ListMealLunch,CheckboxMealLunch))
+        ui_1.cam_2.stateChanged.connect(lambda:cam(ListMealLunch,CheckboxMealLunch))
+        ui_1.oi_2.stateChanged.connect(lambda:oi(ListMealLunch,CheckboxMealLunch))
+        ui_1.thanhlong_2.stateChanged.connect(lambda:thanhlong(ListMealLunch,CheckboxMealLunch))
+        ui_1.chebap_2.stateChanged.connect(lambda:chebap(ListMealLunch,CheckboxMealLunch))
+        ui_1.chechuoi_2.stateChanged.connect(lambda:chechuoi(ListMealLunch,CheckboxMealLunch))
+        ui_1.chedauden_2.stateChanged.connect(lambda:chedauden(ListMealLunch,CheckboxMealLunch))
+        ui_1.chedauxanh_2.stateChanged.connect(lambda:chedauxanh(ListMealLunch,CheckboxMealLunch))
+        ui_1.chenep_2.stateChanged.connect(lambda:chenep(ListMealLunch,CheckboxMealLunch))
+        ui_1.chetroinuoc_2.stateChanged.connect(lambda:chetroinuoc(ListMealLunch,CheckboxMealLunch))
+        ui_1.xoibap_2.stateChanged.connect(lambda:xoibap(ListMealLunch,CheckboxMealLunch))
+        ui_1.xoidauden_2.stateChanged.connect(lambda:xoidauden(ListMealLunch,CheckboxMealLunch))
+        ui_1.xoidauphong_2.stateChanged.connect(lambda:xoidauphong(ListMealLunch,CheckboxMealLunch))
+        ui_1.xoigac_2.stateChanged.connect(lambda:xoigac(ListMealLunch,CheckboxMealLunch))
+        ui_1.cafe_2.stateChanged.connect(lambda:cafe(ListMealLunch,CheckboxMealLunch))
+        ui_1.nuocam_2.stateChanged.connect(lambda:nuocam(ListMealLunch,CheckboxMealLunch))
+        ui_1.nuocchanh_2.stateChanged.connect(lambda:nuocchanh(ListMealLunch,CheckboxMealLunch))
+        ui_1.nuocmia_2.stateChanged.connect(lambda:nuocmia(ListMealLunch,CheckboxMealLunch))
+        ui_1.nuocrauma_2.stateChanged.connect(lambda:nuocrauma(ListMealLunch,CheckboxMealLunch))
+        ui_1.suachua_2.stateChanged.connect(lambda:suachua(ListMealLunch,CheckboxMealLunch))
+        ui_1.trungcut_2.stateChanged.connect(lambda:trungcut(ListMealLunch,CheckboxMealLunch))
+        ui_1.trungga_2.stateChanged.connect(lambda:trungga(ListMealLunch,CheckboxMealLunch))
+        ui_1.trungvit_2.stateChanged.connect(lambda:trungvit(ListMealLunch,CheckboxMealLunch))
 
 def SaveMealLunch():
         global FOOD, FRUIT, OTHER, ListMeal, CheckboxMeal,CaloLunch
@@ -1098,7 +1120,7 @@ def SaveMealLunch():
         CheckboxDB = open(
             r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Checkbox_Lunch.txt",
             "w")
-        CaloLunch = ui_1.label_4.text()
+        CaloLunch = ui_1.label_12.text()
         #ListView
         for d in range(len(ListMealLunch)):
             ListMealDB.writelines(ListMealLunch[d] + '\n')
@@ -1109,7 +1131,7 @@ def SaveMealLunch():
 
 class MealSelectWindowForDinner():
     def __init__(self):
-        global window,ui_1, CheckboxMeal, ListMeal,CaloDinner
+        global window,ui_1, CheckboxMealDinner, ListMealDinner,CaloDinner
         window = QtWidgets.QMainWindow()
         ui_1 = MealSelectDinner.Ui_MainWindow()
         ui_1.setupUi(window)
@@ -1119,152 +1141,152 @@ class MealSelectWindowForDinner():
 
         # display meal to listview
         ui_1.listWidget_4.clear()
-        ui_1.listWidget_4.addItems(ListMeal)
+        ui_1.listWidget_4.addItems(ListMealDinner)
 
         # Display checkbox
-        ui_1.gaxaot.setChecked(CheckboxMeal[0])
-        ui_1.gakho.setChecked(CheckboxMeal[1])
-        ui_1.mucxao.setChecked(CheckboxMeal[2])
-        ui_1.suongnuong.setChecked(CheckboxMeal[3])
-        ui_1.suongram.setChecked(CheckboxMeal[4])
-        ui_1.thitheoquay.setChecked(CheckboxMeal[5])
-        ui_1.thitboxao.setChecked(CheckboxMeal[6])
-        ui_1.thitkhotieu.setChecked(CheckboxMeal[7])
-        ui_1.camoikho.setChecked(CheckboxMeal[8])
-        ui_1.cari.setChecked(CheckboxMeal[9])
-        ui_1.bobia.setChecked(CheckboxMeal[10])
-        ui_1.cabacmachien.setChecked(CheckboxMeal[11])
-        ui_1.cabacmakho.setChecked(CheckboxMeal[12])
-        ui_1.cangukho.setChecked(CheckboxMeal[13])
-        ui_1.chalua.setChecked(CheckboxMeal[14])
-        ui_1.ganheoxao.setChecked(CheckboxMeal[15])
-        ui_1.goikhobo.setChecked(CheckboxMeal[16])
-        ui_1.goitom.setChecked(CheckboxMeal[17])
-        ui_1.khoquaxaotrung.setChecked(CheckboxMeal[18])
-        ui_1.lapxuongchien.setChecked(CheckboxMeal[19])
-        ui_1.mucxaothapcam.setChecked(CheckboxMeal[20])
-        ui_1.boxaomang.setChecked(CheckboxMeal[21])
-        ui_1.boxaonam.setChecked(CheckboxMeal[22])
-        ui_1.thitkhotrung.setChecked(CheckboxMeal[23])
-        ui_1.bunrieu.setChecked(CheckboxMeal[24])
-        ui_1.bunbohue.setChecked(CheckboxMeal[25])
-        ui_1.bunthitnuong.setChecked(CheckboxMeal[26])
-        ui_1.bunxao.setChecked(CheckboxMeal[27])
-        ui_1.canhkhoqua.setChecked(CheckboxMeal[28])
-        ui_1.chaolong.setChecked(CheckboxMeal[29])
-        ui_1.bo.setChecked(CheckboxMeal[31])
-        ui_1.chuoi.setChecked(CheckboxMeal[32])
-        ui_1.thom.setChecked(CheckboxMeal[33])
-        ui_1.xoai.setChecked(CheckboxMeal[34])
-        ui_1.saurieng.setChecked(CheckboxMeal[35])
-        ui_1.mangcut.setChecked(CheckboxMeal[36])
-        ui_1.coc.setChecked(CheckboxMeal[37])
-        ui_1.nho.setChecked(CheckboxMeal[38])
-        ui_1.duahau.setChecked(CheckboxMeal[39])
-        ui_1.buoi.setChecked(CheckboxMeal[40])
-        ui_1.khoailang.setChecked(CheckboxMeal[41])
-        ui_1.le.setChecked(CheckboxMeal[42])
-        ui_1.bapluoc.setChecked(CheckboxMeal[43])
-        ui_1.khoaitay.setChecked(CheckboxMeal[44])
-        ui_1.dauphong.setChecked(CheckboxMeal[45])
-        ui_1.dudu.setChecked(CheckboxMeal[46])
-        ui_1.sori.setChecked(CheckboxMeal[47])
-        ui_1.cam.setChecked(CheckboxMeal[48])
-        ui_1.oi.setChecked(CheckboxMeal[49])
-        ui_1.thanhlong.setChecked(CheckboxMeal[50])
-        ui_1.chebap.setChecked(CheckboxMeal[51])
-        ui_1.chechuoi.setChecked(CheckboxMeal[52])
-        ui_1.chedauden.setChecked(CheckboxMeal[53])
-        ui_1.chedauxanh.setChecked(CheckboxMeal[54])
-        ui_1.chenep.setChecked(CheckboxMeal[55])
-        ui_1.chetroinuoc.setChecked(CheckboxMeal[56])
-        ui_1.xoibap.setChecked(CheckboxMeal[57])
-        ui_1.xoidauden.setChecked(CheckboxMeal[58])
-        ui_1.xoidauphong.setChecked(CheckboxMeal[59])
-        ui_1.xoigac.setChecked(CheckboxMeal[60])
-        ui_1.cafe.setChecked(CheckboxMeal[61])
-        ui_1.nuocam.setChecked(CheckboxMeal[62])
-        ui_1.nuocchanh.setChecked(CheckboxMeal[63])
-        ui_1.nuocmia.setChecked(CheckboxMeal[64])
-        ui_1.nuocrauma.setChecked(CheckboxMeal[65])
-        ui_1.suachua.setChecked(CheckboxMeal[66])
-        ui_1.trungcut.setChecked(CheckboxMeal[67])
-        ui_1.trungga.setChecked(CheckboxMeal[68])
-        ui_1.trungvit.setChecked(CheckboxMeal[69])
+        ui_1.gaxaot_2.setChecked(CheckboxMealDinner[0])
+        ui_1.gakho_2.setChecked(CheckboxMealDinner[1])
+        ui_1.mucxao_2.setChecked(CheckboxMealDinner[2])
+        ui_1.suongnuong_2.setChecked(CheckboxMealDinner[3])
+        ui_1.suongram_2.setChecked(CheckboxMealDinner[4])
+        ui_1.thitheoquay_2.setChecked(CheckboxMealDinner[5])
+        ui_1.thitboxao_2.setChecked(CheckboxMealDinner[6])
+        ui_1.thitkhotieu_2.setChecked(CheckboxMealDinner[7])
+        ui_1.camoikho_2.setChecked(CheckboxMealDinner[8])
+        ui_1.cari_2.setChecked(CheckboxMealDinner[9])
+        ui_1.bobia_2.setChecked(CheckboxMealDinner[10])
+        ui_1.cabacmachien_2.setChecked(CheckboxMealDinner[11])
+        ui_1.cabacmakho_2.setChecked(CheckboxMealDinner[12])
+        ui_1.cangukho_2.setChecked(CheckboxMealDinner[13])
+        ui_1.chalua_2.setChecked(CheckboxMealDinner[14])
+        ui_1.ganheoxao_2.setChecked(CheckboxMealDinner[15])
+        ui_1.goikhobo_2.setChecked(CheckboxMealDinner[16])
+        ui_1.goitom_2.setChecked(CheckboxMealDinner[17])
+        ui_1.khoquaxaotrung_2.setChecked(CheckboxMealDinner[18])
+        ui_1.lapxuongchien_2.setChecked(CheckboxMealDinner[19])
+        ui_1.mucxaothapcam_2.setChecked(CheckboxMealDinner[20])
+        ui_1.boxaomang_2.setChecked(CheckboxMealDinner[21])
+        ui_1.boxaonam_2.setChecked(CheckboxMealDinner[22])
+        ui_1.thitkhotrung_2.setChecked(CheckboxMealDinner[23])
+        ui_1.bunrieu_2.setChecked(CheckboxMealDinner[24])
+        ui_1.bunbohue_2.setChecked(CheckboxMealDinner[25])
+        ui_1.bunthitnuong_2.setChecked(CheckboxMealDinner[26])
+        ui_1.bunxao_2.setChecked(CheckboxMealDinner[27])
+        ui_1.canhkhoqua_2.setChecked(CheckboxMealDinner[28])
+        ui_1.chaolong_2.setChecked(CheckboxMealDinner[29])
+        ui_1.bo_2.setChecked(CheckboxMealDinner[31])
+        ui_1.chuoi_2.setChecked(CheckboxMealDinner[32])
+        ui_1.thom_2.setChecked(CheckboxMealDinner[33])
+        ui_1.xoai_2.setChecked(CheckboxMealDinner[34])
+        ui_1.saurieng_2.setChecked(CheckboxMealDinner[35])
+        ui_1.mangcut_2.setChecked(CheckboxMealDinner[36])
+        ui_1.coc_2.setChecked(CheckboxMealDinner[37])
+        ui_1.nho_2.setChecked(CheckboxMealDinner[38])
+        ui_1.duahau_2.setChecked(CheckboxMealDinner[39])
+        ui_1.buoi_2.setChecked(CheckboxMealDinner[40])
+        ui_1.khoailang_2.setChecked(CheckboxMealDinner[41])
+        ui_1.le_2.setChecked(CheckboxMealDinner[42])
+        ui_1.bapluoc_2.setChecked(CheckboxMealDinner[43])
+        ui_1.khoaitay_2.setChecked(CheckboxMealDinner[44])
+        ui_1.dauphong_2.setChecked(CheckboxMealDinner[45])
+        ui_1.dudu_2.setChecked(CheckboxMealDinner[46])
+        ui_1.sori_2.setChecked(CheckboxMealDinner[47])
+        ui_1.cam_2.setChecked(CheckboxMealDinner[48])
+        ui_1.oi_2.setChecked(CheckboxMealDinner[49])
+        ui_1.thanhlong_2.setChecked(CheckboxMealDinner[50])
+        ui_1.chebap_2.setChecked(CheckboxMealDinner[51])
+        ui_1.chechuoi_2.setChecked(CheckboxMealDinner[52])
+        ui_1.chedauden_2.setChecked(CheckboxMealDinner[53])
+        ui_1.chedauxanh_2.setChecked(CheckboxMealDinner[54])
+        ui_1.chenep_2.setChecked(CheckboxMealDinner[55])
+        ui_1.chetroinuoc_2.setChecked(CheckboxMealDinner[56])
+        ui_1.xoibap_2.setChecked(CheckboxMealDinner[57])
+        ui_1.xoidauden_2.setChecked(CheckboxMealDinner[58])
+        ui_1.xoidauphong_2.setChecked(CheckboxMealDinner[59])
+        ui_1.xoigac_2.setChecked(CheckboxMealDinner[60])
+        ui_1.cafe_2.setChecked(CheckboxMealDinner[61])
+        ui_1.nuocam_2.setChecked(CheckboxMealDinner[62])
+        ui_1.nuocchanh_2.setChecked(CheckboxMealDinner[63])
+        ui_1.nuocmia_2.setChecked(CheckboxMealDinner[64])
+        ui_1.nuocrauma_2.setChecked(CheckboxMealDinner[65])
+        ui_1.suachua_2.setChecked(CheckboxMealDinner[66])
+        ui_1.trungcut_2.setChecked(CheckboxMealDinner[67])
+        ui_1.trungga_2.setChecked(CheckboxMealDinner[68])
+        ui_1.trungvit_2.setChecked(CheckboxMealDinner[69])
 
         ui_1.Save.clicked.connect(SaveMealDinner)
         # ui_1.Save.setEnabled(False)
 
         # if checkbox change state will call function
-        ui_1.gaxaot.stateChanged.connect(gaxaot)
-        ui_1.gakho.stateChanged.connect(gakho)
-        ui_1.mucxao.stateChanged.connect(mucxao)
-        ui_1.suongnuong.stateChanged.connect(suongnuong)
-        ui_1.suongram.stateChanged.connect(suongram)
-        ui_1.thitheoquay.stateChanged.connect(thitheoquay)
-        ui_1.thitboxao.stateChanged.connect(thitboxao)
-        ui_1.thitkhotieu.stateChanged.connect(thitkhotieu)
-        ui_1.camoikho.stateChanged.connect(camoikho)
-        ui_1.cari.stateChanged.connect(cari)
-        ui_1.bobia.stateChanged.connect(bobia)
-        ui_1.cabacmachien.stateChanged.connect(cabacmachien)
-        ui_1.cabacmakho.stateChanged.connect(cabacmakho)
-        ui_1.cangukho.stateChanged.connect(cangukho)
-        ui_1.chalua.stateChanged.connect(chalua)
-        ui_1.ganheoxao.stateChanged.connect(ganheoxao)
-        ui_1.goikhobo.stateChanged.connect(goikhobo)
-        ui_1.goitom.stateChanged.connect(goitom)
-        ui_1.khoquaxaotrung.stateChanged.connect(khoquaxaotrung)
-        ui_1.lapxuongchien.stateChanged.connect(lapxuongchien)
-        ui_1.mucxaothapcam.stateChanged.connect(mucxaothapcam)
-        ui_1.boxaomang.stateChanged.connect(boxaomang)
-        ui_1.boxaonam.stateChanged.connect(boxaonam)
-        ui_1.thitkhotrung.stateChanged.connect(thitkhotrung)
-        ui_1.bunrieu.stateChanged.connect(bunrieu)
-        ui_1.bunbohue.stateChanged.connect(bunbohue)
-        ui_1.bunthitnuong.stateChanged.connect(bunthitnuong)
-        ui_1.bunxao.stateChanged.connect(bunxao)
-        ui_1.canhkhoqua.stateChanged.connect(canhkhoqua)
-        ui_1.chaolong.stateChanged.connect(chaolong)
-        ui_1.bo.stateChanged.connect(bo)
-        ui_1.chuoi.stateChanged.connect(chuoi)
-        ui_1.thom.stateChanged.connect(thom)
-        ui_1.xoai.stateChanged.connect(xoai)
-        ui_1.saurieng.stateChanged.connect(saurieng)
-        ui_1.mangcut.stateChanged.connect(mangcut)
-        ui_1.coc.stateChanged.connect(coc)
-        ui_1.nho.stateChanged.connect(nho)
-        ui_1.duahau.stateChanged.connect(duahau)
-        ui_1.buoi.stateChanged.connect(buoi)
-        ui_1.khoailang.stateChanged.connect(khoailang)
-        ui_1.le.stateChanged.connect(le)
-        ui_1.bapluoc.stateChanged.connect(bapluoc)
-        ui_1.khoaitay.stateChanged.connect(khoaitay)
-        ui_1.dauphong.stateChanged.connect(dauphong)
-        ui_1.dudu.stateChanged.connect(dudu)
-        ui_1.sori.stateChanged.connect(sori)
-        ui_1.cam.stateChanged.connect(cam)
-        ui_1.oi.stateChanged.connect(oi)
-        ui_1.thanhlong.stateChanged.connect(thanhlong)
-        ui_1.chebap.stateChanged.connect(chebap)
-        ui_1.chechuoi.stateChanged.connect(chechuoi)
-        ui_1.chedauden.stateChanged.connect(chedauden)
-        ui_1.chedauxanh.stateChanged.connect(chedauxanh)
-        ui_1.chenep.stateChanged.connect(chenep)
-        ui_1.chetroinuoc.stateChanged.connect(chetroinuoc)
-        ui_1.xoibap.stateChanged.connect(xoibap)
-        ui_1.xoidauden.stateChanged.connect(xoidauden)
-        ui_1.xoidauphong.stateChanged.connect(xoidauphong)
-        ui_1.xoigac.stateChanged.connect(xoigac)
-        ui_1.cafe.stateChanged.connect(cafe)
-        ui_1.nuocam.stateChanged.connect(nuocam)
-        ui_1.nuocchanh.stateChanged.connect(nuocchanh)
-        ui_1.nuocmia.stateChanged.connect(nuocmia)
-        ui_1.nuocrauma.stateChanged.connect(nuocrauma)
-        ui_1.suachua.stateChanged.connect(suachua)
-        ui_1.trungcut.stateChanged.connect(trungcut)
-        ui_1.trungga.stateChanged.connect(trungga)
-        ui_1.trungvit.stateChanged.connect(trungvit)
+        ui_1.gaxaot_2.stateChanged.connect(lambda:gaxaot(ListMealDinner,CheckboxMealDinner))
+        ui_1.gakho_2.stateChanged.connect(lambda:gakho(ListMealDinner,CheckboxMealDinner))
+        ui_1.mucxao_2.stateChanged.connect(lambda:mucxao(ListMealDinner,CheckboxMealDinner))
+        ui_1.suongnuong_2.stateChanged.connect(lambda:suongnuong(ListMealDinner,CheckboxMealDinner))
+        ui_1.suongram_2.stateChanged.connect(lambda:suongram(ListMealDinner,CheckboxMealDinner))
+        ui_1.thitheoquay_2.stateChanged.connect(lambda:thitheoquay(ListMealDinner,CheckboxMealDinner))
+        ui_1.thitboxao_2.stateChanged.connect(lambda:thitboxao(ListMealDinner,CheckboxMealDinner))
+        ui_1.thitkhotieu_2.stateChanged.connect(lambda:thitkhotieu(ListMealDinner,CheckboxMealDinner))
+        ui_1.camoikho_2.stateChanged.connect(lambda:camoikho(ListMealDinner,CheckboxMealDinner))
+        ui_1.cari_2.stateChanged.connect(lambda:cari(ListMealDinner,CheckboxMealDinner))
+        ui_1.bobia_2.stateChanged.connect(lambda:bobia(ListMealDinner,CheckboxMealDinner))
+        ui_1.cabacmachien_2.stateChanged.connect(lambda:cabacmachien(ListMealDinner,CheckboxMealDinner))
+        ui_1.cabacmakho_2.stateChanged.connect(lambda:cabacmakho(ListMealDinner,CheckboxMealDinner))
+        ui_1.cangukho_2.stateChanged.connect(lambda:cangukho(ListMealDinner,CheckboxMealDinner))
+        ui_1.chalua_2.stateChanged.connect(lambda:chalua(ListMealDinner,CheckboxMealDinner))
+        ui_1.ganheoxao_2.stateChanged.connect(lambda:ganheoxao(ListMealDinner,CheckboxMealDinner))
+        ui_1.goikhobo_2.stateChanged.connect(lambda:goikhobo(ListMealDinner,CheckboxMealDinner))
+        ui_1.goitom_2.stateChanged.connect(lambda:goitom(ListMealDinner,CheckboxMealDinner))
+        ui_1.khoquaxaotrung_2.stateChanged.connect(lambda:khoquaxaotrung(ListMealDinner,CheckboxMealDinner))
+        ui_1.lapxuongchien_2.stateChanged.connect(lambda:lapxuongchien(ListMealDinner,CheckboxMealDinner))
+        ui_1.mucxaothapcam_2.stateChanged.connect(lambda:mucxaothapcam(ListMealDinner,CheckboxMealDinner))
+        ui_1.boxaomang_2.stateChanged.connect(lambda:boxaomang(ListMealDinner,CheckboxMealDinner))
+        ui_1.boxaonam_2.stateChanged.connect(lambda:boxaonam(ListMealDinner,CheckboxMealDinner))
+        ui_1.thitkhotrung_2.stateChanged.connect(lambda:thitkhotrung(ListMealDinner,CheckboxMealDinner))
+        ui_1.bunrieu_2.stateChanged.connect(lambda:bunrieu(ListMealDinner,CheckboxMealDinner))
+        ui_1.bunbohue_2.stateChanged.connect(lambda:bunbohue(ListMealDinner,CheckboxMealDinner))
+        ui_1.bunthitnuong_2.stateChanged.connect(lambda:bunthitnuong(ListMealDinner,CheckboxMealDinner))
+        ui_1.bunxao_2.stateChanged.connect(lambda:bunxao(ListMealDinner,CheckboxMealDinner))
+        ui_1.canhkhoqua_2.stateChanged.connect(lambda:canhkhoqua(ListMealDinner,CheckboxMealDinner))
+        ui_1.chaolong_2.stateChanged.connect(lambda:chaolong(ListMealDinner,CheckboxMealDinner))
+        ui_1.bo_2.stateChanged.connect(lambda:bo(ListMealDinner,CheckboxMealDinner))
+        ui_1.chuoi_2.stateChanged.connect(lambda:chuoi(ListMealDinner,CheckboxMealDinner))
+        ui_1.thom_2.stateChanged.connect(lambda:thom(ListMealDinner,CheckboxMealDinner))
+        ui_1.xoai_2.stateChanged.connect(lambda:xoai(ListMealDinner,CheckboxMealDinner))
+        ui_1.saurieng_2.stateChanged.connect(lambda:saurieng(ListMealDinner,CheckboxMealDinner))
+        ui_1.mangcut_2.stateChanged.connect(lambda:mangcut(ListMealDinner,CheckboxMealDinner))
+        ui_1.coc_2.stateChanged.connect(lambda:coc(ListMealDinner,CheckboxMealDinner))
+        ui_1.nho_2.stateChanged.connect(lambda:nho(ListMealDinner,CheckboxMealDinner))
+        ui_1.duahau_2.stateChanged.connect(lambda:duahau(ListMealDinner,CheckboxMealDinner))
+        ui_1.buoi_2.stateChanged.connect(lambda:buoi(ListMealDinner,CheckboxMealDinner))
+        ui_1.khoailang_2.stateChanged.connect(lambda:khoailang(ListMealDinner,CheckboxMealDinner))
+        ui_1.le_2.stateChanged.connect(lambda:le(ListMealDinner,CheckboxMealDinner))
+        ui_1.bapluoc_2.stateChanged.connect(lambda:bapluoc(ListMealDinner,CheckboxMealDinner))
+        ui_1.khoaitay_2.stateChanged.connect(lambda:khoaitay(ListMealDinner,CheckboxMealDinner))
+        ui_1.dauphong_2.stateChanged.connect(lambda:dauphong(ListMealDinner,CheckboxMealDinner))
+        ui_1.dudu_2.stateChanged.connect(lambda:dudu(ListMealDinner,CheckboxMealDinner))
+        ui_1.sori_2.stateChanged.connect(lambda:sori(ListMealDinner,CheckboxMealDinner))
+        ui_1.cam_2.stateChanged.connect(lambda:cam(ListMealDinner,CheckboxMealDinner))
+        ui_1.oi_2.stateChanged.connect(lambda:oi(ListMealDinner,CheckboxMealDinner))
+        ui_1.thanhlong_2.stateChanged.connect(lambda:thanhlong(ListMealDinner,CheckboxMealDinner))
+        ui_1.chebap_2.stateChanged.connect(lambda:chebap(ListMealDinner,CheckboxMealDinner))
+        ui_1.chechuoi_2.stateChanged.connect(lambda:chechuoi(ListMealDinner,CheckboxMealDinner))
+        ui_1.chedauden_2.stateChanged.connect(lambda:chedauden(ListMealDinner,CheckboxMealDinner))
+        ui_1.chedauxanh_2.stateChanged.connect(lambda:chedauxanh(ListMealDinner,CheckboxMealDinner))
+        ui_1.chenep_2.stateChanged.connect(lambda:chenep(ListMealDinner,CheckboxMealDinner))
+        ui_1.chetroinuoc_2.stateChanged.connect(lambda:chetroinuoc(ListMealDinner,CheckboxMealDinner))
+        ui_1.xoibap_2.stateChanged.connect(lambda:xoibap(ListMealDinner,CheckboxMealDinner))
+        ui_1.xoidauden_2.stateChanged.connect(lambda:xoidauden(ListMealDinner,CheckboxMealDinner))
+        ui_1.xoidauphong_2.stateChanged.connect(lambda:xoidauphong(ListMealDinner,CheckboxMealDinner))
+        ui_1.xoigac_2.stateChanged.connect(lambda:xoigac(ListMealDinner,CheckboxMealDinner))
+        ui_1.cafe_2.stateChanged.connect(lambda:cafe(ListMealDinner,CheckboxMealDinner))
+        ui_1.nuocam_2.stateChanged.connect(lambda:nuocam(ListMealDinner,CheckboxMealDinner))
+        ui_1.nuocchanh_2.stateChanged.connect(lambda:nuocchanh(ListMealDinner,CheckboxMealDinner))
+        ui_1.nuocmia_2.stateChanged.connect(lambda:nuocmia(ListMealDinner,CheckboxMealDinner))
+        ui_1.nuocrauma_2.stateChanged.connect(lambda:nuocrauma(ListMealDinner,CheckboxMealDinner))
+        ui_1.suachua_2.stateChanged.connect(lambda:suachua(ListMealDinner,CheckboxMealDinner))
+        ui_1.trungcut_2.stateChanged.connect(lambda:trungcut(ListMealDinner,CheckboxMealDinner))
+        ui_1.trungga_2.stateChanged.connect(lambda:trungga(ListMealDinner,CheckboxMealDinner))
+        ui_1.trungvit_2.stateChanged.connect(lambda:trungvit(ListMealDinner,CheckboxMealDinner))
 
 def SaveMealDinner():
     global ListMeal, CheckboxMeal,CaloDinner
@@ -1274,1121 +1296,1053 @@ def SaveMealDinner():
     CheckboxDB = open(
         r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Checkbox_Dinner.txt",
         "w")
-    CaloDinner = str(ui_1.label_4.text())
+    CaloDinner = str(ui_1.label_12.text())
     for d in range(len(ListMealDinner)):
         ListMealDB.writelines(ListMealDinner[d] + '\n')
         #     # Checkbix
     for e in range(len(CheckboxMeal)):
         CheckboxDB.writelines(str(CheckboxMealDinner[e]) + '\n')
 
-def gaxaot():
-    global TocalCalo,FOOD,Index,CheckboxMeal,ListMeal,OTHER,FRUIT
-    if ui_1.gaxaot.isChecked() == True:
+def gaxaot(ListOfMeal,CheckBoxForMeal):
+    global TocalCalo,ListMeal,ListMealDinner,checkboxDinner,ListMealLunch,checkboxLunch
+    if ui_1.gaxaot_2.isChecked() == True:
         TocalCalo += 270
         # FOOD.append('gaxaot')
-        ListMeal.append('gaxaot')
-        CheckboxMeal[0] = True
+        ListOfMeal.append('gaxaot')
+        CheckBoxForMeal[0] = True
     else:
-        ui_1.gaxaot.isChecked() == False
         TocalCalo -= 270
         # FOOD.remove('gaxaot')
-        ListMeal.remove('gaxaot')
-        CheckboxMeal[0] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
+        ListOfMeal.remove('gaxaot')
+        CheckBoxForMeal[0] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
 
-def gakho():
+def gakho(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD,Index
-    if ui_1.gakho.isChecked() == True:
+    if ui_1.gakho_2.isChecked() == True:
         TocalCalo += 300
         # FOOD.append('gakho')
-        ListMeal.append('gakho')
-        CheckboxMeal[1] = True
+        ListOfMeal.append('gakho')
+        CheckBoxForMeal[1] = True
     else:
-        ui_1.gakho.isChecked() == False
         TocalCalo -= 300
         # FOOD.remove('gakho')
-        ListMeal.remove('gakho')
-        CheckboxMeal[1] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def mucxao():
+        ListOfMeal.remove('gakho')
+        CheckBoxForMeal[1] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def mucxao(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.mucxao.isChecked() == True:
+    if ui_1.mucxao_2.isChecked() == True:
         TocalCalo += 180
         # FOOD.append('mucxao')
-        ListMeal.append('mucxao')
-        CheckboxMeal[2] = True
+        ListOfMeal.append('mucxao')
+        CheckBoxForMeal[2] = True
     else:
-        ui_1.mucxao.isChecked() == False
         TocalCalo -= 180
         # FOOD.remove('mucxao')
         ListMeal.remove('mucxao')
-        CheckboxMeal[2] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def suongnuong():
+        CheckBoxForMeal[2] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def suongnuong(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.suongnuong.isChecked() == True:
+    if ui_1.suongnuong_2.isChecked() == True:
         TocalCalo += 110
         # FOOD.append('suongnuong')
-        ListMeal.append('suongnuong')
-        CheckboxMeal[3] = True
+        ListOfMeal.append('suongnuong')
+        CheckBoxForMeal[3] = True
     else:
-        ui_1.suongnuong.isChecked() == False
         TocalCalo -= 110
         FOOD.remove('suongnuong')
         # ListMeal.remove('suongnuong')
-        CheckboxMeal[3] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def suongram():
+        CheckBoxForMeal[3] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def suongram(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.suongram.isChecked() == True:
+    if ui_1.suongram_2.isChecked() == True:
         TocalCalo += 150
         # FOOD.append('suongram')
-        ListMeal.append('suongram')
-        CheckboxMeal[4] = True
+        ListOfMeal.append('suongram')
+        CheckBoxForMeal[4] = True
     else:
-        ui_1.suongram.isChecked() == False
         TocalCalo -= 150
         # FOOD.remove('suongram')
         ListMeal.remove('suongram')
-        CheckboxMeal[4] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def thitheoquay():
+        CheckBoxForMeal[4] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def thitheoquay(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.thitheoquay.isChecked() == True:
+    if ui_1.thitheoquay_2.isChecked() == True:
         TocalCalo += 145
         # FOOD.append('thitheoquay')
-        ListMeal.append('thitheoquay')
-        CheckboxMeal[5] = True
+        ListOfMeal.append('thitheoquay')
+        CheckBoxForMeal[5] = True
     else:
-        ui_1.thitheoquay.isChecked() == False
         TocalCalo -= 145
         # FOOD.remove('thitheoquay')
-        ListMeal.remove('thitheoquay')
-        CheckboxMeal[5] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def thitboxao():
+        ListOfMeal.remove('thitheoquay')
+        CheckBoxForMeal[5] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def thitboxao(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.thitboxao.isChecked() == True:
+    if ui_1.thitboxao_2.isChecked() == True:
         TocalCalo += 200
         # FOOD.append('thitboxao')
-        ListMeal.append('thitboxao')
-        CheckboxMeal[6] = True
+        ListOfMeal.append('thitboxao')
+        CheckBoxForMeal[6] = True
     else:
-        ui_1.thitboxao.isChecked() == False
         TocalCalo -= 200
         # FOOD.remove('thitboxao')
-        ListMeal.remove('thitboxao')
-        CheckboxMeal[6] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def thitkhotieu():
+        ListOfMeal.remove('thitboxao')
+        CheckBoxForMeal[6] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def thitkhotieu(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.thitkhotieu.isChecked() == True:
+    if ui_1.thitkhotieu_2.isChecked() == True:
         TocalCalo += 200
         # FOOD.append('thitkhotieu')
-        ListMeal.append('thitkhotieu')
-        CheckboxMeal[7] = True
+        ListOfMeal.append('thitkhotieu')
+        CheckBoxForMeal[7] = True
     else:
-        ui_1.thitkhotieu.isChecked() == False
         TocalCalo -= 200
         # FOOD.remove('thitkhotieu')
-        ListMeal.remove('thitkhotieu')
-        CheckboxMeal[7] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def camoikho():
+        ListOfMeal.remove('thitkhotieu')
+        CheckBoxForMeal[7] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def camoikho(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.camoikho.isChecked() == True:
+    if ui_1.camoikho_2.isChecked() == True:
         TocalCalo += 105
         # FOOD.append('camoikho')
-        ListMeal.append('camoikho')
-        CheckboxMeal[8] = True
+        ListOfMeal.append('camoikho')
+        CheckBoxForMeal[8] = True
     else:
-        ui_1.camoikho.isChecked() == False
         TocalCalo -= 105
         # FOOD.remove('camoikho')
-        ListMeal.remove('camoikho')
-        CheckboxMeal[8] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def cari():
+        ListOfMeal.remove('camoikho')
+        CheckBoxForMeal[8] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def cari(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.cari.isChecked() == True:
+    if ui_1.cari_2.isChecked() == True:
         TocalCalo += 278
         # FOOD.append('cari')
-        ListMeal.append('cari')
-        CheckboxMeal[9] = True
+        ListOfMeal.append('cari')
+        CheckBoxForMeal[9] = True
     else:
-        ui_1.cari.isChecked() == False
         TocalCalo -= 278
         # FOOD.remove('cari')
-        ListMeal.remove('cari')
-        CheckboxMeal[9] = True
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def bobia():
+        ListOfMeal.remove('cari')
+        CheckBoxForMeal[9] = True
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def bobia(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.bobia.isChecked() == True:
+    if ui_1.bobia_2.isChecked() == True:
         TocalCalo += 100
         # FOOD.append('bobia')
-        ListMeal.append('bobia')
-        CheckboxMeal[10] = True
+        ListOfMeal.append('bobia')
+        CheckBoxForMeal[10] = True
     else:
-        ui_1.bobia.isChecked() == False
         TocalCalo -= 100
         # FOOD.remove('bobia')
-        ListMeal.remove('bobia')
-        CheckboxMeal[10] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def cabacmachien():
+        ListOfMeal.remove('bobia')
+        CheckBoxForMeal[10] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def cabacmachien(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.cabacmachien.isChecked() == True:
+    if ui_1.cabacmachien_2.isChecked() == True:
         TocalCalo += 135
         # FOOD.append('cabacmachien')
-        ListMeal.append('cabacmachien')
-        CheckboxMeal[11] = True
+        ListOfMeal.append('cabacmachien')
+        CheckBoxForMeal[11] = True
     else:
-        ui_1.cabacmachien.isChecked() == False
         TocalCalo -= 135
         # FOOD.remove('cabacmachien')
-        ListMeal.remove('cabacmachien')
-        CheckboxMeal[11] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def cabacmakho():
+        ListOfMeal.remove('cabacmachien')
+        CheckBoxForMeal[11] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def cabacmakho(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.cabacmakho.isChecked() == True:
+    if ui_1.cabacmakho_2.isChecked() == True:
         TocalCalo += 167
         # FOOD.append('cabacmakho')
-        ListMeal.append('cabacmakho')
-        CheckboxMeal[12] = True
+        ListOfMeal.append('cabacmakho')
+        CheckBoxForMeal[12] = True
     else:
-        ui_1.cabacmakho.isChecked() == False
         TocalCalo -= 167
         # FOOD.remove('cabacmakho')
-        ListMeal.remove('cabacmakho')
-        CheckboxMeal[12] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def cangukho():
+        ListOfMeal.remove('cabacmakho')
+        CheckBoxForMeal[12] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def cangukho(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.cangukho.isChecked() == True:
+    if ui_1.cangukho_2.isChecked() == True:
         TocalCalo += 122
         # FOOD.append('cangukho')
-        ListMeal.append('cangukho')
-        CheckboxMeal[13] = True
+        ListOfMeal.append('cangukho')
+        CheckBoxForMeal[13] = True
     else:
-        ui_1.cangukho.isChecked() == False
         TocalCalo -= 122
         # FOOD.remove('cangukho')
-        ListMeal.remove('cangukho')
-        CheckboxMeal[13] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def chalua():
+        ListOfMeal.remove('cangukho')
+        CheckBoxForMeal[13] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def chalua(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.chalua.isChecked() == True:
+    if ui_1.chalua_2.isChecked() == True:
         TocalCalo += 100
         # FOOD.append('chalua')
-        ListMeal.append('chalua')
-        CheckboxMeal[14] = True
+        ListOfMeal.append('chalua')
+        CheckBoxForMeal[14] = True
     else:
-        ui_1.chalua.isChecked() == False
         TocalCalo -= 100
         # FOOD.remove('chalua')
-        ListMeal.remove('chalua')
-        CheckboxMeal[14] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def ganheoxao():
+        ListOfMeal.remove('chalua')
+        CheckBoxForMeal[14] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def ganheoxao(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.ganheoxao.isChecked() == True:
+    if ui_1.ganheoxao_2.isChecked() == True:
         TocalCalo += 200
         # FOOD.append('ganheoxao')
-        ListMeal.append('ganheoxao')
-        CheckboxMeal[15] = True
+        ListOfMeal.append('ganheoxao')
+        CheckBoxForMeal[15] = True
     else:
-        ui_1.ganheoxao.isChecked() == False
         TocalCalo -= 200
         # FOOD.remove('ganheoxao')
-        ListMeal.remove('ganheoxao')
-        CheckboxMeal[15] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def goikhobo():
+        ListOfMeal.remove('ganheoxao')
+        CheckBoxForMeal[15] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def goikhobo(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.goikhobo.isChecked() == True:
+    if ui_1.goikhobo_2.isChecked() == True:
         TocalCalo += 268
         # FOOD.append('goikhobo')
-        ListMeal.append('goikhobo')
-        CheckboxMeal[16] = True
+        ListOfMeal.append('goikhobo')
+        CheckBoxForMeal[16] = True
     else:
-        ui_1.goikhobo.isChecked() == False
         TocalCalo -= 268
         # FOOD.remove('goikhobo')
-        ListMeal.remove('goikhobo')
-        CheckboxMeal[16] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def goitom():
+        ListOfMeal.remove('goikhobo')
+        CheckBoxForMeal[16] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def goitom(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.goitom.isChecked() == True:
+    if ui_1.goitom_2.isChecked() == True:
         TocalCalo += 147
         # FOOD.append('goitom')
-        ListMeal.append('goitom')
-        CheckboxMeal[17] = True
+        ListOfMeal.append('goitom')
+        CheckBoxForMeal[17] = True
     else:
-        ui_1.goitom.isChecked() == False
         TocalCalo -= 147
         # FOOD.remove('goitom')
-        ListMeal.remove('goitom')
-        CheckboxMeal[17] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def khoquaxaotrung():
+        ListOfMeal.remove('goitom')
+        CheckBoxForMeal[17] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def khoquaxaotrung(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.khoquaxaotrung.isChecked() == True:
+    if ui_1.khoquaxaotrung_2.isChecked() == True:
         TocalCalo += 115
         # FOOD.append('khoquaxaotrung')
-        ListMeal.append('khoquaxaotrung')
-        CheckboxMeal[18] = True
+        ListOfMeal.append('khoquaxaotrung')
+        CheckBoxForMeal[18] = True
     else:
-        ui_1.khoquaxaotrung.isChecked() == False
         TocalCalo -= 115
         # FOOD.remove('khoquaxaotrung')
-        ListMeal.remove('khoquaxaotrung')
-        CheckboxMeal[18] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def lapxuongchien():
+        ListOfMeal.remove('khoquaxaotrung')
+        CheckBoxForMeal[18] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def lapxuongchien(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.lapxuongchien.isChecked() == True:
+    if ui_1.lapxuongchien_2.isChecked() == True:
         TocalCalo += 300
         # FOOD.append('lapxuongchien')
-        ListMeal.append('lapxuongchien')
-        CheckboxMeal[19] = True
+        ListOfMeal.append('lapxuongchien')
+        CheckBoxForMeal[19] = True
     else:
-        ui_1.lapxuongchien.isChecked() == False
         TocalCalo -= 300
         # FOOD.remove('lapxuongchien')
-        ListMeal.remove('lapxuongchien')
-        CheckboxMeal[19] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def mucxaothapcam():
+        ListOfMeal.remove('lapxuongchien')
+        CheckBoxForMeal[19] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def mucxaothapcam(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.mucxaothapcam.isChecked() == True:
+    if ui_1.mucxaothapcam_2.isChecked() == True:
         TocalCalo += 135
         # FOOD.append('mucxaothapcam')
-        ListMeal.append('mucxaothapcam')
-        CheckboxMeal[20] = True
+        ListOfMeal.append('mucxaothapcam')
+        CheckBoxForMeal[20] = True
     else:
-        ui_1.mucxaothapcam.isChecked() == False
         TocalCalo -= 135
         # FOOD.remove('mucxaothapcam')
-        ListMeal.remove('mucxaothapcam')
-        CheckboxMeal[20] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def boxaomang():
+        ListOfMeal.remove('mucxaothapcam')
+        CheckBoxForMeal[20] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def boxaomang(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.boxaomang.isChecked() == True:
+    if ui_1.boxaomang_2.isChecked() == True:
         TocalCalo += 105
         # FOOD.append('boxaomang')
-        ListMeal.append('boxaomang')
-        CheckboxMeal[21] = True
+        ListOfMeal.append('boxaomang')
+        CheckBoxForMeal[21] = True
     else:
-        ui_1.boxaomang.isChecked() == False
         TocalCalo -= 105
         # FOOD.remove('boxaomang')
-        ListMeal.remove('boxaomang')
-        CheckboxMeal[21] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def boxaonam():
+        ListOfMeal.remove('boxaomang')
+        CheckBoxForMeal[21] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def boxaonam(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.boxaonam.isChecked() == True:
+    if ui_1.boxaonam_2.isChecked() == True:
         TocalCalo += 150
         # FOOD.append('boxaonam')
-        ListMeal.append('boxaonam')
-        CheckboxMeal[22] = True
+        ListOfMeal.append('boxaonam')
+        CheckBoxForMeal[22] = True
     else:
-        ui_1.gaxboxaonamaot.isChecked() == False
         TocalCalo -= 150
         # FOOD.remove('boxaonam')
-        ListMeal.remove('boxaonam')
-        CheckboxMeal[22] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def thitkhotrung():
+        ListOfMeal.remove('boxaonam')
+        CheckBoxForMeal[22] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def thitkhotrung(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.thitkhotrung.isChecked() == True:
+    if ui_1.thitkhotrung_2.isChecked() == True:
         TocalCalo += 315
         # FOOD.append('thitkhotrung')
-        ListMeal.append('thitkhotrung')
-        CheckboxMeal[23] = True
+        ListOfMeal.append('thitkhotrung')
+        CheckBoxForMeal[23] = True
     else:
-        ui_1.thitkhotrung.isChecked() == False
         TocalCalo -= 315
         # FOOD.remove('thitkhotrung')
-        ListMeal.remove('thitkhotrung')
-        CheckboxMeal[23] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def bunrieu():
+        ListOfMeal.remove('thitkhotrung')
+        CheckBoxForMeal[23] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def bunrieu(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.bunrieu.isChecked() == True:
+    if ui_1.bunrieu_2.isChecked() == True:
         TocalCalo += 482
         # FOOD.append('bunrieu')
-        ListMeal.append('bunrieu')
-        CheckboxMeal[24] = True
+        ListOfMeal.append('bunrieu')
+        CheckBoxForMeal[24] = True
     else:
-        ui_1.bunrieu.isChecked() == False
         TocalCalo -= 482
         # FOOD.remove('bunrieu')
-        ListMeal.remove('bunrieu')
-        CheckboxMeal[24] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def bunbohue():
+        ListOfMeal.remove('bunrieu')
+        CheckBoxForMeal[24] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def bunbohue(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.bunbohue.isChecked() == True:
+    if ui_1.bunbohue_2.isChecked() == True:
         TocalCalo += 479
         # FOOD.append('bunbohue')
-        ListMeal.append('bunbohue')
-        CheckboxMeal[25] = True
+        ListOfMeal.append('bunbohue')
+        CheckBoxForMeal[25] = True
     else:
-        ui_1.bunbohue.isChecked() == False
         TocalCalo -= 479
         # FOOD.remove('bunbohue')
-        ListMeal.remove('bunbohue')
-        CheckboxMeal[25] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def bunthitnuong():
+        ListOfMeal.remove('bunbohue')
+        CheckBoxForMeal[25] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def bunthitnuong(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.bunthitnuong.isChecked() == True:
+    if ui_1.bunthitnuong_2.isChecked() == True:
         TocalCalo += 451
         # FOOD.append('bunthitnuong')
-        ListMeal.append('bunthitnuong')
-        CheckboxMeal[26] = True
+        ListOfMeal.append('bunthitnuong')
+        CheckBoxForMeal[26] = True
     else:
-        ui_1.bunthitnuong.isChecked() == False
         TocalCalo -= 451
         # FOOD.remove('bunthitnuong')
-        ListMeal.remove('bunthitnuong')
-        CheckboxMeal[26] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def bunxao():
+        ListOfMeal.remove('bunthitnuong')
+        CheckBoxForMeal[26] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def bunxao(ListOfMeal,CheckBoxForMeal):
     global TocalCalo
-    if ui_1.bunxao.isChecked() == True:
+    if ui_1.bunxao_2.isChecked() == True:
         TocalCalo += 570
         # FOOD.append('bunxao')
-        ListMeal.append('bunxao')
-        CheckboxMeal[27] = True
+        ListOfMeal.append('bunxao')
+        CheckBoxForMeal[27] = True
     else:
-        ui_1.bunxao.isChecked() == False
         TocalCalo -= 570
         # FOOD.remove('bunxao')
-        ListMeal.remove('bunxao')
-        CheckboxMeal[27] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def canhkhoqua():
+        ListOfMeal.remove('bunxao')
+        CheckBoxForMeal[27] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def canhkhoqua(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.canhkhoqua.isChecked() == True:
+    if ui_1.canhkhoqua_2.isChecked() == True:
         TocalCalo += 88
         # FOOD.append('canhkhoqua')
-        ListMeal.append('canhkhoqua')
-        CheckboxMeal[28] = True
+        ListOfMeal.append('canhkhoqua')
+        CheckBoxForMeal[28] = True
     else:
-        ui_1.canhkhoqua.isChecked() == False
         TocalCalo -= 479
         # FOOD.remove('canhkhoqua')
-        ListMeal.remove('canhkhoqua')
-        CheckboxMeal[28] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def chaolong():
+        ListOfMeal.remove('canhkhoqua')
+        CheckBoxForMeal[28] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def chaolong(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FOOD
-    if ui_1.chaolong.isChecked() == True:
+    if ui_1.chaolong_2.isChecked() == True:
         TocalCalo += 412
         # FOOD.append('chaolong')
-        ListMeal.append('chaolong')
-        CheckboxMeal[29] = True
+        ListOfMeal.append('chaolong')
+        CheckBoxForMeal[29] = True
     else:
-        ui_1.chaolong.isChecked() == False
         TocalCalo -= 412
         # FOOD.remove('chaolong')
-        ListMeal.remove('chaolong')
-        CheckboxMeal[29] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
+        ListOfMeal.remove('chaolong')
+        CheckBoxForMeal[29] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
 
     ############################### Fruist######################
-def bo():
+def bo(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FRUIT
-    if ui_1.bo.isChecked() == True:
+    if ui_1.bo_2.isChecked() == True:
         TocalCalo += 184
         # FRUIT.append('bo')
-        ListMeal.append('bo')
-        CheckboxMeal[31] = True
+        ListOfMeal.append('bo')
+        CheckBoxForMeal[31] = True
     else:
-        ui_1.bo.isChecked() == False
         TocalCalo -= 184
         # FRUIT.remove('bo')
-        ListMeal.remove('bo')
-        CheckboxMeal[31] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def chuoi():
+        ListOfMeal.remove('bo')
+        CheckBoxForMeal[31] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def chuoi(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FRUIT
-    if ui_1.chuoi.isChecked() == True:
+    if ui_1.chuoi_2.isChecked() == True:
         TocalCalo += 35
         # FRUIT.append('chuoi')
-        ListMeal.append('chuoi')
-        CheckboxMeal[32] = True
+        ListOfMeal.append('chuoi')
+        CheckBoxForMeal[32] = True
     else:
-        ui_1.chuoi.isChecked() == False
         TocalCalo -= 35
         # FRUIT.append('chuoi')
-        ListMeal.append('chuoi')
-        CheckboxMeal[32] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def thom():
+        ListOfMeal.append('chuoi')
+        CheckBoxForMeal[32] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def thom(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FRUIT
-    if ui_1.thom.isChecked() == True:
+    if ui_1.thom_2.isChecked() == True:
         TocalCalo += 17
         # FRUIT.append('thom')
-        ListMeal.append('thom')
-        CheckboxMeal[33] = True
+        ListOfMeal.append('thom')
+        CheckBoxForMeal[33] = True
     else:
-        ui_1.thom.isChecked() == False
         TocalCalo -= 17
         # FRUIT.remove('thom')
-        ListMeal.remove('thom')
-        CheckboxMeal[33] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def xoai():
+        ListOfMeal.remove('thom')
+        CheckBoxForMeal[33] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def xoai(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FRUIT
-    if ui_1.xoai.isChecked() == True:
+    if ui_1.xoai_2.isChecked() == True:
         TocalCalo += 179
         # FRUIT.append('xoai')
-        ListMeal.append('xoai')
-        CheckboxMeal[34] = True
+        ListOfMeal.append('xoai')
+        CheckBoxForMeal[34] = True
     else:
-        ui_1.xoai.isChecked() == False
         TocalCalo -= 179
         # FRUIT.remove('xoai')
-        ListMeal.remove('xoai')
-        CheckboxMeal[34] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def saurieng():
+        ListOfMeal.remove('xoai')
+        CheckBoxForMeal[34] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def saurieng(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FRUIT
-    if ui_1.saurieng.isChecked() == True:
+    if ui_1.saurieng_2.isChecked() == True:
         TocalCalo += 28
         # FRUIT.append('saurieng')
-        ListMeal.append('saurieng')
-        CheckboxMeal[35] = True
+        ListOfMeal.append('saurieng')
+        CheckBoxForMeal[35] = True
     else:
-        ui_1.saurieng.isChecked() == False
         TocalCalo -= 28
         # FRUIT.remove('saurieng')
-        ListMeal.remove('saurieng')
-        CheckboxMeal[35] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def mangcut():
+        ListOfMeal.remove('saurieng')
+        CheckBoxForMeal[35] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def mangcut(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FRUIT
-    if ui_1.mangcut.isChecked() == True:
+    if ui_1.mangcut_2.isChecked() == True:
         TocalCalo += 13
         # FRUIT.append('mangcut')
-        ListMeal.append('mangcut')
-        CheckboxMeal[36] = True
+        ListOfMeal.append('mangcut')
+        CheckBoxForMeal[36] = True
     else:
-        ui_1.mangcut.isChecked() == False
         TocalCalo -= 13
         # FRUIT.remove('mangcut')
-        ListMeal.remove('mangcut')
-        CheckboxMeal[36] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def coc():
+        ListOfMeal.remove('mangcut')
+        CheckBoxForMeal[36] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def coc(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FRUIT
-    if ui_1.coc.isChecked() == True:
+    if ui_1.coc_2.isChecked() == True:
         TocalCalo += 34
         # FRUIT.append('coc')
-        ListMeal.append('coc')
-        CheckboxMeal[37] = True
+        ListOfMeal.append('coc')
+        CheckBoxForMeal[37] = True
     else:
-        ui_1.coc.isChecked() == False
         TocalCalo -= 34
         # FRUIT.remove('coc')
-        ListMeal.remove('coc')
-        CheckboxMeal[37] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def nho():
+        ListOfMeal.remove('coc')
+        CheckBoxForMeal[37] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def nho(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FRUIT
-    if ui_1.nho.isChecked() == True:
+    if ui_1.nho_2.isChecked() == True:
         TocalCalo += 68
         # FRUIT.append('nho')
-        ListMeal.append('nho')
-        CheckboxMeal[38] = True
+        ListOfMeal.append('nho')
+        CheckBoxForMeal[38] = True
     else:
-        ui_1.nho.isChecked() == False
         TocalCalo -= 68
         # FRUIT.remove('nho')
-        ListMeal.remove('nho')
-        CheckboxMeal[38] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def duahau():
+        ListOfMeal.remove('nho')
+        CheckBoxForMeal[38] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def duahau(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FRUIT
-    if ui_1.duahau.isChecked() == True:
+    if ui_1.duahau_2.isChecked() == True:
         TocalCalo += 21
         # FRUIT.append('duahau')
-        ListMeal.append('duahau')
-        CheckboxMeal[39] = True
+        ListOfMeal.append('duahau')
+        CheckBoxForMeal[39] = True
     else:
-        ui_1.duahau.isChecked() == False
         TocalCalo -= 21
         # FRUIT.remove('duahau')
-        ListMeal.remove('duahau')
-        CheckboxMeal[39] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def buoi():
+        ListOfMeal.remove('duahau')
+        CheckBoxForMeal[39] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def buoi(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FRUIT
-    if ui_1.buoi.isChecked() == True:
+    if ui_1.buoi_2.isChecked() == True:
         TocalCalo += 8
         # FRUIT.append('buoi')
-        ListMeal.append('buoi')
-        CheckboxMeal[40] = True
+        ListOfMeal.append('buoi')
+        CheckBoxForMeal[40] = True
     else:
-        ui_1.buoi.isChecked() == False
         TocalCalo -= 8
         # FRUIT.remove('buoi')
-        ListMeal.remove('buoi')
-        CheckboxMeal[40] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def khoailang():
+        ListOfMeal.remove('buoi')
+        CheckBoxForMeal[40] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def khoailang(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FRUIT
-    if ui_1.khoailang.isChecked() == True:
+    if ui_1.khoailang_2.isChecked() == True:
         TocalCalo += 131
         # FRUIT.append('khoailang')
-        ListMeal.append('khoailang')
-        CheckboxMeal[41] = True
+        ListOfMeal.append('khoailang')
+        CheckBoxForMeal[41] = True
     else:
-        ui_1.khoailang.isChecked() == False
         TocalCalo -= 131
         # FRUIT.remove('khoailang')
-        ListMeal.remove('khoailang')
-        CheckboxMeal[41] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def le():
+        ListOfMeal.remove('khoailang')
+        CheckBoxForMeal[41] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def le(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FRUIT
-    if ui_1.le.isChecked() == True:
+    if ui_1.le_2.isChecked() == True:
         TocalCalo += 91
         # FRUIT.append('le')
-        ListMeal.append('le')
-        CheckboxMeal[42] = True
+        ListOfMeal.append('le')
+        CheckBoxForMeal[42] = True
     else:
-        ui_1.le.isChecked() == False
         TocalCalo -= 91
         # FRUIT.remove('le')
-        ListMeal.remove('le')
-        CheckboxMeal[42] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def bapluoc():
+        ListOfMeal.remove('le')
+        CheckBoxForMeal[42] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def bapluoc(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FRUIT
-    if ui_1.bapluoc.isChecked() == True:
+    if ui_1.bapluoc_2.isChecked() == True:
         TocalCalo += 192
         # FRUIT.append('bapluoc')
-        ListMeal.append('bapluoc')
-        CheckboxMeal[43] = True
+        ListOfMeal.append('bapluoc')
+        CheckBoxForMeal[43] = True
     else:
-        ui_1.bapluoc.isChecked() == False
         TocalCalo -= 192
         # FRUIT.remove('bapluoc')
-        ListMeal.remove('bapluoc')
-        CheckboxMeal[43] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def khoaitay():
+        ListOfMeal.remove('bapluoc')
+        CheckBoxForMeal[43] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def khoaitay(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FRUIT
-    if ui_1.khoaitay.isChecked() == True:
+    if ui_1.khoaitay_2.isChecked() == True:
         TocalCalo += 131
         # FRUIT.append('khoaitay')
-        ListMeal.append('khoaitay')
-        CheckboxMeal[44] = True
+        ListOfMeal.append('khoaitay')
+        CheckBoxForMeal[44] = True
     else:
-        ui_1.khoaitay.isChecked() == False
         TocalCalo -= 131
         # FRUIT.remove('khoaitay')
-        ListMeal.remove('khoaitay')
-        CheckboxMeal[44] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def dauphong():
+        ListOfMeal.remove('khoaitay')
+        CheckBoxForMeal[44] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def dauphong(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FRUIT
-    if ui_1.dauphong.isChecked() == True:
+    if ui_1.dauphong_2.isChecked() == True:
         TocalCalo += 395
         # FRUIT.append('dauphong')
-        ListMeal.append('dauphong')
-        CheckboxMeal[45] = True
+        ListOfMeal.append('dauphong')
+        CheckBoxForMeal[45] = True
     else:
-        ui_1.dauphong.isChecked() == False
         TocalCalo -= 395
         # FRUIT.remove('dauphong')
-        ListMeal.remove('dauphong')
-        CheckboxMeal[45] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def dudu():
+        ListOfMeal.remove('dauphong')
+        CheckBoxForMeal[45] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def dudu(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FRUIT
-    if ui_1.dudu.isChecked() == True:
+    if ui_1.dudu_2.isChecked() == True:
         TocalCalo += 125
         # FRUIT.append('dudu')
-        ListMeal.append('dudu')
-        CheckboxMeal[46] = True
+        ListOfMeal.append('dudu')
+        CheckBoxForMeal[46] = True
     else:
-        ui_1.dudu.isChecked() == False
         TocalCalo -= 125
         # FRUIT.remove('dudu')
-        ListMeal.remove('dudu')
-        CheckboxMeal[46] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def sori():
+        ListOfMeal.remove('dudu')
+        CheckBoxForMeal[46] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def sori(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FRUIT
-    if ui_1.sori.isChecked() == True:
+    if ui_1.sori_2.isChecked() == True:
         TocalCalo += 14
         # FRUIT.append('sori')
-        ListMeal.append('sori')
-        CheckboxMeal[47] = True
+        ListOfMeal.append('sori')
+        CheckBoxForMeal[47] = True
     else:
-        ui_1.sori.isChecked() == False
         TocalCalo -= 14
         # FRUIT.remove('sori')
-        ListMeal.remove('sori')
-        CheckboxMeal[47] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def cam():
+        ListOfMeal.remove('sori')
+        CheckBoxForMeal[47] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def cam(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FRUIT
-    if ui_1.cam.isChecked() == True:
+    if ui_1.cam_2.isChecked() == True:
         TocalCalo += 68
         # FRUIT.append('cam')
-        ListMeal.append('cam')
-        CheckboxMeal[48] = True
+        ListOfMeal.append('cam')
+        CheckBoxForMeal[48] = True
     else:
-        ui_1.cam.isChecked() == False
         TocalCalo -= 68
         # FRUIT.remove('cam')
-        ListMeal.remove('cam')
-        CheckboxMeal[48] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def oi():
+        ListOfMeal.remove('cam')
+        CheckBoxForMeal[48] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def oi(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FRUIT
-    if ui_1.oi.isChecked() == True:
+    if ui_1.oi_2.isChecked() == True:
         TocalCalo += 53
         # FRUIT.append('oi')
-        ListMeal.append('oi')
-        CheckboxMeal[49] = True
+        ListOfMeal.append('oi')
+        CheckBoxForMeal[49] = True
     else:
-        ui_1.oi.isChecked() == False
         TocalCalo -= 53
         # FRUIT.remove('oi')
-        ListMeal.remove('oi')
-        CheckboxMeal[49] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def thanhlong():
+        ListOfMeal.remove('oi')
+        CheckBoxForMeal[49] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def thanhlong(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,FRUIT
-    if ui_1.thanhlong.isChecked() == True:
+    if ui_1.thanhlong_2.isChecked() == True:
         TocalCalo += 225
         # FRUIT.append('thanhlong')
-        ListMeal.append('thanhlong')
-        CheckboxMeal[50] = True
+        ListOfMeal.append('thanhlong')
+        CheckBoxForMeal[50] = True
     else:
-        ui_1.thanhlong.isChecked() == False
         TocalCalo -= 225
         # FRUIT.remove('thanhlong')
-        ListMeal.remove('thanhlong')
-        CheckboxMeal[50] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
+        ListOfMeal.remove('thanhlong')
+        CheckBoxForMeal[50] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
 ###########################Orther################
-def chebap():
+def chebap(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,OTHER
-    if ui_1.chebap.isChecked() == True:
+    if ui_1.chebap_2.isChecked() == True:
         TocalCalo += 325
-        ListMeal.append('chebap')
+        ListOfMeal.append('chebap')
         # OTHER.append('chebap')
-        CheckboxMeal[51] = True
+        CheckBoxForMeal[51] = True
     else:
-        ui_1.chebap.isChecked() == False
         TocalCalo -= 325
-        ListMeal.remove('chebap')
+        ListOfMeal.remove('chebap')
         # OTHER.remove('chebap')
-        CheckboxMeal[51] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def chechuoi():
+        CheckBoxForMeal[51] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def chechuoi(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,OTHER
-    if ui_1.chechuoi.isChecked() == True:
+    if ui_1.chechuoi_2.isChecked() == True:
         TocalCalo += 332
-        ListMeal.append('chechuoi')
+        ListOfMeal.append('chechuoi')
         # OTHER.append('chechuoi')
-        CheckboxMeal[52] = True
+        CheckBoxForMeal[52] = True
     else:
-        ui_1.chechuoi.isChecked() == False
         TocalCalo -= 332
-        ListMeal.remove('chechuoi')
+        ListOfMeal.remove('chechuoi')
         # OTHER.remove('chechuoi')
-        CheckboxMeal[52] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def chedauden():
+        CheckBoxForMeal[52] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def chedauden(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,OTHER
-    if ui_1.chedauden.isChecked() == True:
+    if ui_1.chedauden_2.isChecked() == True:
         TocalCalo += 419
-        ListMeal.append('chedauden')
+        ListOfMeal.append('chedauden')
         # OTHER.append('chedauden')
-        CheckboxMeal[53] = True
+        CheckBoxForMeal[53] = True
     else:
-        ui_1.chedauden.isChecked() == False
         TocalCalo -= 419
-        ListMeal.remove('chedauden')
+        ListOfMeal.remove('chedauden')
         # OTHER.remove('chedauden')
-        CheckboxMeal[53] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def chedauxanh():
+        CheckBoxForMeal[53] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def chedauxanh(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,OTHER
-    if ui_1.chedauxanh.isChecked() == True:
+    if ui_1.chedauxanh_2.isChecked() == True:
         TocalCalo += 359
-        ListMeal.append('chedauxanh')
+        ListOfMeal.append('chedauxanh')
         # OTHER.append('chedauxanh')
-        CheckboxMeal[54] = True
+        CheckBoxForMeal[54] = True
     else:
-        ui_1.chedauxanh.isChecked() == False
         TocalCalo -= 359
-        ListMeal.remove('chedauxanh')
+        ListOfMeal.remove('chedauxanh')
         # OTHER.remove('chedauxanh')
-        CheckboxMeal[54] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def chenep():
+        CheckBoxForMeal[54] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def chenep(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,OTHER
-    if ui_1.chenep.isChecked() == True:
+    if ui_1.chenep_2.isChecked() == True:
         TocalCalo += 420
-        ListMeal.append('chenep')
+        ListOfMeal.append('chenep')
         # OTHER.append('chenep')
-        CheckboxMeal[55] = True
+        CheckBoxForMeal[55] = True
     else:
-        ui_1.chenep.isChecked() == False
         TocalCalo -= 420
-        ListMeal.remove('chenep')
+        ListOfMeal.remove('chenep')
         # OTHER.remove('chenep')
-        CheckboxMeal[55] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def chetroinuoc():
+        CheckBoxForMeal[55] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def chetroinuoc(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,OTHER
-    if ui_1.chetroinuoc.isChecked() == True:
+    if ui_1.chetroinuoc_2.isChecked() == True:
         TocalCalo += 513
-        ListMeal.append('chetroinuoc')
+        ListOfMeal.append('chetroinuoc')
         # OTHER.append('chetroinuoc')
-        CheckboxMeal[56] = True
+        CheckBoxForMeal[56] = True
     else:
-        ui_1.chetroinuoc.isChecked() == False
         TocalCalo -= 513
-        ListMeal.remove('chetroinuoc')
+        ListOfMeal.remove('chetroinuoc')
         # OTHER.remove('chetroinuoc')
-        CheckboxMeal[56] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def xoibap():
+        CheckBoxForMeal[56] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def xoibap(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,OTHER
-    if ui_1.xoibap.isChecked() == True:
+    if ui_1.xoibap_2.isChecked() == True:
         TocalCalo += 332
-        ListMeal.append('xoibap')
+        ListOfMeal.append('xoibap')
         # OTHER.append('xoibap')
-        CheckboxMeal[57] = True
+        CheckBoxForMeal[57] = True
     else:
-        ui_1.xoibap.isChecked() == False
         TocalCalo -= 332
-        ListMeal.remove('xoibap')
+        ListOfMeal.remove('xoibap')
         # OTHER.remove('xoibap')
-        CheckboxMeal[57] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def xoidauden():
+        CheckBoxForMeal[57] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def xoidauden(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,OTHER
-    if ui_1.xoidauden.isChecked() == True:
+    if ui_1.xoidauden_2.isChecked() == True:
         TocalCalo += 550
-        ListMeal.append('xoidauden')
+        ListOfMeal.append('xoidauden')
         # OTHER.append('xoidauden')
-        CheckboxMeal[58] = True
+        CheckBoxForMeal[58] = True
     else:
-        ui_1.xoidauden.isChecked() == False
         TocalCalo -= 550
-        ListMeal.remove('xoidauden')
+        ListOfMeal.remove('xoidauden')
         # OTHER.remove('xoidauden')
-        CheckboxMeal[58] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def xoidauphong():
+        CheckBoxForMeal[58] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def xoidauphong(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,OTHER
-    if ui_1.xoidauphong.isChecked() == True:
+    if ui_1.xoidauphong_2.isChecked() == True:
         TocalCalo += 650
-        ListMeal.append('xoidauphong')
+        ListOfMeal.append('xoidauphong')
         # OTHER.append('xoidauphong')
-        CheckboxMeal[59] = True
+        CheckBoxForMeal[59] = True
     else:
-        ui_1.xoidauphong.isChecked() == False
         TocalCalo -= 650
-        ListMeal.remove('xoidauphong')
+        ListOfMeal.remove('xoidauphong')
         # OTHER.remove('xoidauphong')
-        CheckboxMeal[59] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def xoigac():
+        CheckBoxForMeal[59] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def xoigac(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,OTHER
-    if ui_1.xoigac.isChecked() == True:
+    if ui_1.xoigac_2.isChecked() == True:
         TocalCalo += 590
-        ListMeal.append('xoigac')
+        ListOfMeal.append('xoigac')
         # OTHER.append('xoigac')
-        CheckboxMeal[60] = True
+        CheckBoxForMeal[60] = True
     else:
-        ui_1.xoigac.isChecked() == False
         TocalCalo -= 590
-        ListMeal.remove('xoigac')
+        ListOfMeal.remove('xoigac')
         # OTHER.remove('xoigac')
-        CheckboxMeal[60] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def cafe():
+        CheckBoxForMeal[60] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def cafe(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,OTHER
-    if ui_1.cafe.isChecked() == True:
+    if ui_1.cafe_2.isChecked() == True:
         TocalCalo += 40
-        ListMeal.append('cafe')
+        ListOfMeal.append('cafe')
         # OTHER.append('cafe')
-        CheckboxMeal[61] = True
+        CheckBoxForMeal[61] = True
     else:
-        ui_1.cafe.isChecked() == False
         TocalCalo -= 40
-        ListMeal.remove('cafe')
+        ListOfMeal.remove('cafe')
         # OTHER.remove('cafe')
-        CheckboxMeal[61] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def nuocam():
+        CheckBoxForMeal[61] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def nuocam(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,OTHER
-    if ui_1.nuocam.isChecked() == True:
+    if ui_1.nuocam_2.isChecked() == True:
         TocalCalo += 226
-        ListMeal.append('nuocam')
+        ListOfMeal.append('nuocam')
         # OTHER.append('nuocam')
-        CheckboxMeal[62] = True
+        CheckBoxForMeal[62] = True
     else:
-        ui_1.nuocam.isChecked() == False
         TocalCalo -= 226
-        ListMeal.remove('nuocam')
+        ListOfMeal.remove('nuocam')
         # OTHER.remove('nuocam')
-        CheckboxMeal[62] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def nuocchanh():
+        CheckBoxForMeal[62] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def nuocchanh(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,OTHER
-    if ui_1.nuocchanh.isChecked() == True:
+    if ui_1.nuocchanh_2.isChecked() == True:
         TocalCalo += 150
-        ListMeal.append('nuocchanh')
+        ListOfMeal.append('nuocchanh')
         # OTHER.append('nuocchanh')
-        CheckboxMeal[63] = True
+        CheckBoxForMeal[63] = True
     else:
-        ui_1.nuocchanh.isChecked() == False
         TocalCalo -= 150
-        ListMeal.remove('nuocchanh')
+        ListOfMeal.remove('nuocchanh')
         # OTHER.remove('nuocchanh')
-        CheckboxMeal[63] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def nuocmia():
+        CheckBoxForMeal[63] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def nuocmia(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,OTHER
-    if ui_1.nuocmia.isChecked() == True:
+    if ui_1.nuocmia_2.isChecked() == True:
         TocalCalo += 100
-        ListMeal.append('nuocmia')
+        ListOfMeal.append('nuocmia')
         # OTHER.append('nuocmia')
-        CheckboxMeal[64] = True
+        CheckBoxForMeal[64] = True
     else:
-        ui_1.nuocmia.isChecked() == False
         TocalCalo -= 100
-        ListMeal.remove('nuocmia')
+        ListOfMeal.remove('nuocmia')
         # OTHER.remove('nuocmia')
-        CheckboxMeal[64] = True
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def nuocrauma():
+        CheckBoxForMeal[64] = True
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def nuocrauma(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,OTHER
-    if ui_1.nuocrauma.isChecked() == True:
+    if ui_1.nuocrauma_2.isChecked() == True:
         TocalCalo += 174
-        ListMeal.append('nuocrauma')
+        ListOfMeal.append('nuocrauma')
         # OTHER.append('nuocrauma')
-        CheckboxMeal[65] = True
+        CheckBoxForMeal[65] = True
     else:
-        ui_1.nuocrauma.isChecked() == False
         TocalCalo -= 174
-        ListMeal.remove('nuocrauma')
+        ListOfMeal.remove('nuocrauma')
         # OTHER.remove('nuocrauma')
-        CheckboxMeal[65] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def suachua():
+        CheckBoxForMeal[65] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def suachua(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,OTHER
-    if ui_1.suachua.isChecked() == True:
+    if ui_1.suachua_2.isChecked() == True:
         TocalCalo += 150
-        ListMeal.append('suachua')
+        ListOfMeal.append('suachua')
         # OTHER.append('suachua')
-        CheckboxMeal[66] = True
+        CheckBoxForMeal[66] = True
     else:
-        ui_1.suachua.isChecked() == False
         TocalCalo -= 150
-        ListMeal.remove('suachua')
+        ListOfMeal.remove('suachua')
         # OTHER.remove('suachua')
-        CheckboxMeal[66] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def trungcut():
+        CheckBoxForMeal[66] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def trungcut(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,OTHER
-    if ui_1.trungcut.isChecked() == True:
+    if ui_1.trungcut_2.isChecked() == True:
         TocalCalo += 17
-        ListMeal.append('trungcut')
+        ListOfMeal.append('trungcut')
         # OTHER.append('trungcut')
-        CheckboxMeal[67] = True
+        CheckBoxForMeal[67] = True
     else:
-        ui_1.trungcut.isChecked() == False
         TocalCalo -= 17
-        ListMeal.remove('trungcut')
+        ListOfMeal.remove('trungcut')
         # OTHER.remove('trungcut')
-        CheckboxMeal[67] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def trungga():
+        CheckBoxForMeal[67] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def trungga(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,OTHER
-    if ui_1.trungga.isChecked() == True:
+    if ui_1.trungga_2.isChecked() == True:
         TocalCalo += 58
-        ListMeal.append('trungga')
+        ListOfMeal.append('trungga')
         # OTHER.append('trungga')
-        CheckboxMeal[68] = True
+        CheckBoxForMeal[68] = True
     else:
-        ui_1.trungga.isChecked() == False
+        ui_1.trungga_2.isChecked() == False
         TocalCalo -= 58
-        ListMeal.remove('trungga')
+        ListOfMeal.remove('trungga')
         # OTHER.remove('trungga')
-        CheckboxMeal[68] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
-def trungvit():
+        CheckBoxForMeal[68] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
+def trungvit(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,OTHER
-    if ui_1.trungvit.isChecked() == True:
+    if ui_1.trungvit_2.isChecked() == True:
         TocalCalo += 70
-        ListMeal.append('trungvit')
+        ListOfMeal.append('trungvit')
         # OTHER.append('trungvit')
-        CheckboxMeal[69] = True
+        CheckBoxForMeal[69] = True
     else:
-        ui_1.trungvit.isChecked() == False
         TocalCalo -= 70
-        ListMeal.remove('trungvit')
+        ListOfMeal.remove('trungvit')
         # OTHER.remove('trungvit')
-        CheckboxMeal[69] = False
-    ui_1.label_4.setText(str(TocalCalo))
-    ui_1.listWidget_2.clear()
-    ui_1.listWidget_2.addItems(ListMeal)
+        CheckBoxForMeal[69] = False
+    ui_1.label_12.setText(str(TocalCalo))
+    ui_1.listWidget_4.clear()
+    ui_1.listWidget_4.addItems(ListOfMeal)
 
 
 def SettingFunction():
@@ -2396,13 +2350,13 @@ def SettingFunction():
     MainWindow.setFixedSize(544, 513)
     ui.setupUi(MainWindow)
     ui.updateprofile.clicked.connect(UpdateProfile)
-    ui.changepassword.clicked.connect(ChangePassWord)
+    # ui.changepassword.clicked.connect(ChangePassWord)
     ui.logout.clicked.connect(LoginScreen)
     ui.logout_2.clicked.connect(LoadmainScreen)
 
 
 def SupportFunction():
-    chat_client.FirstScreen("Tung")
+    chat_client.FirstScreen(Name)
 
 
 def signupfunction():
@@ -2433,17 +2387,6 @@ def signupfunction():
         conn.close()
 
 
-# def CreateScreen():
-#     global ui
-#     MainWindow.setFixedSize(800, 450)
-#     ui = createacc.Ui_MainWindow()
-#     ui.setupUi(MainWindow)
-#     ui.passwordfield.setEchoMode(QtWidgets.QLineEdit.Password)
-#     ui.confirmpasswordfield.setEchoMode(QtWidgets.QLineEdit.Password)
-#     ui.signup.clicked.connect(signupfunction)
-#     MainWindow.show()
-
-
 def WelcomeScreen():
     ui = welcomescreen.Ui_MainWindow()
     ui.setupUi(MainWindow)
@@ -2456,7 +2399,6 @@ class MainWindowSceen(QMainWindow):
         MainWindow.setFixedSize(1201, 708)
         self.ui = MainMenu.Ui_MainWindow()
         self.ui.setupUi(MainWindow)
-
         self.ui.TimeTable.clicked.connect(TimeTableFunction)
         self.ui.Gym.clicked.connect(GymFunction)
         self.ui.Yoga.clicked.connect(YogaFunction)
@@ -2768,7 +2710,7 @@ def main():
     global img, ui, rep, func, flagRight, check, dem, yoga_hinh, phut_tt, check2,func_yoga,CaloNeed,now,toast,status
     bc.count = 0
     while True:
-        print(CaloNeed)
+        print((CaloNeed))
         if (now.hour == 8) & (status == True):
             toast = ToastNotifier()
             toast.show_toast(
