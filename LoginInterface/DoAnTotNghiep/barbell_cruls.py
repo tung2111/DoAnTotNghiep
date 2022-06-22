@@ -23,7 +23,12 @@ def init(a):
 
 def run(x, y, z):   #x, y la resize kichs thuoc     z: quy dinh cac chuc nang chuong trinh
     global count, rep_up, pTime, detector,cap, per,per_l,per_r
+    (major_ver, minor_ver, subminor_ver) = (cv2.__version__).split('.')
+    start = time.time()
     success, img = cap.read()
+
+
+
     img = cv2.resize(img, (1192, 617))
     img = cv2.flip(img, 2)
     img = detector.findPose(img, draw=False)
@@ -142,7 +147,18 @@ def run(x, y, z):   #x, y la resize kichs thuoc     z: quy dinh cac chuc nang ch
                         color, 3)
 
     img = cv2.resize(img, (x, y))
+    # End time
+    end = time.time()
 
+    # Time elapsed
+    seconds = end - start
+    print ("Time taken : {0} seconds".format(seconds))
+
+    # Calculate frames per second
+    fps  = 1 / seconds
+    print("Estimated frames per second : {0}".format(fps))
+    cv2.putText(img, f'{int(fps)} FPS', (70, 75), cv2.FONT_HERSHEY_PLAIN, 4,
+                (0, 0, 255), 3)
     return img, per, count
 
 

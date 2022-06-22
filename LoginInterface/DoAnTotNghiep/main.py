@@ -1,6 +1,6 @@
 import sys
 from PyQt5 import QtWidgets
-from PyQt5 import QtGui, QtWidgets, QtCore
+from PySide2 import QtGui, QtWidgets, QtCore
 # from PyQt5.uic.properties import QtGui
 import sys, time, threading, playsound, winsound
 from PySide2 import QtCore
@@ -10,12 +10,9 @@ import firebase_admin
 from PySide2.QtGui import QColor, QIcon,QPalette
 from PySide2.QtWidgets import *
 from PySide2.QtMultimediaWidgets import QVideoWidget
-from win32con import WM_DESTROY
-from win32gui import RegisterClass, GetModuleHandle
-from winxpgui import WNDCLASS
-
-import home, fillprofile, MainMenu, login, welcomescreen, createacc, Setting, Gym, ui_splash_screen, timetable, Calo, \
-    Mealselect,Yoga,MealSelectDinner,MealSelectLunch,MealSelectBreakFast
+from PySide2extn.SpiralProgressBar import spiralProgressBar
+import  fillprofile, MainMenu, login, Gym, ui_splash_screen, timetable, Calo, \
+    Yoga,MealSelectDinner,MealSelectLunch,MealSelectBreakFast
 import barbell_cruls as bc
 import yogapose as yp
 import texttime as tt
@@ -27,6 +24,7 @@ from PySide2.QtMultimedia import QMediaPlayer, QMediaContent
 from win10toast import ToastNotifier
 import time
 from datetime import datetime
+
 Name=''
 CaloNeed = 0
 Height = 0
@@ -208,7 +206,6 @@ def loginfunction():
         for i in range(1, 3):
             User = db.reference(str(i) + '/User').get()
             Password = db.reference(str(i) + '/Password').get()
-            print()
             if (Password == password) and (User == user):
                 print("Successfully logged in.")
                 Name = db.reference(str(user) + '/Name').get()
@@ -260,16 +257,11 @@ def LoadmainScreen():
 
 
 def UpdateProfile():
-    global ui,CaloNeed
+    global ui,user
     ui = fillprofile.Ui_MainWindow()
     MainWindow.setFixedSize(1201, 801)
     ui.setupUi(MainWindow)
 
-    Name = db.reference(str(user) + '/Name').get()
-    Weight = db.reference(str(user) + '/Weight').get()
-    Height = db.reference(str(user) + '/Height').get()
-    Age = db.reference(str(user) + '/Age').get()
-    CaloNeed = int(db.reference(str(user) + '/CaloNeed').get())
     #wait
 
     ui.username.setText(str(Name))
@@ -277,6 +269,7 @@ def UpdateProfile():
     ui.Age.setText(str(Age))
     ui.Weight.setText(str(Weight))
     ui.signup.clicked.connect(getdatafrominput)
+    ui.signup_2.clicked.connect(MainWindowSceen)
 
 
 def getdatafrominput():
@@ -296,13 +289,6 @@ def getdatafrominput():
                 'Age'    : Age,
                 'CaloNeed' :CaloNeed
         }})
-#
-#
-#
-#
-# def ChangePassWord():
-#     print("ChangePass")
-
 
 def TimeTableFunction():
     global ui
@@ -552,6 +538,7 @@ def GymFunction():
 
 
 
+
 class Window(QWidget):
     def __init__(self):
         super().__init__()
@@ -743,23 +730,61 @@ def mute():
         volume = 0;
         winsound.PlaySound('NhacGym1.WAV', winsound.SND_ASYNC)
 
+class YogaWinDow(QMainWindow):
+	def __init__(self):
+		QMainWindow.__init__(self)
+		self.ui = Yoga.Ui_MainWindow()
+		self.ui.setupUi(self)
+		#self.show()
+		# self.ui.pushButton.clicked.connect(self.go)
+		# self.ui.pushButton1.clicked.connect(self.change)
+		QtCore.QTimer.singleShot(0,lambda:self.ui.widget.rpb_setValue(0))
+		self.ui.widget.rpb_setBarStyle('Hybrid2')
+		self.ui.widget.rpb_setLineColor((255, 255, 255))
+		self.ui.widget.rpb_setMaximum(300)
+		# self.ui.Start_yoga.clicked.connect(self.go)
 
+
+def go(self):
+    self.timer = QtCore.QTimer()
+    self.timer.timeout.connect(self.update)
+    self.timer.start(100)
+
+
+def update(self):
+    global progress_val
+    self.ui.widget.rpb_setValue(progress_val)
+    if progress_val > 299:
+        progress_val = 0
+        self.timer.stop()
+    progress_val += 1
 
 
 def YogaFunction():
     global ui
-    global volume,cp
-    volume = 0
     ui = Yoga.Ui_MainWindow()
     ui.setupUi(MainWindow)
-    # t = threading.Thread(target=main)
-    # t.start()
     ui.Start_yoga.clicked.connect(lambda: count_task_yoga(y))
     ui.back_yoga.clicked.connect(LoadmainScreen)
     ui.mute_yoga.clicked.connect(mute)
     ui.comboBox_yoga.currentTextChanged.connect(comboboxFuntionYoga)
+    ui.widget.rpb_setBarStyle('Hybrid2')
+    ui.widget.rpb_setLineColor((255, 255, 255))
+    ui.widget.rpb_setMaximum(300)
     ui.SeeVideo_yoga.clicked.connect(MediaPlayer)
 
+def go():
+    global timer
+    timer = QtCore.QTimer()
+    timer.timeout.connect(update)
+    timer.start(100)
+
+def update():
+    global progress_val
+    ui.widget.rpb_setValue(progress_val)
+    if progress_val > 299:
+        progress_val = 0
+    progress_val += 1
 
 def MealFunction():
     global ui,CaloDinner,CaloLunch,CaloBreakFast
@@ -2345,53 +2370,8 @@ def trungvit(ListOfMeal,CheckBoxForMeal):
     ui_1.listWidget_4.addItems(ListOfMeal)
 
 
-def SettingFunction():
-    ui = Setting.Ui_MainWindow()
-    MainWindow.setFixedSize(544, 513)
-    ui.setupUi(MainWindow)
-    ui.updateprofile.clicked.connect(UpdateProfile)
-    # ui.changepassword.clicked.connect(ChangePassWord)
-    ui.logout.clicked.connect(LoginScreen)
-    ui.logout_2.clicked.connect(LoadmainScreen)
-
-
 def SupportFunction():
     chat_client.FirstScreen(Name)
-
-
-def signupfunction():
-    global user
-    global password
-    user = ui.user.text()
-    password = ui.password.text()
-    confirmpassword = ui.confirmpassword.text()
-    if len(user) == 0 or len(password) == 0 or len(confirmpassword) == 0:
-        ui.error.setText("Please fill in all inputs.")
-
-    elif password != confirmpassword:
-        ui.error.setText("Passwords do not match.")
-    else:
-        # cred = credentials.Certificate("firebase-sdk.json")
-        # firebase_admin.initialize_app(cred, {'databaseURL': 'https://fitnessapp-5b974-default-rtdb.firebaseio.com/'})
-        # ref = db.reference('3')
-        # ref.set({
-        #     'User': user,
-        #     'Pasword': password
-        # })
-        conn = sqlite3.connect("shop_data.db")
-        cur = conn.cursor()
-
-        user_info = [user, password]
-        cur.execute('INSERT INTO login_info (username, password) VALUES (?,?)', user_info)
-        conn.commit()
-        conn.close()
-
-
-def WelcomeScreen():
-    ui = welcomescreen.Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    ui.login.clicked.connect(LoginScreen)
-
 
 class MainWindowSceen(QMainWindow):
     def __init__(self):
@@ -2399,6 +2379,7 @@ class MainWindowSceen(QMainWindow):
         MainWindow.setFixedSize(1201, 708)
         self.ui = MainMenu.Ui_MainWindow()
         self.ui.setupUi(MainWindow)
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)  # Remove title bar
         self.ui.TimeTable.clicked.connect(TimeTableFunction)
         self.ui.Gym.clicked.connect(GymFunction)
         self.ui.Yoga.clicked.connect(YogaFunction)
@@ -2408,12 +2389,11 @@ class MainWindowSceen(QMainWindow):
         self.ui.label_3.setText(str(CaloNeed))
 
         self.Calo = db.reference('StatusValue').child('Calo')
-        # self.Meal = db.reference('StatusValue').child('Meal')
-        # self.Status = db.reference('StatusValue').child('Status')
+
 
         # processbar calo
-        self.setValue(self.Calo.get(), self.ui.labelPercentageCPU, self.ui.circularProgressCPU,
-                      "rgb(255, 170, 0)")
+        # self.setValue(self.Calo.get(), self.ui.labelPercentageCPU, self.ui.circularProgressCPU,
+        #               "rgb(255, 170, 0)")
         # self.ui.label_3.setText(CaloNeed)
         # processbar Status
         # self.setValue(self.Meal.get(), self.ui.labelPercentageGPU, self.ui.circularProgressGPU,
@@ -2511,8 +2491,6 @@ class SplashScreen(QMainWindow):
         ## SHOW ==> MAIN WINDOW
         ########################################################################
         self.show()
-        t = threading.Thread(target=main)
-        t.start()
         ## ==> END ##
 
     ## DEF TO LOANDING
@@ -2549,8 +2527,8 @@ class SplashScreen(QMainWindow):
 
             # CLOSE SPLASH SCREEN
             self.close()
-            t = threading.Thread(target=main)
-            t.start()
+            # t = threading.Thread(target=main)
+            # t.start()
 
         # INCREASE COUNTER
         counter += 0.5
@@ -2625,8 +2603,9 @@ def count_task(z):  # z la chuc nang duoc quy dinh trong Gym
     else:
         func = 9
         func_yoga = 6
-
-    # winsound.PlaySound('NhacGym1.WAV', winsound.SND_ASYNC)
+    t = threading.Thread(target=main)
+    t.start()
+    winsound.PlaySound('NhacGym1.WAV', winsound.SND_ASYNC)
 
 
 def count_task_yoga(y):  # z la chuc nang duoc quy dinh trong Yoga
@@ -2640,7 +2619,7 @@ def count_task_yoga(y):  # z la chuc nang duoc quy dinh trong Yoga
     tt.giay = 0
     # giay_tt = False
     cp = 2
-
+    go()
     if (y == 0):
         func_yoga = 0
     elif (y == 1):
@@ -2655,6 +2634,8 @@ def count_task_yoga(y):  # z la chuc nang duoc quy dinh trong Yoga
         func_yoga = 5
     else:
         func_yoga = 6
+    t = threading.Thread(target=main)
+    t.start()
 
 def hienhinhyoga(a):
         # hien thi anh len khung information
@@ -2707,10 +2688,10 @@ def playS1(a):
 #######  CHUONG TRINH CHINH
 ############################################################################
 def main():
-    global img, ui, rep, func, flagRight, check, dem, yoga_hinh, phut_tt, check2,func_yoga,CaloNeed,now,toast,status
+    global img, ui, rep, func, flagRight, check, dem, yoga_hinh, phut_tt, check2,func_yoga,CaloNeed,now,toast,status,timer
     bc.count = 0
     while True:
-        print((CaloNeed))
+        # print((CaloNeed))
         if (now.hour == 8) & (status == True):
             toast = ToastNotifier()
             toast.show_toast(
@@ -2741,20 +2722,30 @@ def main():
             image = QtGui.QImage(img, img.shape[1], img.shape[0], QtGui.QImage.Format_RGB888).rgbSwapped()
             ui.view_yoga.setPixmap(QtGui.QPixmap.fromImage(image))
 
+            if(check == True):
+                go()
+            else:
+                timer.stop()
+
             # hien thi dem thoi gian
-            ui.timeLabel_yoga.setText("00:" + str(int(tt.giay / 10)) + str(int(tt.giay % 10)))
+            # ui.timeLabel_yoga.setText("00:" + str(int(tt.giay / 10)) + str(int(tt.giay % 10)))
+            # ui.widget.rpb_setValue(50)
             # ui.lcdNumber_yoga.display(rep)
             hienhinhyoga("pose-tree.jpg")
 
-
-app = QApplication(sys.argv)
-splashscreen = SplashScreen()
-MainWindow = QtWidgets.QMainWindow()
-window = QtWidgets.QMainWindow()
-MainWindow.setFixedSize(340, 340)
-tt.init()
+# app = QApplication(sys.argv)
+# splashscreen = SplashScreen()
+# MainWindow = QtWidgets.QMainWindow()
+# window = QtWidgets.QMainWindow()
+# MainWindow.setFixedSize(340, 340)
+# tt.init()
+if __name__ == '__main__':
+    app1 = QApplication(sys.argv)
+    splashscreen = SplashScreen()
+    MainWindow = QtWidgets.QMainWindow()
+    tt.init()
 
 try:
-    sys.exit(app.exec_())
+    sys.exit(app1.exec_())
 except:
     print("Exiting")
