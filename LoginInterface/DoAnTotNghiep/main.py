@@ -32,6 +32,8 @@ Age = 0
 Weight = 0
 Index = 0
 TocalCalo = 0
+TocalCaloDinner = 0
+TocalCaloLunch = 0
 ListMeal = []
 CheckboxMeal=[False,False,False,False,False,False,False,False,False,False,False,False,False,False,
               False,False,False,False,False,False,False,False,False,False,False,False,False,False,
@@ -80,6 +82,9 @@ toast = ToastNotifier()
 CaloBreakFast = 0
 CaloLunch = 0
 CaloDinner = 0
+
+
+
 IMG = ["border-image : url(:/Image/hit-dat.jpg)\n;", "border-image : url(:/Image/dumbbell_shoulder.jpg);\n",
        "border-image: url(:/Image/nguc-truoc-voi-ta-don.jpg);\n",
        "border-image: url(:/Image/ta-don1.jpg);\n", "border-image : url(:/Image/tay-sau-voi-ghe.jpg);\n",
@@ -145,7 +150,6 @@ for indexCheckbox in range(69):
         CheckboxMealDinner[indexCheckbox] =True
     else:
         CheckboxMealDinner[indexCheckbox] =False
-
 for indexmeal in range(10):
     LoadMealFromFile = ListMealWidgetBreakfast.readline().strip('\n')
     LoadMealFromFileLunch = ListMealWidgetLunch.readline().strip('\n')
@@ -159,6 +163,7 @@ for indexmeal in range(10):
 print (ListMeal)
 print (ListMealLunch)
 print (ListMealDinner)
+
 #close file
 checkbox.close()
 ListMealWidgetBreakfast.close()
@@ -176,7 +181,7 @@ ListMealWidgetBreakfast.close()
 #         'User': 'vuong',
 #         'Password': '123'
 #     }
-
+#
 # })
 # Get CurrentTime
 now = datetime.now()
@@ -196,7 +201,7 @@ def LoginScreen():
 
 
 def loginfunction():
-    global Name,Weight,Height,Age,CaloNeed
+    global Name,Weight,Height,Age,CaloNeed,user
     user = ui.emailfield.text()
     password = ui.passwordfield.text()
     if len(user) == 0 or len(password) == 0:
@@ -208,11 +213,11 @@ def loginfunction():
             Password = db.reference(str(i) + '/Password').get()
             if (Password == password) and (User == user):
                 print("Successfully logged in.")
-                Name = db.reference(str(user) + '/Name').get()
-                Weight = db.reference(str(user) + '/Weight').get()
-                Height = db.reference(str(user) + '/Height').get()
-                Age = db.reference(str(user) + '/Age').get()
-                CaloNeed = db.reference(str(user) + '/CaloNeed').get()
+                Name = db.reference(str(user)).child('ProFile/Name').get()
+                Weight = db.reference(str(user)).child('ProFile/Weight').get()
+                Height = db.reference(str(user)).child('ProFile/Height').get()
+                Age = db.reference(str(user)).child('ProFile/Age').get()
+                CaloNeed = db.reference(str(user)).child('ProFile/CaloNeed').get()
                 # ui.error.setText("Login Success")
                 MainWindowSceen()
                 break;
@@ -273,22 +278,22 @@ def UpdateProfile():
 
 
 def getdatafrominput():
-    global Weight,CaloNeed,Height,Age,Name
+    global Weight,CaloNeed,Height,Age,Name,user
 
     Name = str(ui.username.text())
     Weight = int(ui.Weight.text())
     Height = int(ui.Height_2.text())
     Age = int(ui.Age.text())
     CaloNeed = int(((Weight * 13.397) + (4.799 * Height) - (5.677 * Age) + 447.593) * 1.55)
-    ref = db.reference('/')
+    ref = db.reference('/').child(str(user))
     ref.update({
-        str(user):{
+        str('ProFile'):{
                 'Name'   : str(Name),
                 'Height' : Height,
                 'Weight' : Weight,
                 'Age'    : Age,
                 'CaloNeed' :CaloNeed
-        }})
+        }});
 
 def TimeTableFunction():
     global ui
@@ -804,14 +809,15 @@ def MealFunction():
 
 class MealSelectForBreakFast:
     def __init__(self):
-        global window,CaloBreakFast,ui_1, CheckboxMeal, ListMeal
+        global window,CaloBreakFast,ui_1, CheckboxMeal, ListMeal,TocalCalo
         window = QtWidgets.QMainWindow()
         ui_1 = MealSelectBreakFast.Ui_MainWindow()
         ui_1.setupUi(window)
         window.show()
+        TocalCaloBreakFast = db.reference(str(user)).child('ToTalCaloBreakFast').get()
         #Display Calo For breakfase
-        ui_1.label_12.setText(str(TocalCalo))
-
+        ui_1.label_12.setText(str(TocalCaloBreakFast))
+        TocalCalo = TocalCaloBreakFast
         # display meal to listview
         ui_1.listWidget_4.clear()
         ui_1.listWidget_4.addItems(ListMeal)
@@ -962,7 +968,7 @@ class MealSelectForBreakFast:
         ui_1.trungvit_2.stateChanged.connect(lambda:trungvit(ListMeal,CheckboxMeal))
 
 def SaveMealBreakFast():
-    global FOOD, ListMeal, CheckboxMeal,CaloBreakFast
+    global FOOD, ListMeal, CheckboxMeal,CaloBreakFast,TocalCalo,user
     ListMealDB = open(
         r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\ListMeal.txt",
         "w")
@@ -976,18 +982,20 @@ def SaveMealBreakFast():
         # Checkbox
     for e in range(len(CheckboxMeal)):
         CheckboxDB.writelines(str(CheckboxMeal[e]) + '\n')
+    db.reference('/').child(str(user)).child('ToTalCaloBreakFast').set(TocalCalo)
 
 
 class MealSelectWindowForLunch:
     def __init__(self):
-        global window,ui_1, CheckboxMealLunch, ListMeal,CaloLunch
+        global window,ui_1, CheckboxMealLunch, ListMeal,CaloLunch,TocalCalo
         window = QtWidgets.QMainWindow()
         ui_1 = MealSelectLunch.Ui_MainWindow()
         ui_1.setupUi(window)
         window.show()
+        TocalCaloLunch = db.reference(str(user)).child('ToTalCaloLunch').get()
         #Display Calo For Lunch
-        ui_1.label_12.setText(str(TocalCalo))
-
+        ui_1.label_12.setText(str(TocalCaloLunch))
+        TocalCalo = TocalCaloLunch
         # display meal to listview
         ui_1.listWidget_4.clear()
         ui_1.listWidget_4.addItems(ListMealLunch)
@@ -1138,7 +1146,7 @@ class MealSelectWindowForLunch:
         ui_1.trungvit_2.stateChanged.connect(lambda:trungvit(ListMealLunch,CheckboxMealLunch))
 
 def SaveMealLunch():
-        global FOOD, FRUIT, OTHER, ListMeal, CheckboxMeal,CaloLunch
+        global FOOD, FRUIT, OTHER, ListMeal, CheckboxMeal,CaloLunch,TocalCaloLunch
         ListMealDB = open(
             r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\ListMeal_Lunch.txt",
             "w")
@@ -1152,18 +1160,20 @@ def SaveMealLunch():
         # Checkbox
         for e in range(len(CheckboxMeal)):
             CheckboxDB.writelines(str(CheckboxMealLunch[e]) + '\n')
+        db.reference('/').child(str(user)).child('ToTalCaloLunch').set(TocalCaloLunch)
 
-
-class MealSelectWindowForDinner():
+class MealSelectWindowForDinner:
     def __init__(self):
-        global window,ui_1, CheckboxMealDinner, ListMealDinner,CaloDinner
+        global window,ui_1, CheckboxMealDinner, ListMealDinner,CaloDinner,TocalCaloDinner,TocalCalo
         window = QtWidgets.QMainWindow()
         ui_1 = MealSelectDinner.Ui_MainWindow()
         ui_1.setupUi(window)
         window.show()
-        #Display Calo For breakfase
-        ui_1.label_12.setText(str(TocalCalo))
 
+        TocalCaloDinner = db.reference(str(user)).child('ToTalCaloDinner').get()
+        #Display Calo For breakfase
+        ui_1.label_12.setText(str(TocalCaloDinner))
+        TocalCalo = TocalCaloDinner
         # display meal to listview
         ui_1.listWidget_4.clear()
         ui_1.listWidget_4.addItems(ListMealDinner)
@@ -1327,6 +1337,7 @@ def SaveMealDinner():
         #     # Checkbix
     for e in range(len(CheckboxMeal)):
         CheckboxDB.writelines(str(CheckboxMealDinner[e]) + '\n')
+    db.reference('/').child(str(user)).child('ToTalCaloCaloDinner').set(TocalCaloDinner)
 
 def gaxaot(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,ListMeal,ListMealDinner,checkboxDinner,ListMealLunch,checkboxLunch
