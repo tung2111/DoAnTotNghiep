@@ -83,7 +83,7 @@ class Ui_MainWindow(object):
         self.label_11.setAlignment(QtCore.Qt.AlignCenter)
         self.label_11.setObjectName("label_11")
         self.label_12 = QtWidgets.QLabel(self.frame_10)
-        self.label_12.setGeometry(QtCore.QRect(160, 80, 71, 41))
+        self.label_12.setGeometry(QtCore.QRect(120, 80, 141, 41))
         font = QtGui.QFont()
         font.setPointSize(28)
         font.setBold(True)
@@ -374,7 +374,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Dinner"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label_14.setText(_translate("MainWindow", "DINNER"))
         self.label_11.setText(_translate("MainWindow", "ToTal"))
         self.label_12.setText(_translate("MainWindow", "0.0"))

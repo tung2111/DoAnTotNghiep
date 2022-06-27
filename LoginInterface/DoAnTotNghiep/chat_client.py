@@ -25,7 +25,7 @@ class FirstScreen(tk.Tk):
         screen_width, screen_height = self.winfo_screenwidth(), self.winfo_screenheight()
 
         self.x_co = int((screen_width / 2) - (550 / 2))
-        self.y_co = int((screen_height / 2) - (400 / 2)) - 80
+        self.y_co = int((screen_height / 2.5) - (400 / 2)) - 80
         self.geometry(f"550x400+{self.x_co}+{self.y_co}")
         self.title("Chat Room")
 
@@ -112,7 +112,7 @@ class FirstScreen(tk.Tk):
 
             client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             try:
-                client_socket.connect(("192.168.0.228", 12345))
+                client_socket.connect(("192.168.1.11", 12345))
                 status = client_socket.recv(1024).decode()
                 if status == 'not_allowed':
                     client_socket.close()

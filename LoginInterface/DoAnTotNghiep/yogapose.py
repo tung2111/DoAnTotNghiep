@@ -72,11 +72,14 @@ def run(x,y,time):
                 #dem time
                 print("qua1")
                 check = True
-                time_hen, z = dem_thoigian(time)
+                tt.enabletimer = True
+                # time_hen, z = dem_thoigian(time)
 
             else:
                 dem = 0
                 check = False
+                tt.enabletimer = False
+
 
         # Pose Tree
         elif (z == 2):
@@ -91,11 +94,13 @@ def run(x,y,time):
                     per_knee_r > 20 and per_knee_l > 20 and per_hip_r > 10):
                 print("qua2")
                 check = True
-                time_hen, z = dem_thoigian(time)
+                tt.enabletimer = True
+                # time_hen, z = dem_thoigian(time)
 
             else:
                 dem = 0
                 check = False
+                tt.enabletimer = False
          #Pose Triangle
         elif (z == 3):
             per_arm_r = np.interp(arm_r, (184, 194), (0, 100))
@@ -109,10 +114,12 @@ def run(x,y,time):
                     per_knee_r > 20 and per_knee_l > 20 and per_hip_r > 10):
                 print("qua3")
                 check = True
-                time_hen, z = dem_thoigian(time)
+                tt.enabletimer = True
+                # time_hen, z = dem_thoigian(time)
             else:
                 dem = 0
                 check = False
+                tt.enabletimer = False
 
         # Plank ( khuỵu tay)
         elif z == 4:
@@ -122,11 +129,13 @@ def run(x,y,time):
                 # dem time
                 print("qua1")
                 check = True
-                time_hen, z = dem_thoigian(time)
+                tt.enabletimer = True
+                # time_hen, z = dem_thoigian(time)
 
             else:
                 dem = 0
                 check = False
+                tt.enabletimer = False
         #Plank ( chống thẳng tay)
         elif z == 5:
             per_arm_l = np.interp(arm_l, (200, 220), (0, 100))
@@ -136,11 +145,13 @@ def run(x,y,time):
                 # dem time
                 print("qua1")
                 check = True
-                time_hen, z = dem_thoigian(time)
+                tt.enabletimer = True
+                # time_hen, z = dem_thoigian(time)
 
             else:
                 dem = 0
                 check = False
+                tt.enabletimer = False
         # Pose Boat
         elif z == 6:
             per_arm_l = np.interp(arm_l, (185, 195), (0, 100))
@@ -149,10 +160,12 @@ def run(x,y,time):
                 # dem time
                 print("qua1")
                 check = True
-                time_hen, z = dem_thoigian(time)
+                tt.enabletimer = True
+                # time_hen, z = dem_thoigian(time)
 
             else:
                 dem = 0
+                tt.enabletimer = False
         # Cobra Pose
         elif z == 7:
 
@@ -163,11 +176,13 @@ def run(x,y,time):
                 # dem time
                 print("qua1")
                 check = True
-                time_hen, z = dem_thoigian(time)
+                tt.enabletimer = True
+                # time_hen, z = dem_thoigian(time)
 
             else:
                 dem = 0
                 check = False
+                tt.enabletimer = False
 
         elif (z == 8):
             cv2.rectangle(image, (10, 450), (650, 650), (170, 232, 238), cv2.FILLED)

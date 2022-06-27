@@ -1,5 +1,5 @@
 import sys
-from PyQt5 import QtWidgets
+# from PyQt5 import QtWidgets
 from PySide2 import QtGui, QtWidgets, QtCore
 # from PyQt5.uic.properties import QtGui
 import sys, time, threading, playsound, winsound
@@ -25,6 +25,8 @@ from win10toast import ToastNotifier
 import time
 from datetime import datetime
 
+running = False
+max_value = 30
 Name=''
 CaloNeed = 0
 Height = 0
@@ -32,6 +34,7 @@ Age = 0
 Weight = 0
 Index = 0
 TocalCalo = 0
+TocalCaloBreakFast = 0
 TocalCaloDinner = 0
 TocalCaloLunch = 0
 ListMeal = []
@@ -78,10 +81,7 @@ y = 0
 status = True
 # declare object to notify
 toast = ToastNotifier()
-# define global variabl to store Total Calo
-CaloBreakFast = 0
-CaloLunch = 0
-CaloDinner = 0
+
 
 
 
@@ -89,7 +89,7 @@ IMG = ["border-image : url(:/Image/hit-dat.jpg)\n;", "border-image : url(:/Image
        "border-image: url(:/Image/nguc-truoc-voi-ta-don.jpg);\n",
        "border-image: url(:/Image/ta-don1.jpg);\n", "border-image : url(:/Image/tay-sau-voi-ghe.jpg);\n",
        "border-image : url(:/Image/swat.jpg);\n"
-    , "border-image: url(:/Image/gap-bung.jpg);\n", "border-image : url(:/Image/blank-thang-tay.jpg);\n"]
+    , "border-image: url(:/Image/gap-bung.jpg);\n", "border-image : url(:/Image/blank-thang-tay.jpg);\n","border-image : url(:/Image/White_full.png);\n"]
 Mon = ["border-image : url(:/Image/hit-dat.jpg);\n", "border-image : url(:/Image/hit-dat.jpg);\n",
        "border-image: url(:/Image/nguc-truoc-voi-ta-don.jpg);\n"]
 Tue = ["border-image: url(:/Image/ta-don1.jpg);\n", "border-image : url(:/Image/tay-sau-voi-ghe.jpg);\n",
@@ -126,8 +126,6 @@ File_Wed.close()
 File_Thurs.close()
 File_Fri.close()
 File_Sat.close()
-
-
 checkbox = open(r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Checkbox.txt","r")
 checkboxLunch = open(r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Checkbox_Lunch.txt","r")
 checkboxDinner = open(r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Checkbox_Dinner.txt","r")
@@ -160,9 +158,9 @@ for indexmeal in range(10):
         ListMealLunch.append(LoadMealFromFileLunch)
     if LoadMealFromFileDinner != '':
         ListMealDinner.append(LoadMealFromFileDinner)
-print (ListMeal)
-print (ListMealLunch)
-print (ListMealDinner)
+# print (ListMeal)
+# print (ListMealLunch)
+# print (ListMealDinner)
 
 #close file
 checkbox.close()
@@ -184,11 +182,11 @@ ListMealWidgetBreakfast.close()
 #
 # })
 # Get CurrentTime
-now = datetime.now()
-
-current_time = now.strftime("%H:%M:%S")
-
-print("Current Time is :", current_time)
+# now = datetime.now()
+#
+# current_time = now.strftime("%H:%M:%S")
+#
+# print("Current Time is :", current_time)
 
 def LoginScreen():
     global ui
@@ -201,7 +199,7 @@ def LoginScreen():
 
 
 def loginfunction():
-    global Name,Weight,Height,Age,CaloNeed,user
+    global Name,Weight,Height,Age,CaloNeed,user,TocalCaloBreakFast,TocalCaloLunch,TocalCaloDinner
     user = ui.emailfield.text()
     password = ui.passwordfield.text()
     if len(user) == 0 or len(password) == 0:
@@ -218,6 +216,9 @@ def loginfunction():
                 Height = db.reference(str(user)).child('ProFile/Height').get()
                 Age = db.reference(str(user)).child('ProFile/Age').get()
                 CaloNeed = db.reference(str(user)).child('ProFile/CaloNeed').get()
+                TocalCaloBreakFast = db.reference(str(user)).child('ToTalCaloBreakFast').get()
+                TocalCaloLunch = db.reference(str(user)).child('ToTalCaloLunch').get()
+                TocalCaloDinner = db.reference(str(user)).child('ToTalCaloDinner').get()
                 # ui.error.setText("Login Success")
                 MainWindowSceen()
                 break;
@@ -230,6 +231,7 @@ def LoadmainScreen():
     cp = 0
     yp.init(0)
     bc.init(0)
+    winsound.PlaySound(None, winsound.SND_PURGE)
     #savedata
     File_Mon = open(
         r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Mon.txt", "w")
@@ -264,7 +266,7 @@ def LoadmainScreen():
 def UpdateProfile():
     global ui,user
     ui = fillprofile.Ui_MainWindow()
-    MainWindow.setFixedSize(1201, 801)
+    MainWindow.setFixedSize(903, 706)
     ui.setupUi(MainWindow)
 
     #wait
@@ -350,7 +352,7 @@ def TimeTableFunction():
 
 def changeImageMonIMG0():
     global Image_TimeTable
-    if Image_TimeTable <= 6:
+    if Image_TimeTable <= 7:
         Image_TimeTable += 1
     else:
         Image_TimeTable = 0
@@ -360,7 +362,7 @@ def changeImageMonIMG0():
 
 def changeImageMonIMG2():
     global Image_TimeTable
-    if Image_TimeTable <= 6:
+    if Image_TimeTable <= 7:
         Image_TimeTable += 1
     else:
         Image_TimeTable = 0
@@ -370,7 +372,7 @@ def changeImageMonIMG2():
 
 def changeImageMonIMG3():
     global Image_TimeTable
-    if Image_TimeTable <= 6:
+    if Image_TimeTable <= 7:
         Image_TimeTable += 1
     else:
         Image_TimeTable = 0
@@ -380,7 +382,7 @@ def changeImageMonIMG3():
 
 def changeImageTueIMG4():
     global Image_TimeTable
-    if Image_TimeTable <= 6:
+    if Image_TimeTable <= 7:
         Image_TimeTable += 1
     else:
         Image_TimeTable = 0
@@ -390,7 +392,7 @@ def changeImageTueIMG4():
 
 def changeImageTueIMG5():
     global Image_TimeTable
-    if Image_TimeTable <= 6:
+    if Image_TimeTable <= 7:
         Image_TimeTable += 1
     else:
         Image_TimeTable = 0
@@ -400,7 +402,7 @@ def changeImageTueIMG5():
 
 def changeImageTueIMG6():
     global Image_TimeTable
-    if Image_TimeTable <= 6:
+    if Image_TimeTable <= 7:
         Image_TimeTable += 1
     else:
         Image_TimeTable = 0
@@ -410,7 +412,7 @@ def changeImageTueIMG6():
 
 def changeImageWedIMG7():
     global Image_TimeTable
-    if Image_TimeTable <= 6:
+    if Image_TimeTable <= 7:
         Image_TimeTable += 1
     else:
         Image_TimeTable = 0
@@ -420,7 +422,7 @@ def changeImageWedIMG7():
 
 def changeImageWedIMG8():
     global Image_TimeTable
-    if Image_TimeTable <= 6:
+    if Image_TimeTable <= 7:
         Image_TimeTable += 1
     else:
         Image_TimeTable = 0
@@ -430,7 +432,7 @@ def changeImageWedIMG8():
 
 def changeImageWedIMG9():
     global Image_TimeTable
-    if Image_TimeTable <= 6:
+    if Image_TimeTable <= 7:
         Image_TimeTable += 1
     else:
         Image_TimeTable = 0
@@ -440,7 +442,7 @@ def changeImageWedIMG9():
 
 def changeImageThursIMG10():
     global Image_TimeTable
-    if Image_TimeTable <= 6:
+    if Image_TimeTable <= 7:
         Image_TimeTable += 1
     else:
         Image_TimeTable = 0
@@ -450,7 +452,7 @@ def changeImageThursIMG10():
 
 def changeImageThursIMG11():
     global Image_TimeTable
-    if Image_TimeTable <= 6:
+    if Image_TimeTable <= 7:
         Image_TimeTable += 1
     else:
         Image_TimeTable = 0
@@ -460,7 +462,7 @@ def changeImageThursIMG11():
 
 def changeImageThursIMG12():
     global Image_TimeTable
-    if Image_TimeTable <= 6:
+    if Image_TimeTable <= 7:
         Image_TimeTable += 1
     else:
         Image_TimeTable = 0
@@ -470,7 +472,7 @@ def changeImageThursIMG12():
 
 def changeImageFriIMG13():
     global Image_TimeTable
-    if Image_TimeTable <= 6:
+    if Image_TimeTable <= 7:
         Image_TimeTable += 1
     else:
         Image_TimeTable = 0
@@ -480,7 +482,7 @@ def changeImageFriIMG13():
 
 def changeImageFriIMG14():
     global Image_TimeTable
-    if Image_TimeTable <= 6:
+    if Image_TimeTable <= 7:
         Image_TimeTable += 1
     else:
         Image_TimeTable = 0
@@ -490,7 +492,7 @@ def changeImageFriIMG14():
 
 def changeImageFriIMG15():
     global Image_TimeTable
-    if Image_TimeTable <= 6:
+    if Image_TimeTable <= 7:
         Image_TimeTable += 1
     else:
         Image_TimeTable = 0
@@ -500,7 +502,7 @@ def changeImageFriIMG15():
 
 def changeImageSatIMG16():
     global Image_TimeTable
-    if Image_TimeTable <= 6:
+    if Image_TimeTable <= 7:
         Image_TimeTable += 1
     else:
         Image_TimeTable = 0
@@ -510,7 +512,7 @@ def changeImageSatIMG16():
 
 def changeImageSatIMG17():
     global Image_TimeTable
-    if Image_TimeTable <= 6:
+    if Image_TimeTable <= 7:
         Image_TimeTable += 1
     else:
         Image_TimeTable = 0
@@ -520,7 +522,7 @@ def changeImageSatIMG17():
 
 def changeImageSatIMG18():
     global Image_TimeTable
-    if Image_TimeTable <= 6:
+    if Image_TimeTable <= 7:
         Image_TimeTable += 1
     else:
         Image_TimeTable = 0
@@ -544,6 +546,7 @@ def GymFunction():
 
 
 
+
 class Window(QWidget):
     def __init__(self):
         super().__init__()
@@ -557,8 +560,6 @@ class Window(QWidget):
         self.setPalette(p)
 
         self.init_ui()
-
-
         self.show()
 
 
@@ -735,6 +736,17 @@ def mute():
         volume = 0;
         winsound.PlaySound('NhacGym1.WAV', winsound.SND_ASYNC)
 
+def mute_yoga():
+    global volume
+    if volume == 0:
+        ui.mute_2.setStyleSheet("QPushButton {border-image : url(:/MENU/mute.png)}")
+        winsound.PlaySound(None, winsound.SND_PURGE)
+        volume = 1;
+    else:
+        ui.mute_2.setStyleSheet("QPushButton {border-image : url(:/MENU/unmute.png)}")
+        volume = 0;
+        winsound.PlaySound('NhacGym1.WAV', winsound.SND_ASYNC)
+
 class YogaWinDow(QMainWindow):
 	def __init__(self):
 		QMainWindow.__init__(self)
@@ -750,18 +762,22 @@ class YogaWinDow(QMainWindow):
 		# self.ui.Start_yoga.clicked.connect(self.go)
 
 
-def go(self):
-    self.timer = QtCore.QTimer()
-    self.timer.timeout.connect(self.update)
-    self.timer.start(100)
+# def go():
+#     global timer
+#     # timer = QtCore.QTimer()
+#     # timer.timeout.connect(update)
+#     timer.start(100)
+# def stop():
+#     timer.stop()
 
 
-def update(self):
+
+def update():
     global progress_val
-    self.ui.widget.rpb_setValue(progress_val)
+    ui.widget.rpb_setValue(progress_val)
     if progress_val > 299:
         progress_val = 0
-        self.timer.stop()
+        timer.stop()
     progress_val += 1
 
 
@@ -775,24 +791,19 @@ def YogaFunction():
     ui.comboBox_yoga.currentTextChanged.connect(comboboxFuntionYoga)
     ui.widget.rpb_setBarStyle('Hybrid2')
     ui.widget.rpb_setLineColor((255, 255, 255))
-    ui.widget.rpb_setMaximum(300)
+    ui.widget.rpb_setMaximum(max_value)
     ui.SeeVideo_yoga.clicked.connect(MediaPlayer)
+    ui.spinBox.setValue(max_value)
+    ui.spinBox.valueChanged.connect(show_result)
+    ui.mute_yoga.clicked.connect(mute_yoga)
 
-def go():
-    global timer
-    timer = QtCore.QTimer()
-    timer.timeout.connect(update)
-    timer.start(100)
-
-def update():
-    global progress_val
-    ui.widget.rpb_setValue(progress_val)
-    if progress_val > 299:
-        progress_val = 0
-    progress_val += 1
+def show_result():
+    global max_value
+    max_value = ui.spinBox.value()
+    ui.widget.rpb_setMaximum(max_value)
 
 def MealFunction():
-    global ui,CaloDinner,CaloLunch,CaloBreakFast
+    global ui,toast
     ui = Calo.Ui_MainWindow()
     ui.setupUi(MainWindow)
     ui.pushButton.clicked.connect(MealSelectForBreakFast)
@@ -802,10 +813,87 @@ def MealFunction():
     ui.label_11.setText(str(int(CaloNeed * 0.5)))
     ui.label_15.setText(str(int(CaloNeed * 0.2)))
     ui.Back_Calo.clicked.connect(LoadmainScreen)
+
+    #Load data from file text
+    TocalCaloBreakFast = db.reference(str(user)).child('ToTalCaloBreakFast').get()
+    TocalCaloLunch = db.reference(str(user)).child('ToTalCaloLunch').get()
+    TocalCaloDinner = db.reference(str(user)).child('ToTalCaloDinner').get()
+
+    #Load to roundprocessbar
+    # processbar calo
     # Display Calo to table
-    ui.label_14.setText(str(CaloDinner))
-    ui.label_10.setText(str(CaloLunch))
-    ui.label_6.setText(str(CaloBreakFast))
+    ui.label_14.setText(str(TocalCaloDinner))
+    ui.label_10.setText(str(TocalCaloLunch))
+    ui.label_6.setText(str(TocalCaloBreakFast))
+    ui.Eat.setText(str(TocalCaloDinner+TocalCaloLunch+TocalCaloBreakFast))
+    if ( (TocalCaloDinner + TocalCaloBreakFast + TocalCaloLunch) > CaloNeed):
+        toast.show_toast(
+            "Fitness App",
+            "Bạn đang ăn quá mức calo tiêu chuẩn",
+            duration=20,
+            icon_path=r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\emojis\icon.ico",
+            threaded=True,
+        )
+    else:
+        toast.show_toast(
+            "Fitness App",
+            "Bạn đang ăn ít hơn calo tiêu chuẩn.",
+            duration=20,
+            icon_path=r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\emojis\icon.ico",
+            threaded=True,
+        )
+
+        # processbar calo
+        setValue(TocalCaloLunch+ TocalCaloBreakFast + TocalCaloDinner , ui.labelPercentageCPU,ui.circularProgressCPU,
+                      "rgb(255, 170, 0)")
+
+
+def setValue(slider, labelPercentage, progressBarName, color):
+            # GET SLIDER VALUE
+            # value = slider.value()
+    value = slider
+
+            # CONVERT VALUE TO INT
+    sliderValue = int(value)
+
+            # HTML TEXT PERCENTAGE
+    htmlText = """<p align="center"><span style=" font-size:50pt;">{VALUE}</span><span style=" font-size:40pt; vertical-align:super;">%</span></p>"""
+    labelPercentage.setText(htmlText.replace("{VALUE}", str(int((sliderValue/CaloNeed)*100))))
+
+            # CALL DEF progressBarValue
+    progressBarValue(int((sliderValue/CaloNeed)*100), progressBarName, color)
+
+def progressBarValue(value, widget, color):
+            # PROGRESSBAR STYLESHEET BASE
+    styleSheet = """
+        QFrame{
+            border-radius: 110px;
+            background-color: qconicalgradient(cx:0.5, cy:0.5, angle:90, stop:{STOP_1} rgba(255, 0, 127, 0), stop:{STOP_2} {COLOR});
+        }
+        """
+
+            # GET PROGRESS BAR VALUE, CONVERT TO FLOAT AND INVERT VALUES
+            # stop works of 1.000 to 0.000
+    if(value > 100):
+        progress = (100 - 100) / 100.0
+    else:
+        print(int((value/CaloNeed)*100) / 100.0)
+        progress = ((100 - value) / 100.0)
+
+            # GET NEW VALUES
+    stop_1 = str(progress - 0.001)
+    stop_2 = str(progress)
+
+            # FIX MAX VALUE
+    if value == 100:
+        stop_1 = "1.000"
+        stop_2 = "1.000"
+
+            # SET VALUES TO NEW STYLESHEET
+    newStylesheet = styleSheet.replace("{STOP_1}", stop_1).replace("{STOP_2}", stop_2).replace("{COLOR}", color)
+
+            # APPLY STYLESHEET WITH NEW VALUES
+    widget.setStyleSheet(newStylesheet)
 
 class MealSelectForBreakFast:
     def __init__(self):
@@ -982,7 +1070,7 @@ def SaveMealBreakFast():
         # Checkbox
     for e in range(len(CheckboxMeal)):
         CheckboxDB.writelines(str(CheckboxMeal[e]) + '\n')
-    db.reference('/').child(str(user)).child('ToTalCaloBreakFast').set(TocalCalo)
+    db.reference('/').child(str(user)).child('ToTalCaloBreakFast').set(int(TocalCalo))
 
 
 class MealSelectWindowForLunch:
@@ -1160,7 +1248,7 @@ def SaveMealLunch():
         # Checkbox
         for e in range(len(CheckboxMeal)):
             CheckboxDB.writelines(str(CheckboxMealLunch[e]) + '\n')
-        db.reference('/').child(str(user)).child('ToTalCaloLunch').set(TocalCaloLunch)
+        db.reference('/').child(str(user)).child('ToTalCaloLunch').set(TocalCalo)
 
 class MealSelectWindowForDinner:
     def __init__(self):
@@ -1337,7 +1425,7 @@ def SaveMealDinner():
         #     # Checkbix
     for e in range(len(CheckboxMeal)):
         CheckboxDB.writelines(str(CheckboxMealDinner[e]) + '\n')
-    db.reference('/').child(str(user)).child('ToTalCaloCaloDinner').set(TocalCaloDinner)
+    db.reference('/').child(str(user)).child('ToTalCaloDinner').set(TocalCalo)
 
 def gaxaot(ListOfMeal,CheckBoxForMeal):
     global TocalCalo,ListMeal,ListMealDinner,checkboxDinner,ListMealLunch,checkboxLunch
@@ -2386,6 +2474,7 @@ def SupportFunction():
 
 class MainWindowSceen(QMainWindow):
     def __init__(self):
+        global TocalCalo, TocalCaloDinner, TocalCaloLunch
         QMainWindow.__init__(self)
         MainWindow.setFixedSize(1201, 708)
         self.ui = MainMenu.Ui_MainWindow()
@@ -2398,77 +2487,7 @@ class MainWindowSceen(QMainWindow):
         self.ui.Profile.clicked.connect(UpdateProfile)
         self.ui.Chat.clicked.connect(SupportFunction)
         self.ui.label_3.setText(str(CaloNeed))
-
-        self.Calo = db.reference('StatusValue').child('Calo')
-
-
-        # processbar calo
-        # self.setValue(self.Calo.get(), self.ui.labelPercentageCPU, self.ui.circularProgressCPU,
-        #               "rgb(255, 170, 0)")
-        # self.ui.label_3.setText(CaloNeed)
-        # processbar Status
-        # self.setValue(self.Meal.get(), self.ui.labelPercentageGPU, self.ui.circularProgressGPU,
-        #               "rgba(85, 255, 127, 255)")
-        # # processbar Meal
-        # self.setValue(self.Status.get(), self.ui.labelPercentageRAM, self.ui.circularProgressRAM,
-        #               "rgba(255, 0, 127, 255)")
-
-        ## ==> SET VALUES TO DEF progressBarValue
-
-    def setValue(self, slider, labelPercentage, progressBarName, color):
-        # GET SLIDER VALUE
-        # value = slider.value()
-        value = slider
-
-        # CONVERT VALUE TO INT
-        sliderValue = int(value)
-
-        # HTML TEXT PERCENTAGE
-        htmlText = """<p align="center"><span style=" font-size:50pt;">{VALUE}</span><span style=" font-size:40pt; vertical-align:super;">%</span></p>"""
-        labelPercentage.setText(htmlText.replace("{VALUE}", str(sliderValue)))
-
-        # CALL DEF progressBarValue
-        self.progressBarValue(sliderValue, progressBarName, color)
-
-        ## ==> APPLY VALUES TO PROGREESBAR
-        # self.ui.sliderCPU.valueChanged.connect(lambda: setValue(self, self.ui.sliderCPU, self.ui.labelPercentageCPU, self.ui.circularProgressCPU, "rgba(85, 170, 255, 255)"))
-        # self.ui.sliderGPU.valueChanged.connect(lambda: setValue(self, self.ui.sliderGPU, self.ui.labelPercentageGPU, self.ui.circularProgressGPU, "rgba(85, 255, 127, 255)"))
-        # self.ui.sliderRAM.valueChanged.connect(lambda: setValue(self, self.ui.sliderRAM, self.ui.labelPercentageRAM, self.ui.circularProgressRAM, "rgba(255, 0, 127, 255)"))
-
-        ## ==> DEF START VALUES
-        # self.ui.sliderCPU.setValue(25)
-        # self.ui.sliderGPU.setValue(65)
-        # self.ui.sliderRAM.setValue(45)
-
-    ## DEF PROGRESS BAR VALUE
-    ########################################################################
-    def progressBarValue(self, value, widget, color):
-        # PROGRESSBAR STYLESHEET BASE
-        styleSheet = """
-        QFrame{
-        	border-radius: 110px;
-        	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:90, stop:{STOP_1} rgba(255, 0, 127, 0), stop:{STOP_2} {COLOR});
-        }
-        """
-
-        # GET PROGRESS BAR VALUE, CONVERT TO FLOAT AND INVERT VALUES
-        # stop works of 1.000 to 0.000
-        progress = (100 - value) / 100.0
-
-        # GET NEW VALUES
-        stop_1 = str(progress - 0.001)
-        stop_2 = str(progress)
-
-        # FIX MAX VALUE
-        if value == 100:
-            stop_1 = "1.000"
-            stop_2 = "1.000"
-
-        # SET VALUES TO NEW STYLESHEET
-        newStylesheet = styleSheet.replace("{STOP_1}", stop_1).replace("{STOP_2}", stop_2).replace("{COLOR}", color)
-
-        # APPLY STYLESHEET WITH NEW VALUES
-        widget.setStyleSheet(newStylesheet)
+        self.ui.label_6.setText(str(int(TocalCaloDinner) + int(TocalCaloLunch) + int(TocalCaloBreakFast)))
 
 
 ## ==> SPLASHSCREEN WINDOW
@@ -2569,8 +2588,6 @@ class SplashScreen(QMainWindow):
 
         # APPLY STYLESHEET WITH NEW VALUES
         self.ui.circularProgress.setStyleSheet(newStylesheet)
-
-
 # GYM
 def count_task(z):  # z la chuc nang duoc quy dinh trong Gym
     # #func (function): lay chuc nang trong thu vien barbell_cruls
@@ -2581,56 +2598,55 @@ def count_task(z):  # z la chuc nang duoc quy dinh trong Gym
     bc.init(0)
     time.sleep(0.1)
     bc.init(1)
-    tt.giay = 0
+    tt.giayGym = 0
     # giay_tt = False
     cp = 1
     if (z == 0):
         func = 0
-        func_yoga = 0
+        # func_yoga = 0
     elif (z == 1):
         func = 1
-        func_yoga = 1
+        # func_yoga = 1
     elif (z == 2):
         func = 2
-        func_yoga = 2
+        # func_yoga = 2
     elif (z == 3):
         func = 3
-        func_yoga = 3
+        # func_yoga = 3
     elif (z == 4):
         func = 4
-        func_yoga = 4
+        # func_yoga = 4
     elif (z == 5):
         func = 5
-        func_yoga = 5
+        # func_yoga = 5
     elif (z == 6):
         func = 6
-        func_yoga = 6
+        # func_yoga = 6
     elif (z == 7):
         func = 7
-        func_yoga = 6
+        # func_yoga = 6
     elif(z == 8):
         func = 8
-        func_yoga = 6
+        # func_yoga = 6
     else:
         func = 9
-        func_yoga = 6
-    t = threading.Thread(target=main)
-    t.start()
+        # func_yoga = 6
+    if (running == False):
+        t = threading.Thread(target=main)
+        t.start()
     winsound.PlaySound('NhacGym1.WAV', winsound.SND_ASYNC)
 
 
 def count_task_yoga(y):  # z la chuc nang duoc quy dinh trong Yoga
-    global cp, giay_tt, func_yoga
+    global cp, giay_tt, func_yoga,timer
     # playS("sound\\Button_1_down.wav", 0)
-    # playS("sound\\count.wav", 1)
+    # playS("sound\\
     cp = 0
     yp.init(0)
     time.sleep(0.1)
     yp.init(1)
     tt.giay = 0
-    # giay_tt = False
     cp = 2
-    go()
     if (y == 0):
         func_yoga = 0
     elif (y == 1):
@@ -2645,14 +2661,16 @@ def count_task_yoga(y):  # z la chuc nang duoc quy dinh trong Yoga
         func_yoga = 5
     else:
         func_yoga = 6
-    t = threading.Thread(target=main)
-    t.start()
+    if (running == False):
+        t = threading.Thread(target=main)
+        t.start()
+    winsound.PlaySound('NhacGym1.WAV', winsound.SND_ASYNC)
 
 def hienhinhyoga(a):
         # hien thi anh len khung information
-        image_path = "hinh\\" + a  # path to your image file
+        image_path = "image-Yoga\\" + a  # path to your image file
         image_profile = QtGui.QImage(image_path)  # QImage object
-        image_profile = image_profile.scaled(261, 241)  # To scale image for example and keep its Aspect Ration
+        image_profile = image_profile.scaled(231, 211)  # To scale image for example and keep its Aspect Ration
         ui.information_yoga.setPixmap(QtGui.QPixmap.fromImage(image_profile))
 
 def hienhinh(a, b, per):
@@ -2660,7 +2678,7 @@ def hienhinh(a, b, per):
         # hien thi anh len khung information
         image_path = "hinh\\" + a  # path to your image file
         image_profile = QtGui.QImage(image_path)  # QImage object
-        image_profile = image_profile.scaled(261, 241)  # To scale image for example and keep its Aspect Ration
+        image_profile = image_profile.scaled(231, 211)  # To scale image for example and keep its Aspect Ration
         ui.information.setPixmap(QtGui.QPixmap.fromImage(image_profile))
 
 
@@ -2672,20 +2690,20 @@ def hienhinh(a, b, per):
         image_profile = image_profile.scaled(261, 241)  # To scale image for example and keep its Aspect Ration
         ui.information.setPixmap(QtGui.QPixmap.fromImage(image_profile))
 
-def h_playS(a, b):  # b la cho phep chay vong lap    #0 la 1 lan, 1 la nhieu lan
-    # AM THANH
-    # playsound.playsound(a)
-    winsound.PlaySound(a, winsound.SND_LOOP + (winsound.SND_ASYNC & b))
-
-
-def playS(a, b):
-    s = threading.Thread(target=h_playS, args=(a, b))
-    s.start()
-
-
-def h_playS1(a):  # b la cho phep chay vong lap    #0 la 1 lan, 1 la nhieu la
-	# AM THANH
-	playsound.playsound(a)
+# def h_playS(a, b):  # b la cho phep chay vong lap    #0 la 1 lan, 1 la nhieu lan
+#     # AM THANH
+#     # playsound.playsound(a)
+#     winsound.PlaySound(a, winsound.SND_LOOP + (winsound.SND_ASYNC & b))
+#
+#
+# def playS(a, b):
+#     s = threading.Thread(target=h_playS, args=(a, b))
+#     s.start()
+#
+#
+# def h_playS1(a):  # b la cho phep chay vong lap    #0 la 1 lan, 1 la nhieu la
+# 	# AM THANH
+# 	playsound.playsound(a)
 
 
 def playS1(a):
@@ -2699,62 +2717,99 @@ def playS1(a):
 #######  CHUONG TRINH CHINH
 ############################################################################
 def main():
-    global img, ui, rep, func, flagRight, check, dem, yoga_hinh, phut_tt, check2,func_yoga,CaloNeed,now,toast,status,timer
+    global img, ui, rep, func, flagRight, check, dem, yoga_hinh, phut_tt, check2,func_yoga,CaloNeed,now,toast,status,timer,progress_val,running
     bc.count = 0
+    running = True
     while True:
-        # print((CaloNeed))
-        if (now.hour == 8) & (status == True):
-            toast = ToastNotifier()
-            toast.show_toast(
-                "Fitness App",
-                "Let do exercise",
-                duration=20,
-                icon_path=r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\emojis\icon.ico",
-                threaded=True,
-            )
-            status = False
         if cp == 1:
             # playS("sound\\Button_1_down.wav", 0)
-            img, per, rep = bc.run(600, 450, func)
+            img, per, rep = bc.run(700, 491, func)
             # hien thi hinh anh len khung view label
             image = QtGui.QImage(img, img.shape[1], img.shape[0], QtGui.QImage.Format_RGB888).rgbSwapped()
             ui.view.setPixmap(QtGui.QPixmap.fromImage(image))
 
             # hien thi dem thoi gian
-            ui.timeLabel.setText("00:" + str(int(tt.giay / 10)) + str(int(tt.giay % 10)))
+            ui.timeLabel.setText(str(int(tt.phut / 10)) + str(int(tt.phut % 10)) + ":" + str(int(tt.giayGym / 10)) + str(int(tt.giayGym % 10)))
             ui.lcdNumber.display(rep)
-            hienhinh("tay-tadon -2.jpg", "tay-tadon-1.jpg", per)
+            if func == 4:
+                hienhinh("dumbbell_shoulder-1", "dumbbell_shoulder-2", per)
+                # barbel crul
+            if func == 2:
+                # right arm
+                hienhinh("tay-tadon -2.jpg", "tay-tadon-1.jpg", per)
+            elif func == 0:
+                # left arm
+                hienhinh("tay-tadon -2.jpg", "tay-tadon-1.jpg", per)
+                #  Leg raise
+            elif z == 9:
+                # abs
+                hienhinh("leg-raise-1.jpg", "leg-raise-2.jpg", per)
+
+            elif func == 5:
+                # squat
+                hienhinh("swat-1.jpg", "swat-2.jpg", per)
+            elif func == 1:
+                # pushup hit dat
+                hienhinh("hit-dat-1.jpg", "hit-dat-2.jpg", per)
+                # Skull crusher (taysau +ghế)
+            elif func == 6:
+                # tay trái
+                hienhinh("hit-dat-1.jpg", "hit-dat-2.jpg", per)
+            elif func == 7:
+                # tay phãi
+                hienhinh("tay-sau-voi-ghe.jpg", "tay-sau-voi-ghe-2.jpg", per)
+                # Crunch gập bụng
+            elif func == 8:
+                hienhinh("gap-bung-1.jpg", "gap-bung-2.jpg", per)
+                # Dumbbell flyes (ngực trước với tạ đơn)
+            elif z == 3:
+                hienhinh("nguctruoc-1.jpg", "nguctruoc-2.jpg", per)
 
 
         if cp == 2:
             # playS("sound\\Button_1_down.wav", 0)
-            img, check, dem, z = yp.run(600, 450, func_yoga)
+            img, check, dem, z = yp.run(700, 491, func_yoga)
             # hien thi hinh anh len khung view label
             image = QtGui.QImage(img, img.shape[1], img.shape[0], QtGui.QImage.Format_RGB888).rgbSwapped()
             ui.view_yoga.setPixmap(QtGui.QPixmap.fromImage(image))
 
-            if(check == True):
-                go()
-            else:
-                timer.stop()
+            # hien thi thoi gian len widget
+            ui.widget.rpb_setValue(tt.giay)
+            if (tt.giay == max_value):
+                z = 8
 
-            # hien thi dem thoi gian
-            # ui.timeLabel_yoga.setText("00:" + str(int(tt.giay / 10)) + str(int(tt.giay % 10)))
-            # ui.widget.rpb_setValue(50)
-            # ui.lcdNumber_yoga.display(rep)
-            hienhinhyoga("pose-tree.jpg")
+            if z == 1:
+                hienhinhyoga("pose-chien-binh.jpg")
+            # Pose Tree
+            elif (z == 2):
+                hienhinhyoga("pose-tree.jpg")
+            # Pose Triangle
+            elif (z == 3):
+                hienhinhyoga("pose-tamgiac.jpg")
+            # Plank ( khuỵu tay)
+            elif z == 4:
+                hienhinhyoga("blank-khuyu-tay.jpg")
+            # Plank ( chống thẳng tay)
+            elif z == 5:
+                hienhinhyoga("blank-thang-tay.jpg")
+            # Pose Boat
+            elif z == 6:
+                hienhinhyoga("BOAT-pose.jpg")
+            elif z == 7:
+                hienhinhyoga("cobra-pose.jpg")
+                #HoanhThanh
+            elif (z == 8):
+                hienhinhyoga("pose-tree.jpg")
+                #Phat Am thanh Hoan Thanh
+                winsound.PlaySound('NhacGym1.WAV', winsound.SND_ASYNC)
+                time.sleep(5)
 
-# app = QApplication(sys.argv)
-# splashscreen = SplashScreen()
-# MainWindow = QtWidgets.QMainWindow()
-# window = QtWidgets.QMainWindow()
-# MainWindow.setFixedSize(340, 340)
-# tt.init()
 if __name__ == '__main__':
     app1 = QApplication(sys.argv)
     splashscreen = SplashScreen()
     MainWindow = QtWidgets.QMainWindow()
     tt.init()
+    toast = ToastNotifier()
 
 try:
     sys.exit(app1.exec_())

@@ -83,7 +83,7 @@ class Ui_MainWindow(object):
         self.label_11.setAlignment(QtCore.Qt.AlignCenter)
         self.label_11.setObjectName("label_11")
         self.label_12 = QtWidgets.QLabel(self.frame_10)
-        self.label_12.setGeometry(QtCore.QRect(160, 80, 71, 41))
+        self.label_12.setGeometry(QtCore.QRect(130, 80, 131, 41))
         font = QtGui.QFont()
         font.setPointSize(28)
         font.setBold(True)
@@ -111,8 +111,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.frame_7 = QtWidgets.QFrame(self.scrollAreaWidgetContents_2)
         self.frame_7.setMinimumSize(QtCore.QSize(0, 500))
-        self.frame_7.setStyleSheet("background-color:rgb(255, 181, 255);\n"
-"border-raidus: 20px;")
+        self.frame_7.setStyleSheet("background-color:rgb(255, 181, 255);")
         self.frame_7.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_7.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_7.setObjectName("frame_7")
@@ -370,7 +369,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Breakfast"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label_14.setText(_translate("MainWindow", "BREAKFAST"))
         self.label_11.setText(_translate("MainWindow", "ToTal"))
         self.label_12.setText(_translate("MainWindow", "0.0"))

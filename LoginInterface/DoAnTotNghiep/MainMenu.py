@@ -9,9 +9,9 @@
 
 
 from PySide2 import QtCore, QtGui, QtWidgets
-from PySide2.QtWidgets import *
 
-class Ui_MainWindow(QMainWindow):
+
+class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1201, 679)
@@ -19,8 +19,6 @@ class Ui_MainWindow(QMainWindow):
         MainWindow.setStyleSheet("backgroud-image:url(:/MENU/fitness_healthcare_service_proposal_theme_presentation_templates_303595.jpg);")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
-        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
         self.label_10 = QtWidgets.QLabel(self.centralwidget)
         self.label_10.setGeometry(QtCore.QRect(470, 720, 111, 41))
         font = QtGui.QFont()
@@ -182,8 +180,8 @@ class Ui_MainWindow(QMainWindow):
         self.frame_4.setObjectName("frame_4")
         self.frame_6 = QtWidgets.QFrame(self.frame_4)
         self.frame_6.setGeometry(QtCore.QRect(400, 20, 201, 211))
-        self.frame_6.setStyleSheet("background-color: rgb(255, 85, 0);\n"
-"border-radius: 90px;")
+        self.frame_6.setStyleSheet("background-color:rgb(255, 170, 127);\n"
+"border-radius: 20px;")
         self.frame_6.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_6.setObjectName("frame_6")
@@ -191,7 +189,7 @@ class Ui_MainWindow(QMainWindow):
         self.label_4.setGeometry(QtCore.QRect(50, 30, 100, 50))
         self.label_4.setMaximumSize(QtCore.QSize(100, 50))
         font = QtGui.QFont()
-        font.setPointSize(14)
+        font.setPointSize(16)
         font.setBold(True)
         font.setWeight(75)
         self.label_4.setFont(font)
@@ -201,7 +199,7 @@ class Ui_MainWindow(QMainWindow):
         self.label_4.setAlignment(QtCore.Qt.AlignCenter)
         self.label_4.setObjectName("label_4")
         self.label_3 = QtWidgets.QLabel(self.frame_6)
-        self.label_3.setGeometry(QtCore.QRect(40, 100, 130, 71))
+        self.label_3.setGeometry(QtCore.QRect(40, 110, 130, 71))
         self.label_3.setMaximumSize(QtCore.QSize(130, 71))
         font = QtGui.QFont()
         font.setFamily("MS Shell Dlg 2")
@@ -209,21 +207,21 @@ class Ui_MainWindow(QMainWindow):
         font.setBold(True)
         font.setWeight(75)
         self.label_3.setFont(font)
-        self.label_3.setStyleSheet("color: rgb(0, 255, 0);\n"
+        self.label_3.setStyleSheet("color: rgb(0, 0, 0);\n"
 "border-radius:46px;")
         self.label_3.setAlignment(QtCore.Qt.AlignCenter)
         self.label_3.setObjectName("label_3")
         self.frame_7 = QtWidgets.QFrame(self.frame_4)
         self.frame_7.setGeometry(QtCore.QRect(30, 20, 201, 211))
-        self.frame_7.setStyleSheet("background-color:rgb(255, 85, 0);\n"
-"border-radius: 90px;")
+        self.frame_7.setStyleSheet("background-color:rgb(255, 170, 127);\n"
+"border-radius: 20px;")
         self.frame_7.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_7.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_7.setObjectName("frame_7")
         self.label_5 = QtWidgets.QLabel(self.frame_7)
         self.label_5.setGeometry(QtCore.QRect(40, 30, 122, 64))
         font = QtGui.QFont()
-        font.setPointSize(14)
+        font.setPointSize(16)
         font.setBold(True)
         font.setWeight(75)
         self.label_5.setFont(font)
@@ -233,14 +231,14 @@ class Ui_MainWindow(QMainWindow):
         self.label_5.setAlignment(QtCore.Qt.AlignCenter)
         self.label_5.setObjectName("label_5")
         self.label_6 = QtWidgets.QLabel(self.frame_7)
-        self.label_6.setGeometry(QtCore.QRect(50, 110, 111, 61))
+        self.label_6.setGeometry(QtCore.QRect(30, 100, 131, 81))
         font = QtGui.QFont()
         font.setFamily("MS Shell Dlg 2")
         font.setPointSize(30)
         font.setBold(True)
         font.setWeight(75)
         self.label_6.setFont(font)
-        self.label_6.setStyleSheet("color: rgb(0, 255, 0);\n"
+        self.label_6.setStyleSheet("color: rgb(0, 0, 0);\n"
 "border-radius:46px;")
         self.label_6.setAlignment(QtCore.Qt.AlignCenter)
         self.label_6.setObjectName("label_6")
@@ -267,7 +265,7 @@ class Ui_MainWindow(QMainWindow):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Menu"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label_10.setText(_translate("MainWindow", "Yoga"))
         self.label_9.setText(_translate("MainWindow", "Gym"))
         self.label_8.setText(_translate("MainWindow", "Time table"))
@@ -277,6 +275,6 @@ class Ui_MainWindow(QMainWindow):
         self.label_15.setText(_translate("MainWindow", "MENU"))
         self.label_4.setText(_translate("MainWindow", "      Standard"))
         self.label_3.setText(_translate("MainWindow", "757"))
-        self.label_5.setText(_translate("MainWindow", "Total CALO"))
+        self.label_5.setText(_translate("MainWindow", "KCAL"))
         self.label_6.setText(_translate("MainWindow", "0"))
 import MENU_rc

@@ -109,9 +109,10 @@ class Ui_MainWindow(object):
         self.pushButton_18.setText("")
         self.pushButton_18.setObjectName("pushButton_18")
         self.Back_TimeTable = QtWidgets.QPushButton(self.centralwidget)
-        self.Back_TimeTable.setGeometry(QtCore.QRect(30, 40, 61, 51))
-        self.Back_TimeTable.setStyleSheet("border-image : url(:/Image/back.png);")
-        self.Back_TimeTable.setText("")
+        self.Back_TimeTable.setGeometry(QtCore.QRect(1110, 670, 71, 31))
+        self.Back_TimeTable.setStyleSheet("\n"
+                                          "background-colorr : rgb(0, 255, 0);\n"
+                                          "border-radius: 10px;")
         self.Back_TimeTable.setObjectName("Back_TimeTable")
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -120,5 +121,6 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
+        self.Back_TimeTable.setText(_translate("MainWindow", "BACK"))
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
 import TimeTable_rc

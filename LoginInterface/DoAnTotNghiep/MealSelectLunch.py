@@ -83,7 +83,7 @@ class Ui_MainWindow(object):
         self.label_11.setAlignment(QtCore.Qt.AlignCenter)
         self.label_11.setObjectName("label_11")
         self.label_12 = QtWidgets.QLabel(self.frame_10)
-        self.label_12.setGeometry(QtCore.QRect(160, 80, 71, 41))
+        self.label_12.setGeometry(QtCore.QRect(120, 80, 151, 41))
         font = QtGui.QFont()
         font.setPointSize(28)
         font.setBold(True)
@@ -104,7 +104,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents_2 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, -82, 621, 518))
+        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 621, 518))
         self.scrollAreaWidgetContents_2.setStyleSheet("background-color:transparent;")
         self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.scrollAreaWidgetContents_2)
@@ -370,7 +370,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Lunch"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label_14.setText(_translate("MainWindow", "LUNCH"))
         self.label_11.setText(_translate("MainWindow", "ToTal"))
         self.label_12.setText(_translate("MainWindow", "0.0"))

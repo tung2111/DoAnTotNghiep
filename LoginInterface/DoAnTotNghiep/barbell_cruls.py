@@ -45,6 +45,7 @@ def run(x, y, z):   #x, y la resize kichs thuoc     z: quy dinh cac chuc nang ch
                 upbody_l = detector.findAngle(img, 23, 11, 13, False)
                 per_l = np.interp(upbody_l, (235, 270), (100, 0))
                 per_r = np.interp(upbody_r, (95, 124), (0, 100))
+                per = per_r
                 if lmList[11][2] > lmList[14][2]:  # khuy tay cao hon vai
                     wrist.append(
                         [lmList[14][1], lmList[14][2] - detector.lenght(img, 14, 16)])  # ve co tay chuan ben phai
@@ -64,8 +65,8 @@ def run(x, y, z):   #x, y la resize kichs thuoc     z: quy dinh cac chuc nang ch
         elif z==0:
             # left arm
             angle = detector.findAngle(img, 12, 14, 16)
-            per = np.interp(angle, (30, 120), (100, 0))
-            bar = np.interp(angle, (30, 120), (100, 650))
+            per = np.interp(angle, (50, 140), (100, 0))
+            bar = np.interp(angle, (50, 140), (100, 650))
             dumbelstatus = False
         #  Leg raise
         elif z==9:
@@ -116,6 +117,7 @@ def run(x, y, z):   #x, y la resize kichs thuoc     z: quy dinh cac chuc nang ch
             bar = np.interp(angle, (290, 340), (100, 650))
             dumbelstatus = False
 
+
         #check for rep
         color = (255,0,255)
         if per == 100:
@@ -141,24 +143,24 @@ def run(x, y, z):   #x, y la resize kichs thuoc     z: quy dinh cac chuc nang ch
                     rep_up = 0
 #ve bar
         if dumbelstatus == False:
-            cv2.rectangle(img, (1100,100),(1175,650),(255,255,255),3)
-            cv2.rectangle(img, (1100, int(bar)), (1175, 650), (255,0,255), cv2.FILLED)
+            cv2.rectangle(img, (1100,100),(1160,600),(255,255,255),1)
+            cv2.rectangle(img, (1100, int(bar)), (1160, 600), (102,255,102), cv2.FILLED)
             cv2.putText(img,f'{int(per)}%', (1100, 75), cv2.FONT_HERSHEY_PLAIN, 4,
                         color, 3)
 
     img = cv2.resize(img, (x, y))
-    # End time
-    end = time.time()
-
-    # Time elapsed
-    seconds = end - start
-    print ("Time taken : {0} seconds".format(seconds))
-
-    # Calculate frames per second
-    fps  = 1 / seconds
-    print("Estimated frames per second : {0}".format(fps))
-    cv2.putText(img, f'{int(fps)} FPS', (70, 75), cv2.FONT_HERSHEY_PLAIN, 4,
-                (0, 0, 255), 3)
+    # # End time
+    # end = time.time()
+    #
+    # # Time elapsed
+    # seconds = end - start
+    # print ("Time taken : {0} seconds".format(seconds))
+    #
+    # # Calculate frames per second
+    # fps  = 1 / seconds
+    # print("Estimated frames per second : {0}".format(fps))
+    # cv2.putText(img, f'{int(fps)} FPS', (70, 75), cv2.FONT_HERSHEY_PLAIN, 4,
+    #             (0, 0, 255), 3)
     return img, per, count
 
 
