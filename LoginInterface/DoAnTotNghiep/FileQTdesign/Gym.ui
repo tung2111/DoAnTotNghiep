@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1192</width>
+    <height>613</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>10</y>
+      <width>151</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-color: rgb(255, 170, 0);
+font: 75 48pt &quot;Calibri&quot;;
+color: rgb(170, 85, 0);
+font:50pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>GYM</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="view">
+    <property name="geometry">
+     <rect>
+      <x>219</x>
+      <y>100</y>
+      <width>701</width>
+      <height>491</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(157, 157, 157);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="back">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>490</y>
+      <width>171</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(135, 135, 135);
+color: rgb(255, 255, 255);
+font: 15pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>BACK</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="information">
+    <property name="geometry">
+     <rect>
+      <x>940</x>
+      <y>340</y>
+      <width>231</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(157, 157, 157);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>:/MENU/gym_gif.gif</pixmap>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="lcdNumber">
+    <property name="geometry">
+     <rect>
+      <x>1050</x>
+      <y>150</y>
+      <width>111</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="digitCount">
+     <number>2</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>950</x>
+      <y>140</y>
+      <width>81</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-color: rgb(255, 170, 0);
+font: 45 48pt &quot;Calibri&quot;;
+color: rgb(255, 255, 255);
+font:30pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string> REP</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="SeeVideo">
+    <property name="geometry">
+     <rect>
+      <x>1100</x>
+      <y>570</y>
+      <width>71</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>MS Shell Dlg 2</family>
+      <pointsize>9</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+      <underline>true</underline>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(135, 135, 135);
+text-decoration: underline;
+font: 8pt &quot;MS Shell Dlg 2&quot;;
+color: rgb(255, 255, 255);
+font: 9pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>See video</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Start">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>420</y>
+      <width>171</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(135, 135, 135);
+color: rgb(255, 255, 255);
+font: 15pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>START</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>100</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Option</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>140</y>
+      <width>181</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="inputMethodHints">
+     <set>Qt::ImhUrlCharactersOnly</set>
+    </property>
+    <property name="editable">
+     <bool>false</bool>
+    </property>
+    <item>
+     <property name="text">
+      <string>Barbell Cruls Left</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Push Up</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Barbell Cruls Right</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Dumbbell flyes</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Dumbbell_shoulder</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Swat</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Skull Crusher Left</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Skull Crusher Right</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Crunch</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Leg raise</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QPushButton" name="mute_2">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>20</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image : url(:/MENU/unmute.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="timeLabel">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>300</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>26</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color : rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>00:00</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1192</width>
+      <height>617</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/MENU/WAllPaper.jpg);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>label_5</zorder>
+   <zorder>mute_2</zorder>
+   <zorder>label</zorder>
+   <zorder>view</zorder>
+   <zorder>back</zorder>
+   <zorder>information</zorder>
+   <zorder>lcdNumber</zorder>
+   <zorder>label_2</zorder>
+   <zorder>SeeVideo</zorder>
+   <zorder>Start</zorder>
+   <zorder>label_3</zorder>
+   <zorder>comboBox</zorder>
+   <zorder>timeLabel</zorder>
+  </widget>
+ </widget>
+ <resources>
+  <include location="MENU.qrc"/>
+ </resources>
+ <connections/>
+</ui>

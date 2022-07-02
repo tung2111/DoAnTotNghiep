@@ -1,0 +1,22 @@
+<RCC>
+  <qresource prefix="Image">
+    <file>White_full.png</file>
+    <file>278352262_1030851091181698_28569167491434822_n.png</file>
+    <file>back.png</file>
+    <file>blank.jpg</file>
+    <file>blank-thang-tay.jpg</file>
+    <file>BOAT-pose.png</file>
+    <file>cobra-pose.jpg</file>
+    <file>dumbbell_shoulder.jpg</file>
+    <file>gap-bung.jpg</file>
+    <file>hit-dat.jpg</file>
+    <file>leg-raise.jpg</file>
+    <file>nguc-truoc-voi-ta-don.jpg</file>
+    <file>pose-chien-binh.jpg</file>
+    <file>pose-tamgiac.jpg</file>
+    <file>pose-tree.jpg</file>
+    <file>swat.jpg</file>
+    <file>ta-don1.jpg</file>
+    <file>tay-sau-voi-ghe.jpg</file>
+  </qresource>
+</RCC>

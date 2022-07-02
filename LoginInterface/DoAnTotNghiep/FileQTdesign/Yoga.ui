@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1192</width>
+    <height>606</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>10</y>
+      <width>181</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>MS Shell Dlg 2</family>
+      <pointsize>50</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-color: rgb(255, 170, 0);
+font: 48pt &quot;Dubai&quot;;
+color: rgb(170, 85, 0);
+font:50pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>YOGA</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="view_yoga">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>100</y>
+      <width>701</width>
+      <height>491</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(157, 157, 157);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="back_yoga">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>490</y>
+      <width>171</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(135, 135, 135);
+color: rgb(255, 255, 255);
+font: 15pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>BACK</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="information_yoga">
+    <property name="geometry">
+     <rect>
+      <x>940</x>
+      <y>340</y>
+      <width>231</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(157, 157, 157);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>:/MENU/gym_gif.gif</pixmap>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="SeeVideo_yoga">
+    <property name="geometry">
+     <rect>
+      <x>1100</x>
+      <y>560</y>
+      <width>71</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>MS Shell Dlg 2</family>
+      <pointsize>9</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+      <underline>true</underline>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(135, 135, 135);
+text-decoration: underline;
+font: 8pt &quot;MS Shell Dlg 2&quot;;
+color: rgb(255, 255, 255);
+font: 9pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>See video</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Start_yoga">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>420</y>
+      <width>171</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(135, 135, 135);
+color: rgb(255, 255, 255);
+font: 15pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>START</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>80</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Option</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_yoga">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>120</y>
+      <width>181</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(170, 255, 255);</string>
+    </property>
+    <property name="inputMethodHints">
+     <set>Qt::ImhUrlCharactersOnly</set>
+    </property>
+    <property name="editable">
+     <bool>false</bool>
+    </property>
+    <item>
+     <property name="text">
+      <string>Warrior pose</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Tree pose</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Triangle pose</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Plank High</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Plank Low</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Boat pose</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Cobra pose</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QPushButton" name="mute_yoga">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>20</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image : url(:/MENU/unmute.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="ComboxBox_Song">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>280</y>
+      <width>181</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(170, 255, 255);</string>
+    </property>
+    <property name="inputMethodHints">
+     <set>Qt::ImhUrlCharactersOnly</set>
+    </property>
+    <property name="editable">
+     <bool>false</bool>
+    </property>
+    <item>
+     <property name="text">
+      <string>BaiHat_1</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>BaiHat_2</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>BaiHat_3</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>250</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>SONGS</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Spin">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1192</width>
+      <height>617</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/MENU/WAllPaper.jpg);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="roundProgressBar" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>970</x>
+      <y>100</y>
+      <width>171</width>
+      <height>161</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spinBox">
+    <property name="geometry">
+     <rect>
+      <x>1080</x>
+      <y>290</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(170, 255, 255);</string>
+    </property>
+   </widget>
+   <zorder>Spin</zorder>
+   <zorder>mute_yoga</zorder>
+   <zorder>label</zorder>
+   <zorder>view_yoga</zorder>
+   <zorder>back_yoga</zorder>
+   <zorder>information_yoga</zorder>
+   <zorder>SeeVideo_yoga</zorder>
+   <zorder>Start_yoga</zorder>
+   <zorder>label_3</zorder>
+   <zorder>comboBox_yoga</zorder>
+   <zorder>ComboxBox_Song</zorder>
+   <zorder>label_4</zorder>
+   <zorder>widget</zorder>
+   <zorder>spinBox</zorder>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>roundProgressBar</class>
+   <extends>QWidget</extends>
+   <header>PySide2extn.RoundProgressBar.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="MENU.qrc"/>
+ </resources>
+ <connections/>
+</ui>

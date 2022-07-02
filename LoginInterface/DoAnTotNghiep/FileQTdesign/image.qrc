@@ -1,0 +1,28 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>White_full.png</file>
+    <file>hit-dat.jpg</file>
+    <file>blank.jpg</file>
+    <file>blank-thang-tay.jpg</file>
+    <file>BOAT-pose.png</file>
+    <file>bung.jpg</file>
+    <file>chan.jpg</file>
+    <file>cobra-pose.jpg</file>
+    <file>dui.jpg</file>
+    <file>dumbbell_shoulder.jpg</file>
+    <file>gap-bung.jpg</file>
+    <file>nguc.jpg</file>
+    <file>nguc-truoc-voi-ta-don.jpg</file>
+    <file>pose-chien-binh.jpg</file>
+    <file>pose-tamgiac.jpg</file>
+    <file>pose-tree.jpg</file>
+    <file>swat.jpg</file>
+    <file>ta-don1.jpg</file>
+    <file>ta-don2.png</file>
+    <file>taysau.jpg</file>
+    <file>tay-sau-voi-ghe.jpg</file>
+    <file>taytruoc.png</file>
+    <file>YOGA.jpg</file>
+    <file>Yoga.png</file>
+  </qresource>
+</RCC>

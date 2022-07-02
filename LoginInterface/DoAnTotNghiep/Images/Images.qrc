@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>Backgroud.png</file>
+    <file>fitness.jpg</file>
+  </qresource>
+</RCC>

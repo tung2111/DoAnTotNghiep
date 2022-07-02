@@ -1,0 +1,25 @@
+<RCC>
+  <qresource prefix="MENU">
+    <file>background-calo.jpg</file>
+    <file>WAllPaper.jpg</file>
+    <file>Breakfast_Wallpaper.jpg</file>
+    <file>Dinner_Wallpaper.jpg</file>
+    <file>Lunch_Wallpaper.jpg</file>
+    <file>NitrionWallpaper.jpg</file>
+    <file>meal.png</file>
+    <file>278352262_1030851091181698_28569167491434822_n.png</file>
+    <file>TB.png</file>
+    <file>add.png</file>
+    <file>chat_box.png</file>
+    <file>yg.png</file>
+    <file>gym_ic.jpg</file>
+    <file>60513-01-gym-powerpoint-template-light-16x9-1.jpg</file>
+    <file>fitness_healthcare_service_proposal_theme_presentation_templates_303595.jpg</file>
+    <file>setting.webp</file>
+    <file>TB.png</file>
+    <file>ProfileBG.jpg</file>
+    <file>mute.png</file>
+    <file>unmute.png</file>
+    <file>Photo-Background-Application.jpg</file>
+  </qresource>
+</RCC>
