@@ -107,16 +107,15 @@ def run(x, y, z):   #x, y la resize kichs thuoc     z: quy dinh cac chuc nang ch
         # Crunch gập bụng
         elif z == 8:
             angle = detector.findAngle(img, 11, 23, 25)
-            per = np.interp(angle, (230, 270), (0, 100))
-            bar = np.interp(angle, (230, 270), (650, 100))
+            per = np.interp(angle, (210, 240), (0, 100))
+            bar = np.interp(angle, (210, 240), (650, 100))
             dumbelstatus = False
         # Dumbbell flyes (ngực trước với tạ đơn)
         elif z == 3:
             angle = detector.findAngle(img, 13, 11, 23)
-            per = np.interp(angle, (290, 340), (100, 0))
-            bar = np.interp(angle, (290, 340), (100, 650))
+            per = np.interp(angle, (325, 345), (100, 0))
+            bar = np.interp(angle, (325, 345), (100, 650))
             dumbelstatus = False
-
 
         #check for rep
         color = (255,0,255)
@@ -149,18 +148,6 @@ def run(x, y, z):   #x, y la resize kichs thuoc     z: quy dinh cac chuc nang ch
                         color, 3)
 
     img = cv2.resize(img, (x, y))
-    # # End time
-    # end = time.time()
-    #
-    # # Time elapsed
-    # seconds = end - start
-    # print ("Time taken : {0} seconds".format(seconds))
-    #
-    # # Calculate frames per second
-    # fps  = 1 / seconds
-    # print("Estimated frames per second : {0}".format(fps))
-    # cv2.putText(img, f'{int(fps)} FPS', (70, 75), cv2.FONT_HERSHEY_PLAIN, 4,
-    #             (0, 0, 255), 3)
     return img, per, count
 
 

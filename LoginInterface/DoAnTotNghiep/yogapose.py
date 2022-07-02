@@ -40,8 +40,8 @@ def dem_thoigian(time):
                 z=1
     return dem, z
 
-def run(x,y,time):
-    global detector, cap, overlayList,z,dem, check
+def run(x,y,z):
+    global detector, cap, overlayList,dem, check
     success, image = cap.read()
     image = cv2.flip(image, 2)
     image = cv2.resize(image, (1280, 720))
@@ -56,21 +56,18 @@ def run(x,y,time):
         knee_l = detector.findAngle(image, 23, 25, 27)
         hip_r = detector.findAngle(image, 12, 24, 26)
         # arm_l = detector.findAngle(image, 11, 13, 15)
-        # knee_l = detector.findAngle(image, 11, 23, 25)
+        knee_l1 = detector.findAngle(image, 11, 23, 25)
 
         # Pose Warrior
         if z==1:
             per_arm_r = np.interp(arm_r, (175, 185), (0, 100))
             per_arm_l = np.interp(arm_l, (177, 180), (0, 100))
-            per_upbody_r = np.interp(upbody_r, (90, 105), (0, 100))
-            per_upbody_l = np.interp(upbody_l, (270, 280), (100, 0))
+            # per_upbody_r = np.interp(upbody_r, (90, 105), (0, 100))
+            # per_upbody_l = np.interp(upbody_l, (270, 280), (100, 0))
             per_knee_r = np.interp(knee_r, (125, 125), (100, 0))
             per_knee_l = np.interp(knee_l, (170, 200), (0, 100))
-
-            if (per_arm_r > 20 and per_arm_l > 20 and per_upbody_r > 20 and per_upbody_l > 20 and
-                    per_knee_r > 20 and per_knee_l > 20):
+            if (per_arm_r > 20 and per_arm_l > 20 and per_knee_r > 20 and per_knee_l > 20):
                 #dem time
-                print("qua1")
                 check = True
                 tt.enabletimer = True
                 # time_hen, z = dem_thoigian(time)
@@ -85,14 +82,12 @@ def run(x,y,time):
         elif (z == 2):
             per_arm_r = np.interp(arm_r, (25, 80), (100, 0))
             per_arm_l = np.interp(arm_l, (200, 325), (0, 100))
-            per_upbody_r = np.interp(upbody_r, (45, 70), (100, 0))  # vai phai
-            per_upbody_l = np.interp(upbody_l, (309, 290), (0, 100))
+            # per_upbody_r = np.interp(upbody_r, (45, 70), (100, 0))  # vai phai
+            # per_upbody_l = np.interp(upbody_l, (309, 290), (0, 100))
             per_knee_r = np.interp(knee_r, (30, 68), (100, 0))
             per_knee_l = np.interp(knee_l, (170, 190), (0, 100))
             per_hip_r = np.interp(hip_r, (250, 260), (0, 100))
-            if (per_arm_r > 20 and per_arm_l > 20 and per_upbody_r > 20 and per_upbody_l > 20 and
-                    per_knee_r > 20 and per_knee_l > 20 and per_hip_r > 10):
-                print("qua2")
+            if (per_arm_r > 20 and per_arm_l > 20 and per_knee_r > 20 and per_knee_l > 20 and per_hip_r > 10):
                 check = True
                 tt.enabletimer = True
                 # time_hen, z = dem_thoigian(time)
@@ -105,14 +100,12 @@ def run(x,y,time):
         elif (z == 3):
             per_arm_r = np.interp(arm_r, (184, 194), (0, 100))
             per_arm_l = np.interp(arm_l, (154, 178), (100, 0))
-            per_upbody_r = np.interp(upbody_r, (80, 94), (0, 100))  # vai phai
-            per_upbody_l = np.interp(upbody_l, (274, 300), (100, 0))
+            # per_upbody_r = np.interp(upbody_r, (80, 94), (0, 100))  # vai phai
+            # per_upbody_l = np.interp(upbody_l, (274, 300), (100, 0))
             per_knee_r = np.interp(knee_r, (160, 178), (0, 100))
             per_knee_l = np.interp(knee_l, (180, 190), (0, 100))
             per_hip_r = np.interp(hip_r, (136, 186), (100, 0))
-            if (per_arm_r > 20 and per_arm_l > 20 and per_upbody_r > 20 and per_upbody_l > 20 and
-                    per_knee_r > 20 and per_knee_l > 20 and per_hip_r > 10):
-                print("qua3")
+            if (per_arm_r > 20 and per_arm_l > 20 and per_knee_r > 20 and per_knee_l > 20 and per_hip_r > 10):
                 check = True
                 tt.enabletimer = True
                 # time_hen, z = dem_thoigian(time)
@@ -122,12 +115,11 @@ def run(x,y,time):
                 tt.enabletimer = False
 
         # Plank ( khuỵu tay)
-        elif z == 4:
+        elif z == 5:
             per_arm_l = np.interp(arm_l, (260, 300), (0, 100))
-            per_knee_l = np.interp(knee_l, (175, 200), (0, 100))
+            per_knee_l = np.interp(knee_l1, (175, 200), (0, 100))
             if (per_arm_l > 20 and per_knee_l > 20):
                 # dem time
-                print("qua1")
                 check = True
                 tt.enabletimer = True
                 # time_hen, z = dem_thoigian(time)
@@ -137,13 +129,12 @@ def run(x,y,time):
                 check = False
                 tt.enabletimer = False
         #Plank ( chống thẳng tay)
-        elif z == 5:
+        elif z == 4:
             per_arm_l = np.interp(arm_l, (200, 220), (0, 100))
-            per_knee_l = np.interp(knee_l, (175, 200), (0, 100))
+            per_knee_l = np.interp(knee_l1, (175, 200), (0, 100))
 
             if (per_arm_l > 20 and per_knee_l > 20):
                 # dem time
-                print("qua1")
                 check = True
                 tt.enabletimer = True
                 # time_hen, z = dem_thoigian(time)
@@ -155,10 +146,9 @@ def run(x,y,time):
         # Pose Boat
         elif z == 6:
             per_arm_l = np.interp(arm_l, (185, 195), (0, 100))
-            per_knee_l = np.interp(knee_l, (250, 260), (0, 100))
+            per_knee_l = np.interp(knee_l1, (250, 260), (0, 100))
             if (per_arm_l > 20 and per_knee_l > 20):
                 # dem time
-                print("qua1")
                 check = True
                 tt.enabletimer = True
                 # time_hen, z = dem_thoigian(time)
@@ -170,11 +160,10 @@ def run(x,y,time):
         elif z == 7:
 
             per_arm_l = np.interp(arm_l, (200, 210), (0, 100))
-            per_knee_l = np.interp(knee_l, (135, 145), (0, 100))
+            per_knee_l = np.interp(knee_l1, (135, 145), (0, 100))
 
             if (per_arm_l > 20 and per_knee_l > 20):
                 # dem time
-                print("qua1")
                 check = True
                 tt.enabletimer = True
                 # time_hen, z = dem_thoigian(time)
@@ -184,19 +173,11 @@ def run(x,y,time):
                 check = False
                 tt.enabletimer = False
 
-        elif (z == 8):
-            cv2.rectangle(image, (10, 450), (650, 650), (170, 232, 238), cv2.FILLED)
-            cv2.putText(image, f"HOAN THANH" , (20, 600),
-                        cv2.FONT_HERSHEY_SIMPLEX, 3, (255, 255, 0), 15)
+        # elif (z == 8):
+        #     cv2.rectangle(image, (10, 450), (650, 650), (170, 232, 238), cv2.FILLED)
+        #     cv2.putText(image, f"HOAN THANH" , (20, 600),
+        #                 cv2.FONT_HERSHEY_SIMPLEX, 3, (255, 255, 0), 15)
 
 
     image = cv2.resize(image, (x, y))
     return image, check, dem, z
-
-def cardio(x, y):
-    global cap
-    success, img = cap.read()
-    img = cv2.flip(img, 2)
-    #img1 = cv2.resize(img1, (1280, 720))
-    img = cv2.resize(img, (x, y))
-    return img

@@ -15,13 +15,11 @@ def demgiay():
         else:
             giayGym = 0
             phut += 1
-        print('giay Gym la ' + str(giayGym))
 
         if (enabletimer == False or giay == 60):
             giay = 0
         else:
             giay += 1
-        print('giay Yoga la ' + str(giay))
 
 def init():
     t = threading.Thread(target=demgiay)

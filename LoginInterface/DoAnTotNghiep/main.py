@@ -26,7 +26,7 @@ import time
 from datetime import datetime
 
 running = False
-max_value = 30
+max_value = 20
 Name=''
 CaloNeed = 0
 Height = 0
@@ -65,7 +65,7 @@ password = ""
 confirmpassword = ""
 i = 0
 func = 0
-func_yoga=0
+func_yoga=1
 rep = 0
 ui = ''
 cp = 0
@@ -76,7 +76,7 @@ check = False  # kiem tra yoga dung sai
 check2 = False  # khong che nhac
 giay_tt = False
 z = 0
-y = 0
+y = 1
 #variable for notification
 status = True
 # declare object to notify
@@ -106,12 +106,12 @@ Sat = ["border-image: url(:/Image/hit-dat.jpg);\n", "border-image : url(:/Image/
 cred = credentials.Certificate("firebase-sdk.json")
 firebase_admin.initialize_app(cred, {'databaseURL': 'https://fitnessapp-5b974-default-rtdb.firebaseio.com/'})
 # read timetable data
-File_Mon = open(r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Mon.txt","r")
-File_Tue = open(r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Tue.txt","r")
-File_Wed = open(r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Wed.txt","r")
-File_Thurs = open(r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Thurs.txt","r")
-File_Fri = open(r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Fri.txt","r")
-File_Sat = open(r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Sat.txt","r")
+File_Mon = open(r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\Mon.txt","r")
+File_Tue = open(r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\Tue.txt","r")
+File_Wed = open(r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\Wed.txt","r")
+File_Thurs = open(r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\Thurs.txt","r")
+File_Fri = open(r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\Fri.txt","r")
+File_Sat = open(r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\Sat.txt","r")
 for size in range(len(Mon)):
     Mon[size] = File_Mon.readline()
     Tue[size] = File_Tue.readline()
@@ -126,12 +126,12 @@ File_Wed.close()
 File_Thurs.close()
 File_Fri.close()
 File_Sat.close()
-checkbox = open(r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Checkbox.txt","r")
-checkboxLunch = open(r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Checkbox_Lunch.txt","r")
-checkboxDinner = open(r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Checkbox_Dinner.txt","r")
-ListMealWidgetBreakfast = open(r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\ListMeal.txt","r")
-ListMealWidgetLunch = open(r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\ListMeal_Lunch.txt","r")
-ListMealWidgetDinner = open(r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\ListMeal_Dinner.txt","r")
+checkbox = open(r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\Checkbox.txt","r")
+checkboxLunch = open(r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\Checkbox_Lunch.txt","r")
+checkboxDinner = open(r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\Checkbox_Dinner.txt","r")
+ListMealWidgetBreakfast = open(r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\ListMeal.txt","r")
+ListMealWidgetLunch = open(r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\ListMeal_Lunch.txt","r")
+ListMealWidgetDinner = open(r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\ListMeal_Dinner.txt","r")
 for indexCheckbox in range(69):
     #breakfasst
     if checkbox.readline() == 'True\n':
@@ -234,17 +234,17 @@ def LoadmainScreen():
     winsound.PlaySound(None, winsound.SND_PURGE)
     #savedata
     File_Mon = open(
-        r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Mon.txt", "w")
+        r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\Mon.txt", "w")
     File_Tue = open(
-        r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Tue.txt", "w")
+        r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\Tue.txt", "w")
     File_Wed = open(
-        r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Wed.txt", "w")
+        r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\Wed.txt", "w")
     File_Thurs = open(
-        r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Thurs.txt", "w")
+        r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\Thurs.txt", "w")
     File_Fri = open(
-        r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Fri.txt", "w")
+        r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\Fri.txt", "w")
     File_Sat = open(
-        r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Sat.txt", "w")
+        r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\Sat.txt", "w")
     for size in range(len(Mon)):
         File_Mon.writelines(Mon[size])
         File_Tue.writelines(Tue[size])
@@ -631,7 +631,7 @@ class Window(QWidget):
 
 
     def open_file(self):
-        filename, _ = QFileDialog.getOpenFileName(self, "Open Video",r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\VideoGuide\video-dong-tac-gym")
+        filename, _ = QFileDialog.getOpenFileName(self, "Open Video",r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\VideoGuide\video-dong-tac-gym")
 
         if filename != '':
             self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(filename)))
@@ -711,19 +711,19 @@ def comboboxFuntionYoga():
     global y
     string = ui.comboBox_yoga.currentText()
     if string == "Warrior pose":
-        y = 0
-    elif string == "Tree pose":
         y = 1
-    elif string == "Triangle poset":
+    elif string == "Tree pose":
         y = 2
-    elif string == "Plank Straight Arm":
+    elif string == "Triangle pose":
         y = 3
-    elif string == "Plank With Elbow":
+    elif string == "Plank High":
         y = 4
-    elif string == "Boat pose":
+    elif string == "Plank Low":
         y = 5
-    else:
+    elif string == "Boat pose":
         y = 6
+    elif string == "Cobra pose":
+        y = 7
 
 def mute():
     global volume
@@ -762,14 +762,6 @@ class YogaWinDow(QMainWindow):
 		# self.ui.Start_yoga.clicked.connect(self.go)
 
 
-# def go():
-#     global timer
-#     # timer = QtCore.QTimer()
-#     # timer.timeout.connect(update)
-#     timer.start(100)
-# def stop():
-#     timer.stop()
-
 
 
 def update():
@@ -787,7 +779,7 @@ def YogaFunction():
     ui.setupUi(MainWindow)
     ui.Start_yoga.clicked.connect(lambda: count_task_yoga(y))
     ui.back_yoga.clicked.connect(LoadmainScreen)
-    ui.mute_yoga.clicked.connect(mute)
+    ui.mute_yoga.clicked.connect(mute_yoga)
     ui.comboBox_yoga.currentTextChanged.connect(comboboxFuntionYoga)
     ui.widget.rpb_setBarStyle('Hybrid2')
     ui.widget.rpb_setLineColor((255, 255, 255))
@@ -795,7 +787,6 @@ def YogaFunction():
     ui.SeeVideo_yoga.clicked.connect(MediaPlayer)
     ui.spinBox.setValue(max_value)
     ui.spinBox.valueChanged.connect(show_result)
-    ui.mute_yoga.clicked.connect(mute_yoga)
 
 def show_result():
     global max_value
@@ -831,7 +822,7 @@ def MealFunction():
             "Fitness App",
             "Bạn đang ăn quá mức calo tiêu chuẩn",
             duration=20,
-            icon_path=r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\emojis\icon.ico",
+            icon_path=r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\emojis\icon.ico",
             threaded=True,
         )
     else:
@@ -839,7 +830,7 @@ def MealFunction():
             "Fitness App",
             "Bạn đang ăn ít hơn calo tiêu chuẩn.",
             duration=20,
-            icon_path=r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\emojis\icon.ico",
+            icon_path=r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\emojis\icon.ico",
             threaded=True,
         )
 
@@ -1058,10 +1049,10 @@ class MealSelectForBreakFast:
 def SaveMealBreakFast():
     global FOOD, ListMeal, CheckboxMeal,CaloBreakFast,TocalCalo,user
     ListMealDB = open(
-        r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\ListMeal.txt",
+        r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\ListMeal.txt",
         "w")
     CheckboxDB = open(
-        r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Checkbox.txt",
+        r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\Checkbox.txt",
         "w")
     CaloBreakFast = str(ui_1.label_12.text())
         # ListMeal
@@ -1236,10 +1227,10 @@ class MealSelectWindowForLunch:
 def SaveMealLunch():
         global FOOD, FRUIT, OTHER, ListMeal, CheckboxMeal,CaloLunch,TocalCaloLunch
         ListMealDB = open(
-            r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\ListMeal_Lunch.txt",
+            r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\ListMeal_Lunch.txt",
             "w")
         CheckboxDB = open(
-            r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Checkbox_Lunch.txt",
+            r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\Checkbox_Lunch.txt",
             "w")
         CaloLunch = ui_1.label_12.text()
         #ListView
@@ -1414,10 +1405,10 @@ class MealSelectWindowForDinner:
 def SaveMealDinner():
     global ListMeal, CheckboxMeal,CaloDinner
     ListMealDB = open(
-        r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\ListMeal_Dinner.txt",
+        r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\ListMeal_Dinner.txt",
         "w")
     CheckboxDB = open(
-        r"C:\Users\TEMP\Downloads\LoginInterface\pyqt5-full-app-tutorial-for-beginners-main\database\Checkbox_Dinner.txt",
+        r"C:\Users\TEMP\Downloads\DATN\pyqt5-full-app-tutorial-for-beginners-main\database\Checkbox_Dinner.txt",
         "w")
     CaloDinner = str(ui_1.label_12.text())
     for d in range(len(ListMealDinner)):
@@ -2603,34 +2594,24 @@ def count_task(z):  # z la chuc nang duoc quy dinh trong Gym
     cp = 1
     if (z == 0):
         func = 0
-        # func_yoga = 0
     elif (z == 1):
         func = 1
-        # func_yoga = 1
     elif (z == 2):
         func = 2
-        # func_yoga = 2
     elif (z == 3):
         func = 3
-        # func_yoga = 3
     elif (z == 4):
         func = 4
-        # func_yoga = 4
     elif (z == 5):
         func = 5
-        # func_yoga = 5
     elif (z == 6):
         func = 6
-        # func_yoga = 6
     elif (z == 7):
         func = 7
-        # func_yoga = 6
     elif(z == 8):
         func = 8
-        # func_yoga = 6
     else:
         func = 9
-        # func_yoga = 6
     if (running == False):
         t = threading.Thread(target=main)
         t.start()
@@ -2645,11 +2626,8 @@ def count_task_yoga(y):  # z la chuc nang duoc quy dinh trong Yoga
     yp.init(0)
     time.sleep(0.1)
     yp.init(1)
-    tt.giay = 0
     cp = 2
-    if (y == 0):
-        func_yoga = 0
-    elif (y == 1):
+    if (y == 1):
         func_yoga = 1
     elif (y == 2):
         func_yoga = 2
@@ -2659,12 +2637,14 @@ def count_task_yoga(y):  # z la chuc nang duoc quy dinh trong Yoga
         func_yoga = 4
     elif (y == 5):
         func_yoga = 5
-    else:
+    elif (y == 6):
         func_yoga = 6
+    else:
+        func_yoga = 7
     if (running == False):
         t = threading.Thread(target=main)
         t.start()
-    winsound.PlaySound('NhacGym1.WAV', winsound.SND_ASYNC)
+    # winsound.PlaySound('NhacGym1.WAV', winsound.SND_ASYNC)
 
 def hienhinhyoga(a):
         # hien thi anh len khung information
@@ -2706,9 +2686,9 @@ def hienhinh(a, b, per):
 # 	playsound.playsound(a)
 
 
-def playS1(a):
-        s = threading.Thread(target=h_playS1, args=(a,))
-        s.start()
+# def playS1(a):
+#         s = threading.Thread(target=h_playS1, args=(a,))
+#         s.start()
 
 
 
@@ -2717,7 +2697,7 @@ def playS1(a):
 #######  CHUONG TRINH CHINH
 ############################################################################
 def main():
-    global img, ui, rep, func, flagRight, check, dem, yoga_hinh, phut_tt, check2,func_yoga,CaloNeed,now,toast,status,timer,progress_val,running
+    global img, ui, rep, func, flagRight, check, dem, yoga_hinh, phut_tt,func_yoga,CaloNeed,toast,progress_val,running
     bc.count = 0
     running = True
     while True:
@@ -2741,7 +2721,7 @@ def main():
                 # left arm
                 hienhinh("tay-tadon -2.jpg", "tay-tadon-1.jpg", per)
                 #  Leg raise
-            elif z == 9:
+            elif func == 9:
                 # abs
                 hienhinh("leg-raise-1.jpg", "leg-raise-2.jpg", per)
 
@@ -2754,7 +2734,7 @@ def main():
                 # Skull crusher (taysau +ghế)
             elif func == 6:
                 # tay trái
-                hienhinh("hit-dat-1.jpg", "hit-dat-2.jpg", per)
+                hienhinh("tay-sau-voi-ghe.jpg", "tay-sau-voi-ghe-2.jpg", per)
             elif func == 7:
                 # tay phãi
                 hienhinh("tay-sau-voi-ghe.jpg", "tay-sau-voi-ghe-2.jpg", per)
@@ -2762,21 +2742,17 @@ def main():
             elif func == 8:
                 hienhinh("gap-bung-1.jpg", "gap-bung-2.jpg", per)
                 # Dumbbell flyes (ngực trước với tạ đơn)
-            elif z == 3:
+            elif func == 3:
                 hienhinh("nguctruoc-1.jpg", "nguctruoc-2.jpg", per)
 
 
         if cp == 2:
             # playS("sound\\Button_1_down.wav", 0)
             img, check, dem, z = yp.run(700, 491, func_yoga)
-            # hien thi hinh anh len khung view label
+            # # hien thi hinh anh len khung view label
             image = QtGui.QImage(img, img.shape[1], img.shape[0], QtGui.QImage.Format_RGB888).rgbSwapped()
             ui.view_yoga.setPixmap(QtGui.QPixmap.fromImage(image))
-
             # hien thi thoi gian len widget
-            ui.widget.rpb_setValue(tt.giay)
-            if (tt.giay == max_value):
-                z = 8
 
             if z == 1:
                 hienhinhyoga("pose-chien-binh.jpg")
@@ -2787,22 +2763,25 @@ def main():
             elif (z == 3):
                 hienhinhyoga("pose-tamgiac.jpg")
             # Plank ( khuỵu tay)
-            elif z == 4:
+            elif z == 5:
                 hienhinhyoga("blank-khuyu-tay.jpg")
             # Plank ( chống thẳng tay)
-            elif z == 5:
+            elif z == 4:
                 hienhinhyoga("blank-thang-tay.jpg")
             # Pose Boat
             elif z == 6:
-                hienhinhyoga("BOAT-pose.jpg")
+                hienhinhyoga("BOAT-pose.png")
             elif z == 7:
                 hienhinhyoga("cobra-pose.jpg")
-                #HoanhThanh
-            elif (z == 8):
-                hienhinhyoga("pose-tree.jpg")
-                #Phat Am thanh Hoan Thanh
-                winsound.PlaySound('NhacGym1.WAV', winsound.SND_ASYNC)
-                time.sleep(5)
+            #     #HoanhThanh
+            # elif (z == 8):
+            #     #Phat Am thanh Hoan Thanh
+            #     winsound.PlaySound('abcd', winsound.SND_ALIAS)
+            #     comboboxFuntionYoga()
+            ui.widget.rpb_setValue(tt.giay)
+            if (tt.giay == max_value):
+                winsound.PlaySound('abcd', winsound.SND_ALIAS)
+                tt.giay = 0
 
 if __name__ == '__main__':
     app1 = QApplication(sys.argv)
